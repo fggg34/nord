@@ -4,13 +4,45 @@
 
 @section('content')
     @php
-        use App\Support\CmsFieldPresenter;
+        $groupedMain = $grouped->except(['our_locations', 'team', 'certified']);
+        $groupedOurLocations = $grouped->only(['our_locations']);
+        $groupedTeam = $grouped->only(['team']);
+        $groupedCertified = $grouped->only(['certified']);
+
+        $repeatersMain = $repeaters;
+        $repeatersTeamTail = collect();
+        $repeatersCertifiedTail = collect();
+        $repeatersServicesCoreCaps = collect();
+        $repeatersServicesFeatures = collect();
+        $repeatersServicesProcess = collect();
+        $repeatersOurFleetByTheNumbers = collect();
+        if ($page === 'about-us') {
+            $repeatersTeamTail = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'team_members')->values();
+            $repeatersCertifiedTail = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'certified_items')->values();
+            $repeatersMain = $repeaters->filter(fn (array $r) => ! in_array($r['key'] ?? '', ['team_members', 'certified_items'], true))->values();
+        }
+        if ($page === 'services') {
+            $repeatersServicesCoreCaps = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'core_capabilities')->values();
+            $repeatersServicesFeatures = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'features_items')->values();
+            $repeatersServicesProcess = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'process_steps')->values();
+            $repeatersMain = $repeaters->filter(fn (array $r) => ! in_array($r['key'] ?? '', ['core_capabilities', 'features_items', 'process_steps'], true))->values();
+        }
+        if ($page === 'our-fleet') {
+            $repeatersOurFleetByTheNumbers = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'by_the_numbers_items')->values();
+            $repeatersMain = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') !== 'by_the_numbers_items')->values();
+        }
     @endphp
 
     <div class="cms-topbar">
         <div>
             <h1>{{ $pageLabel }}</h1>
-            <p>Edit copy for this page only. Changes apply on the public site after save.</p>
+            <p>
+                @if ($page === 'settings')
+                    Site-wide branding: upload a logo (header on all pages) and favicon (browser tab). Save to apply on the public site.
+                @else
+                    Edit copy for this page only. Changes apply on the public site after save.
+                @endif
+            </p>
         </div>
         <div style="display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
             @if (session('status'))
@@ -23,72 +55,15 @@
         @csrf
         @method('PUT')
 
-        @foreach ($grouped as $section => $rows)
-            <x-admin.section-card :title="CmsFieldPresenter::sectionHeading($section)">
-                <x-admin.field-grid class="cms-field-grid cms-field-grid--2">
-                    @foreach ($rows as $row)
-                        @php
-                            $widget = CmsFieldPresenter::widget($row);
-                            $fname = 'fields['.$row->id.']';
-                        @endphp
-                        @if ($widget['type'] === 'textarea')
-                            <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
-                                <x-admin.input-textarea
-                                    :name="$fname"
-                                    :value="old('fields.'.$row->id, $row->value)"
-                                    placeholder="Enter text…"
-                                />
-                            </x-admin.form-field>
-                        @elseif ($widget['type'] === 'select')
-                            <x-admin.form-field :label="CmsFieldPresenter::label($row)">
-                                <x-admin.input-select
-                                    :name="$fname"
-                                    :value="old('fields.'.$row->id, $row->value)"
-                                    :options="$widget['options'] ?? []"
-                                />
-                            </x-admin.form-field>
-                        @elseif ($widget['type'] === 'image')
-                            @php
-                                $fallback = asset('assets/images/ed05f9acd87eadf4-YS8lEtRBWRD8b6HqR7UwqBKcVAc.jpg');
-                                $preview = cms_public_url($row->value, $fallback);
-                            @endphp
-                            <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
-                                <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
-                                    <img
-                                        src="{{ $preview }}"
-                                        alt=""
-                                        style="max-width: min(100%, 420px); max-height: 220px; object-fit: cover; border-radius: 8px; border: 1px solid var(--cms-border, #e5e7eb);"
-                                    />
-                                    <input
-                                        type="file"
-                                        name="files[{{ $row->id }}]"
-                                        accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
-                                        style="font-size: 0.85rem;"
-                                    />
-                                    <span style="font-size: 0.75rem; color: var(--cms-muted);">Upload replaces the current image. Uses the public disk (<code>storage/app/public</code> → <code>public/storage</code>).</span>
-                                </div>
-                            </x-admin.form-field>
-                        @else
-                            <x-admin.form-field :label="CmsFieldPresenter::label($row)">
-                                <x-admin.input-text
-                                    :name="$fname"
-                                    :value="old('fields.'.$row->id, $row->value)"
-                                    placeholder="Short text…"
-                                />
-                            </x-admin.form-field>
-                        @endif
-                    @endforeach
-                </x-admin.field-grid>
-            </x-admin.section-card>
-        @endforeach
+        @include('admin.pages._content-section-cards', ['sections' => $groupedMain])
 
-        @if ($repeaters->isNotEmpty())
+        @if ($repeatersMain->isNotEmpty())
             <x-admin.section-card
                 title="Structured repeaters"
                 description="These store JSON in the database. Existing Framer-driven text fields above are unchanged. Use repeaters for lists you will render in custom templates or future components."
             >
                 <div style="display: flex; flex-direction: column; gap: 1.5rem;">
-                    @foreach ($repeaters as $rep)
+                    @foreach ($repeatersMain as $rep)
                         <x-admin.repeater
                             :label="$rep['label']"
                             :description="$rep['description'] ?? null"
@@ -99,6 +74,166 @@
                     @endforeach
                 </div>
             </x-admin.section-card>
+        @endif
+
+        @if ($repeatersServicesCoreCaps->isNotEmpty())
+            <x-admin.section-card
+                title="Our Services — capability cards (repeater)"
+                description="Shown in #our-services on the public Services page (right column). Each row: title, image, alt text, and rich HTML body (TinyMCE)."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersServicesCoreCaps as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
+
+        @if ($repeatersServicesFeatures->isNotEmpty())
+            <x-admin.section-card
+                title="Features section — rows (repeater)"
+                description="Shown in #features on the public Services page (right column). Each row: icon, optional alt, title, and short description."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersServicesFeatures as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
+
+        @if ($repeatersServicesProcess->isNotEmpty())
+            <x-admin.section-card
+                title="Our Process — timeline steps (repeater)"
+                description="Shown in #process on the public Services page. Row order = timeline order: 1st, 3rd, 5th… on the right of the line; 2nd, 4th… on the left. Each row: step number, title, description."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersServicesProcess as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
+
+        @if ($repeatersOurFleetByTheNumbers->isNotEmpty())
+            <x-admin.section-card
+                title="By the numbers — stat columns (repeater)"
+                description="Shown in #stats-section on the public Our fleet page (right column grid). Each row: stat headline (e.g. 4+, 80%) and short description."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersOurFleetByTheNumbers as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
+
+        @include('admin.pages._content-section-cards', ['sections' => $groupedOurLocations])
+
+        @include('admin.pages._content-section-cards', ['sections' => $groupedTeam])
+
+        @if ($repeatersTeamTail->isNotEmpty())
+            <x-admin.section-card
+                title="Team — member cards (repeater)"
+                description="Shown in the Team section on the public About page. Appears after Our Locations and team intro fields above."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersTeamTail as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
+
+        @include('admin.pages._content-section-cards', ['sections' => $groupedCertified])
+
+        @if ($repeatersCertifiedTail->isNotEmpty())
+            <x-admin.section-card
+                title="Certified — standard rows (repeater)"
+                description="Shown in the Certified section on the public About page (#certified), after Team."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersCertifiedTail as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
+
+        @if ($page === 'services')
+            @push('scripts')
+                <script src="https://cdn.jsdelivr.net/npm/tinymce@7/tinymce.min.js"></script>
+                <script>
+                    window.cmsInitRepTinyMCE = function (textareaEl, item, key) {
+                        if (typeof tinymce === 'undefined' || !textareaEl || !item || !key) {
+                            return;
+                        }
+                        var id = textareaEl.id;
+                        if (!id || !/^[a-zA-Z0-9_-]+$/.test(id)) {
+                            id = 'tmce_' + Math.random().toString(36).slice(2);
+                            textareaEl.id = id;
+                        }
+                        if (tinymce.get(id)) {
+                            tinymce.get(id).remove();
+                        }
+                        textareaEl.value = item[key] || '';
+                        tinymce.init({
+                            selector: '#' + id,
+                            promotion: false,
+                            license_key: 'gpl',
+                            height: 320,
+                            menubar: false,
+                            plugins: 'lists link autoresize',
+                            toolbar: 'blocks | bold italic | bullist numlist | link | removeformat | code',
+                            browser_spellcheck: true,
+                            setup: function (editor) {
+                                editor.on('init', function () {
+                                    editor.setContent(item[key] || '');
+                                });
+                                editor.on('change input Undo Redo KeyUp', function () {
+                                    item[key] = editor.getContent();
+                                });
+                            },
+                        });
+                    };
+                </script>
+            @endpush
         @endif
 
         @if ($grouped->isEmpty() && $repeaters->isEmpty())

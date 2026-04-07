@@ -28,6 +28,7 @@ class PageContentController extends Controller
 
         $flatRows = $rows->filter(fn (Content $r) => $r->type !== 'repeater');
         $grouped = $this->sortSectionsForAdmin($flatRows->groupBy('section'));
+        $grouped = $this->filterGroupedSectionsForAdmin($page, $grouped);
 
         $repeaters = $this->repeatersForPage($page, $rows);
 
@@ -50,7 +51,7 @@ class PageContentController extends Controller
             'repeaters' => ['nullable', 'array'],
             'repeaters.*' => ['nullable', 'string'],
             'files' => ['nullable', 'array'],
-            'files.*' => ['nullable', 'file', 'image', 'max:5120'],
+            'files.*' => ['nullable', 'file', 'max:5120', 'mimes:jpg,jpeg,png,gif,webp,svg,bmp,ico'],
             'repeater_files' => ['nullable', 'array'],
         ]);
 
@@ -152,13 +153,46 @@ class PageContentController extends Controller
      * @param  Collection<string, Collection<int, Content>>  $grouped
      * @return Collection<string, Collection<int, Content>>
      */
+    /**
+     * @param  Collection<string, Collection<int, Content>>  $grouped
+     * @return Collection<string, Collection<int, Content>>
+     */
+    protected function filterGroupedSectionsForAdmin(string $page, Collection $grouped): Collection
+    {
+        $configKey = 'cms.admin_visible_sections.'.$page;
+        if (! config()->has($configKey)) {
+            return $grouped;
+        }
+
+        $allowed = config($configKey);
+        if (! is_array($allowed)) {
+            return $grouped;
+        }
+
+        if ($allowed === []) {
+            return collect();
+        }
+
+        return $grouped->only($allowed);
+    }
+
     protected function sortSectionsForAdmin(Collection $grouped): Collection
     {
         $rank = function (string $s): int {
             return match ($s) {
-                'hero', 'stats' => 0,
-                'cms_repeaters' => 2,
-                default => 1,
+                'branding' => 0,
+                'hero', 'stats' => 1,
+                'below_hero' => 2,
+                'our_services' => 2,
+                'features' => 3,
+                'our_process' => 4,
+                'our_history' => 3,
+                'mission_values' => 4,
+                'our_locations' => 5,
+                'team' => 6,
+                'certified' => 7,
+                'cms_repeaters' => 8,
+                default => 9,
             };
         };
 
@@ -362,6 +396,10 @@ class PageContentController extends Controller
                     && ! str_starts_with($raw, 'assets/')
                     && ! preg_match('#^https?://#i', $raw) && ! str_starts_with($raw, '/')) {
                     $raw = '';
+                }
+                if ($type === 'html') {
+                    $raw = preg_replace('#<\s*script\b[^>]*>.*?<\s*/\s*script\s*>#is', '', $raw) ?? '';
+                    $raw = preg_replace('#\s+on\w+\s*=\s*("[^"]*"|\'[^\']*\'|[^\s>]+)#i', '', $raw) ?? '';
                 }
                 $row[$fk] = $raw;
             }
