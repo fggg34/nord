@@ -11,9 +11,17 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.13.5/dist/cdn.min.js"></script>
     <script>
         document.addEventListener('alpine:init', () => {
-            Alpine.data('cmsRepeater', (items, fields) => ({
+            Alpine.data('cmsRepeater', (items, fields, publicStoragePrefix) => ({
                 items: Array.isArray(items) ? JSON.parse(JSON.stringify(items)) : [],
                 fields: Array.isArray(fields) ? fields : [],
+                publicStoragePrefix: typeof publicStoragePrefix === 'string' ? publicStoragePrefix : '',
+                storageSrc(path) {
+                    const p = (path || '').trim();
+                    if (!p || p.startsWith('http://') || p.startsWith('https://') || p.startsWith('/')) {
+                        return p;
+                    }
+                    return this.publicStoragePrefix + p.replace(/^\/+/, '');
+                },
                 add() {
                     const row = {};
                     this.fields.forEach((f) => { row[f.key] = ''; });

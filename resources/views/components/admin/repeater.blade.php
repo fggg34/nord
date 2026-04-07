@@ -6,7 +6,10 @@
     'storageKey' => '',
 ])
 
-<div x-data="cmsRepeater(@js($items), @js($fields))" style="border: 1px dashed var(--cms-border); border-radius: 10px; padding: 1rem; background: #f8fafc;">
+@php
+    $storagePrefix = '/storage/';
+@endphp
+<div x-data="cmsRepeater(@js($items), @js($fields), @js($storagePrefix))" style="border: 1px dashed var(--cms-border); border-radius: 10px; padding: 1rem; background: #f8fafc;">
     <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
         <div>
             <div style="font-weight: 600; font-size: 0.95rem;">{{ $label }}</div>
@@ -30,10 +33,23 @@
                 </div>
                 <div class="cms-field-grid cms-field-grid--2" style="display: grid; gap: 0.85rem; grid-template-columns: 1fr;">
                     <template x-for="f in fields" :key="f.key">
-                        <div class="cms-repeater-field" :class="f.type === 'textarea' ? 'cms-span-2' : ''" style="min-width: 0;">
+                        <div class="cms-repeater-field" :class="(f.type === 'textarea' || f.type === 'image') ? 'cms-span-2' : ''" style="min-width: 0;">
                             <label :for="'rep-'+index+'-'+f.key" style="display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--cms-muted);" x-text="f.label"></label>
                             <input x-show="f.type === 'text'" type="text" class="cms-rep-input" x-model="item[f.key]" :placeholder="f.placeholder || ''" :id="'rep-'+index+'-'+f.key">
                             <textarea x-show="f.type === 'textarea'" class="cms-rep-textarea" x-model="item[f.key]" rows="3" :placeholder="f.placeholder || ''" :id="'rep-'+index+'-'+f.key"></textarea>
+                            <div x-show="f.type === 'image'" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <template x-if="item[f.key]">
+                                    <img :src="storageSrc(item[f.key])" alt="" style="max-height: 52px; max-width: 160px; object-fit: contain; border-radius: 6px; border: 1px solid var(--cms-border);" />
+                                </template>
+                                <input
+                                    type="file"
+                                    class="cms-rep-file"
+                                    :name="'repeater_files[{{ $storageKey }}]['+index+']['+f.key+']'"
+                                    accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
+                                    :id="'rep-'+index+'-'+f.key"
+                                />
+                                <span style="font-size: 0.72rem; color: var(--cms-muted);">New upload replaces the stored file for this row.</span>
+                            </div>
                         </div>
                     </template>
                 </div>
@@ -56,4 +72,5 @@
         font: inherit;
     }
     .cms-rep-textarea { resize: vertical; min-height: 4rem; }
+    .cms-rep-file { font-size: 0.85rem; max-width: 100%; }
 </style>

@@ -22,7 +22,7 @@ class CmsFieldPresenter
     }
 
     /**
-     * @return array{type: string, options?: array<string, string>}
+     * @return array{type: 'text'|'textarea'|'select'|'image', options?: array<string, string>}
      */
     public static function widget(Content $row): array
     {
@@ -34,6 +34,9 @@ class CmsFieldPresenter
             $type = $o['type'] ?? 'text';
             if ($type === 'select' && isset($o['options']) && is_array($o['options'])) {
                 return ['type' => 'select', 'options' => $o['options']];
+            }
+            if ($type === 'image') {
+                return ['type' => 'image'];
             }
 
             return ['type' => in_array($type, ['text', 'textarea'], true) ? $type : 'text'];
@@ -47,7 +50,7 @@ class CmsFieldPresenter
             return ['type' => 'text'];
         }
 
-        if ($row->section === 'hero') {
+        if (in_array($row->section, ['hero', 'stats'], true)) {
             return ['type' => 'text'];
         }
 

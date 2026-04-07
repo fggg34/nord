@@ -4,9 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Content;
+use App\Support\CmsFieldPresenter;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
@@ -46,6 +49,9 @@ class PageContentController extends Controller
             'fields.*' => ['nullable', 'string'],
             'repeaters' => ['nullable', 'array'],
             'repeaters.*' => ['nullable', 'string'],
+            'files' => ['nullable', 'array'],
+            'files.*' => ['nullable', 'file', 'image', 'max:5120'],
+            'repeater_files' => ['nullable', 'array'],
         ]);
 
         foreach ($validated['fields'] ?? [] as $id => $value) {
@@ -59,7 +65,35 @@ class PageContentController extends Controller
                 continue;
             }
 
+            if (CmsFieldPresenter::widget($row)['type'] === 'image') {
+                continue;
+            }
+
             $row->update(['value' => $value ?? '']);
+        }
+
+        foreach ($request->file('files', []) as $id => $file) {
+            $id = (int) $id;
+            if ($id <= 0 || $file === null) {
+                continue;
+            }
+
+            $row = Content::query()->find($id);
+            if ($row === null || $row->page !== $page || $row->type === 'repeater') {
+                continue;
+            }
+
+            if (CmsFieldPresenter::widget($row)['type'] !== 'image') {
+                continue;
+            }
+
+            $old = $row->value;
+            if (is_string($old) && $old !== '' && str_starts_with($old, 'cms/')) {
+                Storage::disk('public')->delete($old);
+            }
+
+            $path = $file->store('cms/'.$page, 'public');
+            $row->update(['value' => $path]);
         }
 
         foreach ($validated['repeaters'] ?? [] as $storageKey => $json) {
@@ -78,6 +112,7 @@ class PageContentController extends Controller
                 $items = [];
             }
 
+            $items = $this->mergeRepeaterImageUploads($items, $rep, (string) $storageKey, $request);
             $items = $this->sanitizeRepeaterItems($items, $rep);
 
             Content::query()->updateOrCreate(
@@ -121,7 +156,7 @@ class PageContentController extends Controller
     {
         $rank = function (string $s): int {
             return match ($s) {
-                'hero' => 0,
+                'hero', 'stats' => 0,
                 'cms_repeaters' => 2,
                 default => 1,
             };
@@ -247,9 +282,71 @@ class PageContentController extends Controller
      * @param  array<int, mixed>  $items
      * @return array<int, array<string, string>>
      */
+    /**
+     * @param  array<int, mixed>  $items
+     * @return array<int, array<string, string>>
+     */
+    protected function mergeRepeaterImageUploads(array $items, array $rep, string $storageKey, Request $request): array
+    {
+        $imageFieldKeys = collect($rep['fields'] ?? [])
+            ->filter(fn (array $f) => ($f['type'] ?? '') === 'image')
+            ->pluck('key')
+            ->filter()
+            ->all();
+
+        if ($imageFieldKeys === []) {
+            return $items;
+        }
+
+        $bag = $request->file('repeater_files', []);
+        if (! is_array($bag) || ! isset($bag[$storageKey]) || ! is_array($bag[$storageKey])) {
+            return $items;
+        }
+
+        $page = (string) ($rep['page'] ?? '');
+        $repKey = (string) ($rep['key'] ?? 'repeater');
+        $dir = 'cms/'.$page.'/'.$repKey;
+
+        foreach ($bag[$storageKey] as $index => $uploads) {
+            if (! is_array($uploads)) {
+                continue;
+            }
+
+            $i = (int) $index;
+            if ($i < 0 || ! isset($items[$i]) || ! is_array($items[$i])) {
+                continue;
+            }
+
+            foreach ($imageFieldKeys as $fk) {
+                $file = $uploads[$fk] ?? null;
+                if (! $file instanceof UploadedFile || ! $file->isValid()) {
+                    continue;
+                }
+
+                $maxBytes = 5120 * 1024;
+                if ($file->getSize() > $maxBytes) {
+                    continue;
+                }
+
+                $old = isset($items[$i][$fk]) ? (string) $items[$i][$fk] : '';
+                if ($old !== '' && str_starts_with($old, 'cms/')) {
+                    Storage::disk('public')->delete($old);
+                }
+
+                $path = $file->store($dir, 'public');
+                $items[$i][$fk] = $path;
+            }
+        }
+
+        return $items;
+    }
+
     protected function sanitizeRepeaterItems(array $items, array $rep): array
     {
-        $fieldKeys = collect($rep['fields'] ?? [])->pluck('key')->filter()->all();
+        $fieldDefs = collect($rep['fields'] ?? [])
+            ->filter(fn (array $f) => ($f['key'] ?? '') !== '')
+            ->keyBy(fn (array $f) => (string) $f['key']);
+        $fieldKeys = $fieldDefs->keys()->all();
         $out = [];
 
         foreach ($items as $item) {
@@ -259,7 +356,14 @@ class PageContentController extends Controller
 
             $row = [];
             foreach ($fieldKeys as $fk) {
-                $row[$fk] = isset($item[$fk]) ? (string) $item[$fk] : '';
+                $raw = isset($item[$fk]) ? (string) $item[$fk] : '';
+                $type = (string) ($fieldDefs->get($fk, [])['type'] ?? 'text');
+                if ($type === 'image' && $raw !== '' && ! str_starts_with($raw, 'cms/')
+                    && ! str_starts_with($raw, 'assets/')
+                    && ! preg_match('#^https?://#i', $raw) && ! str_starts_with($raw, '/')) {
+                    $raw = '';
+                }
+                $row[$fk] = $raw;
             }
             $out[] = $row;
         }
