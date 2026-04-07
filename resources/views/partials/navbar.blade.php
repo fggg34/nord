@@ -1,0 +1,1 @@
+{{-- Navbar markup from the Framer export lives inside #main in partials/framer/_body_*.blade.php. Include this partial from a custom layout only after you extract the nav DOM manually so classes and hydration stay intact. --}}
