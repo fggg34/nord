@@ -9,6 +9,7 @@
         $groupedTeam = $grouped->only(['team']);
         $groupedCertified = $grouped->only(['certified']);
         $groupedHomeServicesIndustries = collect();
+        $groupedHomeCriticalIndustries = collect();
 
         $repeatersMain = $repeaters;
         $repeatersTeamTail = collect();
@@ -19,6 +20,7 @@
         $repeatersOurFleetByTheNumbers = collect();
         $repeatersOurFleetFleetCards = collect();
         $repeatersHomeServiceCards = collect();
+        $repeatersHomeIndustryCards = collect();
         if ($page === 'about-us') {
             $repeatersTeamTail = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'team_members')->values();
             $repeatersCertifiedTail = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'certified_items')->values();
@@ -36,10 +38,12 @@
             $repeatersMain = $repeaters->filter(fn (array $r) => ! in_array($r['key'] ?? '', ['by_the_numbers_items', 'fleet_category_cards'], true))->values();
         }
         if ($page === 'home') {
-            $groupedMain = $groupedMain->except(['services_industries']);
+            $groupedMain = $groupedMain->except(['services_industries', 'critical_industries']);
             $groupedHomeServicesIndustries = $grouped->only(['services_industries']);
+            $groupedHomeCriticalIndustries = $grouped->only(['critical_industries']);
             $repeatersHomeServiceCards = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'service_cards')->values();
-            $repeatersMain = $repeatersMain->filter(fn (array $r) => ($r['key'] ?? '') !== 'service_cards')->values();
+            $repeatersHomeIndustryCards = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'industry_cards')->values();
+            $repeatersMain = $repeatersMain->filter(fn (array $r) => ! in_array($r['key'] ?? '', ['service_cards', 'industry_cards'], true))->values();
         }
     @endphp
 
@@ -78,6 +82,29 @@
             >
                 <div style="display: flex; flex-direction: column; gap: 1.5rem;">
                     @foreach ($repeatersHomeServiceCards as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
+
+        @if ($page === 'home' && $groupedHomeCriticalIndustries->isNotEmpty())
+            @include('admin.pages._content-section-cards', ['sections' => $groupedHomeCriticalIndustries])
+        @endif
+
+        @if ($page === 'home' && $repeatersHomeIndustryCards->isNotEmpty())
+            <x-admin.section-card
+                title="Industries block — industry cards"
+                description="Heading and intro are edited in the section above. Here: each dark card row on the home Industries section."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersHomeIndustryCards as $rep)
                         <x-admin.repeater
                             :label="$rep['label']"
                             :description="$rep['description'] ?? null"

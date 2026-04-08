@@ -89,7 +89,7 @@ return [
             'section' => 'cms_repeaters',
             'key' => 'industry_cards',
             'label' => 'Industries section — industry cards',
-            'description' => 'Dark cards in “Built for Critical Industries.” Each row: title (heading), image, optional alt. Section title and intro stay in the text fields above.',
+            'description' => 'Dark industry cards on the home page. Edit the section heading and intro in “Critical industries (Industries block)” above. Each row: title (heading), image, optional alt.',
             'fields' => [
                 ['key' => 'title', 'label' => 'Card title', 'type' => 'text', 'placeholder' => 'e.g. Food & Beverage'],
                 ['key' => 'image', 'label' => 'Card image', 'type' => 'image'],
@@ -308,6 +308,8 @@ return [
         'error-404.hero.title' => '404 heading (animated)',
         'home.services_industries.heading' => 'Services (#industries-scroll) — main heading (e.g. Logistics that fit your needs.)',
         'home.services_industries.intro' => 'Services (#industries-scroll) — intro paragraph under the heading',
+        'home.critical_industries.heading' => 'Industries block — main heading (e.g. Built for Critical Industries.)',
+        'home.critical_industries.intro' => 'Industries block — intro paragraph under the heading (left column)',
         'home.clients_say.title' => 'Section heading (What Our Clients Say)',
         'home.clients_say.description' => 'Intro paragraph (above the review grid)',
         'home.clients_say.side_image' => 'Large side image (replaces video)',
@@ -326,6 +328,8 @@ return [
         'features' => 'Features (#features — tag, heading, background; rows are in repeater below)',
         'our_process' => 'Our Process (#process — tag & heading; timeline steps are in repeater below)',
         'stats' => 'Quick facts (#stats-section, below hero)',
+        'services_industries' => 'Services (#industries-scroll — heading & intro; service cards in repeater below)',
+        'critical_industries' => 'Critical industries (Industries block — heading & intro; industry cards in repeater below)',
         'why_us' => 'Why Us section (label, heading, copy, CTA)',
         'clients_say' => 'What Our Clients Say (heading, intro, side image)',
         'our_history' => 'Our History (#our-history heading only; timeline is in repeaters below)',
@@ -351,6 +355,9 @@ return [
             'type' => 'textarea',
         ],
         'home.services_industries.intro' => [
+            'type' => 'textarea',
+        ],
+        'home.critical_industries.intro' => [
             'type' => 'textarea',
         ],
         'home.clients_say.side_image' => [

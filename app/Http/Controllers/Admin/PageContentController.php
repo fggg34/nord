@@ -183,6 +183,7 @@ class PageContentController extends Controller
                 'branding' => 0,
                 'hero', 'stats' => 1,
                 'services_industries' => 2,
+                'critical_industries' => 3,
                 'by_the_numbers' => 2,
                 'fleet_categories' => 3,
                 'below_hero' => 2,
