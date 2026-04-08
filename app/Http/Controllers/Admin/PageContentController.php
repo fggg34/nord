@@ -182,6 +182,9 @@ class PageContentController extends Controller
             return match ($s) {
                 'branding' => 0,
                 'hero', 'stats' => 1,
+                'services_industries' => 2,
+                'by_the_numbers' => 2,
+                'fleet_categories' => 3,
                 'below_hero' => 2,
                 'our_services' => 2,
                 'features' => 3,

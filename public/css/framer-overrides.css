@@ -7,3 +7,57 @@ h1.framer-text.framer-styles-preset-93tzfa {
     display: flex;
     align-items: center;
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Fleet section — accordion
+   JS toggles .fleet-card-collapsed on .framer-1dyiqbv-container
+   ═══════════════════════════════════════════════════════════════ */
+
+/* Expanded state (default): show body, show X, hide + */
+.framer-1dyiqbv-container .fleet-icon-expand {
+    display: none !important;
+}
+.framer-1dyiqbv-container .fleet-icon-close {
+    display: block;
+}
+
+/* Collapsed state: hide body + image, show +, hide X */
+.framer-1dyiqbv-container.fleet-card-collapsed .fleet-card-body {
+    display: none !important;
+}
+.framer-1dyiqbv-container.fleet-card-collapsed .fleet-icon-close {
+    display: none !important;
+}
+.framer-1dyiqbv-container.fleet-card-collapsed .fleet-icon-expand {
+    display: block !important;
+}
+.framer-1dyiqbv-container.fleet-card-collapsed {
+    height: auto !important;
+    min-height: 0;
+}
+
+/* Smooth transition for the card container */
+.framer-1dyiqbv-container {
+    transition: height 0.3s ease;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Close/expand button hover */
+.framer-ntvsza-container {
+    cursor: pointer;
+}
+
+/* Fleet card — force left alignment on all text */
+.framer-1dyiqbv-container .framer-174gm5d,
+.framer-1dyiqbv-container .framer-174gm5d h6,
+.framer-1dyiqbv-container .framer-ecrg75,
+.framer-1dyiqbv-container .framer-ecrg75 .framer-1g9piqy,
+.framer-1dyiqbv-container .framer-ecrg75 .framer-text,
+.framer-1dyiqbv-container .framer-ecrg75 p,
+.framer-1dyiqbv-container .framer-ecrg75 ul,
+.framer-1dyiqbv-container .framer-ecrg75 li {
+    text-align: left !important;
+    --framer-text-alignment: left !important;
+    justify-content: flex-start !important;
+}

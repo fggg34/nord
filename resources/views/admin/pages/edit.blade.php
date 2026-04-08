@@ -8,6 +8,7 @@
         $groupedOurLocations = $grouped->only(['our_locations']);
         $groupedTeam = $grouped->only(['team']);
         $groupedCertified = $grouped->only(['certified']);
+        $groupedHomeServicesIndustries = collect();
 
         $repeatersMain = $repeaters;
         $repeatersTeamTail = collect();
@@ -16,6 +17,8 @@
         $repeatersServicesFeatures = collect();
         $repeatersServicesProcess = collect();
         $repeatersOurFleetByTheNumbers = collect();
+        $repeatersOurFleetFleetCards = collect();
+        $repeatersHomeServiceCards = collect();
         if ($page === 'about-us') {
             $repeatersTeamTail = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'team_members')->values();
             $repeatersCertifiedTail = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'certified_items')->values();
@@ -29,7 +32,14 @@
         }
         if ($page === 'our-fleet') {
             $repeatersOurFleetByTheNumbers = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'by_the_numbers_items')->values();
-            $repeatersMain = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') !== 'by_the_numbers_items')->values();
+            $repeatersOurFleetFleetCards = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'fleet_category_cards')->values();
+            $repeatersMain = $repeaters->filter(fn (array $r) => ! in_array($r['key'] ?? '', ['by_the_numbers_items', 'fleet_category_cards'], true))->values();
+        }
+        if ($page === 'home') {
+            $groupedMain = $groupedMain->except(['services_industries']);
+            $groupedHomeServicesIndustries = $grouped->only(['services_industries']);
+            $repeatersHomeServiceCards = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'service_cards')->values();
+            $repeatersMain = $repeatersMain->filter(fn (array $r) => ($r['key'] ?? '') !== 'service_cards')->values();
         }
     @endphp
 
@@ -56,6 +66,29 @@
         @method('PUT')
 
         @include('admin.pages._content-section-cards', ['sections' => $groupedMain])
+
+        @if ($page === 'home' && $groupedHomeServicesIndustries->isNotEmpty())
+            @include('admin.pages._content-section-cards', ['sections' => $groupedHomeServicesIndustries])
+        @endif
+
+        @if ($page === 'home' && $repeatersHomeServiceCards->isNotEmpty())
+            <x-admin.section-card
+                title="Services (#industries-scroll) — cards"
+                description="Heading and intro are edited in the section above. Here: each row is one service card on the public home page (#industries-scroll)."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersHomeServiceCards as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
 
         @if ($repeatersMain->isNotEmpty())
             <x-admin.section-card
@@ -152,6 +185,25 @@
             </x-admin.section-card>
         @endif
 
+        @if ($repeatersOurFleetFleetCards->isNotEmpty())
+            <x-admin.section-card
+                title="Fleet section — category cards (repeater)"
+                description="Shown in the Fleet section on the public Our fleet page (right column accordion). Each row: optional index, title, image, alt text, and rich HTML body (TinyMCE)."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersOurFleetFleetCards as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
+        @endif
+
         @include('admin.pages._content-section-cards', ['sections' => $groupedOurLocations])
 
         @include('admin.pages._content-section-cards', ['sections' => $groupedTeam])
@@ -196,7 +248,7 @@
             </x-admin.section-card>
         @endif
 
-        @if ($page === 'services')
+        @if (in_array($page, ['services', 'our-fleet'], true))
             @push('scripts')
                 <script src="https://cdn.jsdelivr.net/npm/tinymce@7/tinymce.min.js"></script>
                 <script>

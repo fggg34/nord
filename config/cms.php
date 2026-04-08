@@ -28,7 +28,7 @@ return [
     'admin_visible_sections' => [
         'about-us' => ['hero', 'our_history', 'mission_values', 'our_locations', 'team', 'certified'],
         'services' => ['hero', 'below_hero', 'our_services', 'features', 'our_process'],
-        'our-fleet' => ['hero', 'by_the_numbers'],
+        'our-fleet' => ['hero', 'by_the_numbers', 'fleet_categories'],
     ],
 
     /**
@@ -77,7 +77,7 @@ return [
             'section' => 'cms_repeaters',
             'key' => 'service_cards',
             'label' => 'Services section (#industries-scroll) — service cards',
-            'description' => 'Cards under “Logistics that fit your needs.” Each row: title (h5), image, optional alt. Keeps Framer layout and scroll animations.',
+            'description' => 'Cards under the Services heading on the home page. Edit the heading and intro in the “Services (#industries-scroll)” fields above. Each row: title (h5), image, optional alt. Keeps Framer layout and scroll animations.',
             'fields' => [
                 ['key' => 'title', 'label' => 'Card title', 'type' => 'text', 'placeholder' => 'e.g. National & International Freight'],
                 ['key' => 'image', 'label' => 'Card image', 'type' => 'image'],
@@ -198,6 +198,31 @@ return [
                 ['key' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Short paragraph'],
             ],
         ],
+        [
+            'page' => 'our-fleet',
+            'section' => 'cms_repeaters',
+            'key' => 'by_the_numbers_items',
+            'label' => 'By the numbers (#stats-section) — stat columns',
+            'description' => 'Each row: large figure/title (center) and description below. Order left-to-right matches the public grid. Tag and subheading are edited in the “By the numbers” section above.',
+            'fields' => [
+                ['key' => 'title', 'label' => 'Stat value / headline', 'type' => 'text', 'placeholder' => 'e.g. 500+'],
+                ['key' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Short line under the stat'],
+            ],
+        ],
+        [
+            'page' => 'our-fleet',
+            'section' => 'cms_repeaters',
+            'key' => 'fleet_category_cards',
+            'label' => 'Fleet section — category cards (accordion)',
+            'description' => 'Right column in the Fleet section: each row is one card (index number, title, image, rich HTML body). Order matches the stack on the public Our fleet page.',
+            'fields' => [
+                ['key' => 'number', 'label' => 'Index (optional)', 'type' => 'text', 'placeholder' => 'e.g. 01 — leave empty for auto 01, 02, …'],
+                ['key' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'e.g. Heavy-duty Semi-Trailers'],
+                ['key' => 'image', 'label' => 'Image', 'type' => 'image'],
+                ['key' => 'image_alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Describe the photo'],
+                ['key' => 'body', 'label' => 'Description (rich text)', 'type' => 'html', 'placeholder' => ''],
+            ],
+        ],
     ],
 
     /**
@@ -272,9 +297,17 @@ return [
         'our-fleet.hero.description' => 'Hero — intro paragraph (below heading)',
         'our-fleet.by_the_numbers.tag' => 'By the numbers — small label (e.g. BY THE NUMBERS)',
         'our-fleet.by_the_numbers.heading' => 'By the numbers — main line under tag',
+        'our-fleet.fleet_categories.tag' => 'Fleet section — small label (e.g. VEHICLE CATEGORIES)',
+        'our-fleet.fleet_categories.heading' => 'Fleet section — main heading',
+        'our-fleet.fleet_categories.intro_1' => 'Fleet section — first intro paragraph',
+        'our-fleet.fleet_categories.intro_2' => 'Fleet section — second intro paragraph',
+        'our-fleet.fleet_categories.cta_label' => 'Fleet section — CTA button label',
+        'our-fleet.fleet_categories.cta_url' => 'Fleet section — CTA link (path e.g. contact-us, or full URL)',
         'industries.hero.title' => 'Hero title (animated)',
         'privacy-policy.hero.title' => 'Hero title (animated)',
         'error-404.hero.title' => '404 heading (animated)',
+        'home.services_industries.heading' => 'Services (#industries-scroll) — main heading (e.g. Logistics that fit your needs.)',
+        'home.services_industries.intro' => 'Services (#industries-scroll) — intro paragraph under the heading',
         'home.clients_say.title' => 'Section heading (What Our Clients Say)',
         'home.clients_say.description' => 'Intro paragraph (above the review grid)',
         'home.clients_say.side_image' => 'Large side image (replaces video)',
@@ -301,6 +334,7 @@ return [
         'team' => 'Team (#stats-section-1 — tag, heading, intro; cards in repeater below)',
         'certified' => 'Certified (#certified — tag, heading, intro; rows in repeater below)',
         'by_the_numbers' => 'By the numbers (#stats-section — tag & heading; stat columns in repeater below)',
+        'fleet_categories' => 'Fleet section (two columns — intro & CTA left; accordion cards in repeater below)',
     ],
 
     /**
@@ -314,6 +348,9 @@ return [
             'type' => 'textarea',
         ],
         'home.clients_say.description' => [
+            'type' => 'textarea',
+        ],
+        'home.services_industries.intro' => [
             'type' => 'textarea',
         ],
         'home.clients_say.side_image' => [
@@ -384,6 +421,15 @@ return [
         ],
         'our-fleet.by_the_numbers.heading' => [
             'type' => 'textarea',
+        ],
+        'our-fleet.fleet_categories.intro_1' => [
+            'type' => 'textarea',
+        ],
+        'our-fleet.fleet_categories.intro_2' => [
+            'type' => 'textarea',
+        ],
+        'our-fleet.fleet_categories.cta_url' => [
+            'type' => 'text',
         ],
     ],
 
