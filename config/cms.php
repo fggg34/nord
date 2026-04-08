@@ -28,7 +28,7 @@ return [
     'admin_visible_sections' => [
         'about-us' => ['hero', 'our_history', 'mission_values', 'our_locations', 'team', 'certified'],
         'services' => ['hero', 'below_hero', 'our_services', 'features', 'our_process'],
-        'our-fleet' => ['hero', 'by_the_numbers', 'fleet_categories'],
+        'our-fleet' => ['hero', 'by_the_numbers', 'features_section', 'fleet_categories'],
     ],
 
     /**
@@ -223,6 +223,19 @@ return [
                 ['key' => 'body', 'label' => 'Description (rich text)', 'type' => 'html', 'placeholder' => ''],
             ],
         ],
+        [
+            'page' => 'our-fleet',
+            'section' => 'cms_repeaters',
+            'key' => 'fleet_features_cards',
+            'label' => 'Features section (#features) — telematics cards',
+            'description' => '2×2 grid under “Connected Fleet, Connected You.” Each row: image, title, short description. Section heading and intro are in “Features section (#features)” above.',
+            'fields' => [
+                ['key' => 'image', 'label' => 'Card image', 'type' => 'image'],
+                ['key' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'e.g. Live GPS Tracking'],
+                ['key' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'One line under the title'],
+                ['key' => 'alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Optional; defaults to title'],
+            ],
+        ],
     ],
 
     /**
@@ -303,6 +316,8 @@ return [
         'our-fleet.fleet_categories.intro_2' => 'Fleet section — second intro paragraph',
         'our-fleet.fleet_categories.cta_label' => 'Fleet section — CTA button label',
         'our-fleet.fleet_categories.cta_url' => 'Fleet section — CTA link (path e.g. contact-us, or full URL)',
+        'our-fleet.features_section.heading' => 'Features (#features) — main heading',
+        'our-fleet.features_section.description' => 'Features (#features) — intro paragraph under the heading',
         'industries.hero.title' => 'Hero title (animated)',
         'privacy-policy.hero.title' => 'Hero title (animated)',
         'error-404.hero.title' => '404 heading (animated)',
@@ -339,6 +354,7 @@ return [
         'certified' => 'Certified (#certified — tag, heading, intro; rows in repeater below)',
         'by_the_numbers' => 'By the numbers (#stats-section — tag & heading; stat columns in repeater below)',
         'fleet_categories' => 'Fleet section (two columns — intro & CTA left; accordion cards in repeater below)',
+        'features_section' => 'Features (#features — peach block; telematics cards in repeater below)',
     ],
 
     /**
@@ -437,6 +453,9 @@ return [
         ],
         'our-fleet.fleet_categories.cta_url' => [
             'type' => 'text',
+        ],
+        'our-fleet.features_section.description' => [
+            'type' => 'textarea',
         ],
     ],
 

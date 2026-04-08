@@ -1,3 +1,20 @@
+* {
+    white-space: normal;
+}
+
+/*
+ * Framer export: neutralize white-space: pre only (not pre-wrap / pre-line).
+ * Avoid [style*="white-space:pre"] alone — it matches "white-space:pre-wrap".
+ */
+#main [style*="white-space:pre;"],
+#main [style*="white-space: pre;"],
+#main [style*="white-space:pre!important"],
+#main [style*="white-space: pre!important"],
+#main [style$="white-space:pre"],
+#main [style$="white-space: pre"] {
+    white-space: unset !important;
+}
+
 h3.framer-text.framer-styles-preset-93tzfa,
 h1.framer-text.framer-styles-preset-93tzfa {
     height: 100px;
