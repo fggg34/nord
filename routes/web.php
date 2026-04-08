@@ -3,14 +3,15 @@
 use App\Http\Controllers\Admin\ContentController;
 use App\Http\Controllers\Admin\PageContentController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
 Route::view('/', 'home');
 Route::view('/about-us', 'about-us');
-Route::view('/contact-us', 'contact-us');
+Route::view('/contact-us', 'contact-us')->name('contact-us');
+Route::post('/contact-us', [ContactController::class, 'store'])->name('contact.store');
 Route::view('/services', 'services');
 Route::view('/our-fleet', 'our-fleet');
-Route::view('/industries', 'industries');
 Route::view('/privacy-policy', 'privacy-policy');
 Route::view('/404', 'error-404');
 Route::view('/search', 'search');

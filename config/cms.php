@@ -14,7 +14,6 @@ return [
         ['slug' => 'contact-us', 'label' => 'Contact us'],
         ['slug' => 'services', 'label' => 'Services'],
         ['slug' => 'our-fleet', 'label' => 'Our fleet'],
-        ['slug' => 'industries', 'label' => 'Industries'],
         ['slug' => 'privacy-policy', 'label' => 'Privacy policy'],
         ['slug' => 'error-404', 'label' => '404 page'],
         ['slug' => 'search', 'label' => 'Search'],
@@ -27,6 +26,7 @@ return [
      */
     'admin_visible_sections' => [
         'about-us' => ['hero', 'our_history', 'mission_values', 'our_locations', 'team', 'certified'],
+        'contact-us' => ['hero', 'below_hero'],
         'services' => ['hero', 'below_hero', 'our_services', 'features', 'our_process'],
         'our-fleet' => ['hero', 'by_the_numbers', 'features_section', 'fleet_categories'],
     ],
@@ -236,6 +236,19 @@ return [
                 ['key' => 'alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Optional; defaults to title'],
             ],
         ],
+        [
+            'page' => 'contact-us',
+            'section' => 'cms_repeaters',
+            'key' => 'key_contacts',
+            'label' => 'Key Contacts — people (name, department, email, phone)',
+            'description' => 'Rows appear as columns in the white card under “Key Contacts.” Section title is edited in Contact us → title → h5_key_contacts.',
+            'fields' => [
+                ['key' => 'name', 'label' => 'Name', 'type' => 'text', 'placeholder' => 'e.g. Michael Reyes'],
+                ['key' => 'department', 'label' => 'Department / role', 'type' => 'text', 'placeholder' => 'e.g. US Business Development'],
+                ['key' => 'email', 'label' => 'Email', 'type' => 'text', 'placeholder' => 'name@example.com'],
+                ['key' => 'phone', 'label' => 'Phone', 'type' => 'text', 'placeholder' => 'e.g. +1 (832) 555-0192'],
+            ],
+        ],
     ],
 
     /**
@@ -286,8 +299,14 @@ return [
         'about-us.certified.tag' => 'Certified — small tag (e.g. INDUSTRY STANDARDS)',
         'about-us.certified.heading' => 'Certified — main heading',
         'about-us.certified.intro' => 'Certified — intro paragraph (left column)',
-        'contact-us.hero.title' => 'Hero title (animated)',
-        'contact-us.hero.subtitle' => 'Hero subtitle (animated)',
+        'contact-us.hero.title' => 'Hero — top heading (animated, split media)',
+        'contact-us.hero.tag' => 'Hero — badge next to heading (e.g. OUR SERVICES)',
+        'contact-us.hero.subtitle' => 'Hero — bottom heading (animated)',
+        'contact-us.hero.split_image_1' => 'Hero — left split image',
+        'contact-us.hero.split_image_1_alt' => 'Hero — left image alt text',
+        'contact-us.hero.split_image_2' => 'Hero — right split image',
+        'contact-us.hero.split_image_2_alt' => 'Hero — right image alt text',
+        'contact-us.below_hero.paragraph' => 'Below hero (Desktop strip) — intro paragraph under split media',
         'services.hero.title' => 'Hero — top heading (animated)',
         'services.hero.tag' => 'Hero — small label (e.g. OUR SERVICES)',
         'services.hero.subtitle' => 'Hero — bottom heading (animated)',
@@ -318,7 +337,6 @@ return [
         'our-fleet.fleet_categories.cta_url' => 'Fleet section — CTA link (path e.g. contact-us, or full URL)',
         'our-fleet.features_section.heading' => 'Features (#features) — main heading',
         'our-fleet.features_section.description' => 'Features (#features) — intro paragraph under the heading',
-        'industries.hero.title' => 'Hero title (animated)',
         'privacy-policy.hero.title' => 'Hero title (animated)',
         'error-404.hero.title' => '404 heading (animated)',
         'home.services_industries.heading' => 'Services (#industries-scroll) — main heading (e.g. Logistics that fit your needs.)',
@@ -435,6 +453,15 @@ return [
         ],
         'our-fleet.hero.banner_image' => [
             'type' => 'image',
+        ],
+        'contact-us.hero.split_image_1' => [
+            'type' => 'image',
+        ],
+        'contact-us.hero.split_image_2' => [
+            'type' => 'image',
+        ],
+        'contact-us.below_hero.paragraph' => [
+            'type' => 'textarea',
         ],
         'our-fleet.hero.description' => [
             'type' => 'textarea',

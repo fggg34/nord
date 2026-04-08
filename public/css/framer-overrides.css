@@ -78,3 +78,8 @@ h1.framer-text.framer-styles-preset-93tzfa {
     --framer-text-alignment: left !important;
     justify-content: flex-start !important;
 }
+
+/* Rebuilt site header (partials/site-header) replaces duplicated Framer nav */
+#main header.framer-UwEjd {
+    display: none !important;
+}

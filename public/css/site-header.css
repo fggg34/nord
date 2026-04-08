@@ -1,0 +1,362 @@
+/**
+ * Rebuilt header — matches Framer light desktop (framer-v-2rerq3):
+ * logo left, centered nav, “Get a Quote” + icon right.
+ * Mobile: hamburger + full-width dropdown panel, stacked links.
+ */
+
+.site-header {
+    --site-header-text: rgb(28, 24, 23);
+    --site-header-orange: rgb(249, 64, 6);
+    --site-header-orange-deep: rgb(174, 45, 4);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100000;
+    background-color: rgb(255, 255, 255);
+    box-shadow: none;
+}
+
+.site-header__inner {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+    align-items: center;
+    column-gap: 24px;
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 16px 40px;
+    min-height: 72px;
+}
+
+.site-header__logo {
+    justify-self: start;
+    display: block;
+    line-height: 0;
+}
+
+.site-header__logo img {
+    display: block;
+    height: 32px;
+    width: auto;
+    max-width: 160px;
+    object-fit: contain;
+}
+
+.site-header__actions {
+    justify-self: end;
+    grid-column: 3;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.site-header__nav-wrap {
+    justify-self: center;
+    grid-column: 2;
+}
+
+.site-header__nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 8px 28px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.site-header__nav a {
+    font-family: ui-monospace, "SFMono-Regular", "Menlo", Monaco, "Cascadia Mono", "Consolas", monospace;
+    font-size: 14px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    color: var(--site-header-text);
+    text-decoration: none;
+    padding: 6px 4px;
+    border-radius: 4px;
+    position: relative;
+    transition: color 0.15s ease;
+}
+
+.site-header__nav a:hover {
+    color: var(--site-header-orange);
+}
+
+.site-header__nav a.is-active {
+    color: var(--site-header-text);
+    font-weight: 600;
+    padding-left: 10px;
+}
+
+/* Framer-style orange accent bar (cf. framer-z2k00g) */
+.site-header__nav a.is-active::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 3px;
+    height: 1.15em;
+    border-radius: 2px;
+    background: linear-gradient(
+        180deg,
+        var(--site-header-orange) 0%,
+        var(--site-header-orange-deep) 100%
+    );
+}
+
+.site-header__cta {
+    display: block;
+}
+
+.site-header__quote {
+    display: inline-flex;
+    align-items: stretch;
+    border-radius: 999px;
+    overflow: hidden;
+    text-decoration: none;
+    background: linear-gradient(
+        rgb(249, 64, 6) 0%,
+        rgb(174, 45, 4) 100%
+    );
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.site-header__quote:hover {
+    filter: brightness(1.03);
+}
+
+.site-header__quote:hover:active {
+    filter: brightness(0.97);
+}
+
+.site-header__quote-text {
+    display: flex;
+    align-items: center;
+    padding: 0 22px;
+    color: #fff;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1;
+}
+
+.site-header__quote-icon {
+    width: 40px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.site-header__quote-icon img {
+    width: 40px;
+    height: 40px;
+    display: block;
+}
+
+/* Hamburger — hidden on desktop */
+.site-header__menu-btn {
+    display: none;
+    width: 44px;
+    height: 44px;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    -webkit-tap-highlight-color: transparent;
+}
+
+.site-header__menu-btn:focus-visible {
+    outline: 2px solid var(--site-header-orange);
+    outline-offset: 2px;
+}
+
+.site-header__menu-btn-lines {
+    display: block;
+    width: 22px;
+    height: 2px;
+    background: var(--site-header-text);
+    border-radius: 1px;
+    position: relative;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.site-header__menu-btn-lines::before,
+.site-header__menu-btn-lines::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 22px;
+    height: 2px;
+    background: var(--site-header-text);
+    border-radius: 1px;
+    transition:
+        transform 0.2s ease,
+        top 0.2s ease,
+        bottom 0.2s ease,
+        opacity 0.2s ease;
+}
+
+.site-header__menu-btn-lines::before {
+    top: -7px;
+}
+
+.site-header__menu-btn-lines::after {
+    bottom: -7px;
+}
+
+.site-header.is-menu-open .site-header__menu-btn-lines {
+    background: transparent;
+}
+
+.site-header.is-menu-open .site-header__menu-btn-lines::before {
+    top: 0;
+    transform: rotate(45deg);
+}
+
+.site-header.is-menu-open .site-header__menu-btn-lines::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+}
+
+@media (max-width: 1199.98px) {
+    .site-header__inner {
+        padding: 14px 28px;
+        column-gap: 16px;
+    }
+
+    .site-header__nav {
+        gap: 6px 18px;
+    }
+}
+
+/* ─── Mobile / tablet narrow (matches Framer ~810px) ─── */
+@media (max-width: 809.98px) {
+    .site-header {
+        overflow: visible;
+    }
+
+    .site-header__inner {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: space-between;
+        row-gap: 0;
+        column-gap: 12px;
+        padding: 12px 16px;
+        min-height: 64px;
+    }
+
+    .site-header__logo {
+        flex: 0 1 auto;
+        min-width: 0;
+    }
+
+    .site-header__actions {
+        grid-column: auto;
+        justify-self: auto;
+        margin-left: auto;
+        gap: 2px;
+    }
+
+    .site-header__menu-btn {
+        display: inline-flex;
+    }
+
+    .site-header__nav-wrap {
+        flex: 1 0 100%;
+        order: 3;
+        grid-column: auto;
+        justify-self: stretch;
+        position: relative;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        opacity: 0;
+        transition:
+            max-height 0.35s ease,
+            opacity 0.2s ease,
+            visibility 0.2s linear;
+    }
+
+    .site-header.is-menu-open .site-header__nav-wrap {
+        max-height: min(75vh, 420px);
+        overflow-y: auto;
+        overflow-x: hidden;
+        -webkit-overflow-scrolling: touch;
+        visibility: visible;
+        opacity: 1;
+        margin-top: 8px;
+        padding-bottom: 4px;
+        background: #fff;
+        border-top: 1px solid rgba(28, 24, 23, 0.08);
+        box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
+    }
+
+    .site-header__nav {
+        flex-direction: column;
+        align-items: stretch;
+        justify-content: flex-start;
+        gap: 0;
+        padding: 8px 0 12px;
+    }
+
+    .site-header__nav li {
+        border-bottom: 1px solid rgba(28, 24, 23, 0.07);
+    }
+
+    .site-header__nav li:last-child {
+        border-bottom: none;
+    }
+
+    .site-header__nav a {
+        display: flex;
+        align-items: center;
+        padding: 14px 12px 14px 14px;
+        font-size: 15px;
+        min-height: 48px;
+        box-sizing: border-box;
+    }
+
+    .site-header__nav a.is-active {
+        padding-left: 18px;
+    }
+
+    .site-header__nav a.is-active::before {
+        left: 8px;
+        height: 1.25em;
+    }
+
+    .site-header__quote-text {
+        padding: 0 16px;
+        font-size: 14px;
+    }
+
+    .site-header__quote-icon,
+    .site-header__quote-icon img {
+        width: 36px;
+        height: 36px;
+        min-height: 36px;
+    }
+}
+
+body.site-header-menu-open {
+    overflow: hidden;
+}
+
+@media (min-width: 810px) {
+    body.site-header-menu-open {
+        overflow: visible;
+    }
+}
