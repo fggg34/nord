@@ -25,6 +25,7 @@ return [
      * An explicit empty array means no flat sections in admin (rebuild from scratch).
      */
     'admin_visible_sections' => [
+        'settings' => ['branding', 'footer'],
         'about-us' => ['hero', 'our_history', 'mission_values', 'our_locations', 'team', 'certified'],
         'contact-us' => ['hero', 'below_hero'],
         'services' => ['hero', 'below_hero', 'our_services', 'features', 'our_process'],
@@ -348,6 +349,38 @@ return [
         'home.clients_say.side_image' => 'Large side image (replaces video)',
         'settings.branding.logo' => 'Site logo (header; PNG, SVG, or WebP recommended)',
         'settings.branding.favicon' => 'Favicon (ICO, PNG, or SVG; shown in browser tab)',
+        'settings.footer.ticker_line_1' => 'Footer ticker — first line (above “smarter?”)',
+        'settings.footer.ticker_line_2' => 'Footer ticker — second line (e.g. “ve smarter?”)',
+        'settings.footer.cta_get_quote' => 'Footer ticker — CTA button label (e.g. Get a Custom Quote)',
+        'settings.footer.newsletter_intro' => 'Newsletter — intro text under logo column',
+        'settings.footer.newsletter_placeholder' => 'Newsletter — email field placeholder',
+        'settings.footer.subscribe_label' => 'Newsletter — Subscribe button label',
+        'settings.footer.connect_heading' => 'Social — “Connect” heading',
+        'settings.footer.social_linkedin_label' => 'Social — LinkedIn link label',
+        'settings.footer.social_instagram_label' => 'Social — Instagram link label',
+        'settings.footer.social_facebook_label' => 'Social — Facebook link label',
+        'settings.footer.social_linkedin_url' => 'Social — LinkedIn URL (full https or path)',
+        'settings.footer.social_instagram_url' => 'Social — Instagram URL',
+        'settings.footer.social_facebook_url' => 'Social — Facebook URL',
+        'settings.footer.contacts_heading' => 'Contacts column — heading',
+        'settings.footer.contact_email_1' => 'Contacts — first email (display & mailto)',
+        'settings.footer.contact_email_2' => 'Contacts — second email (display & mailto)',
+        'settings.footer.phone_1' => 'Contacts — first phone (display; spaces OK for tel: link)',
+        'settings.footer.phone_2' => 'Contacts — second phone',
+        'settings.footer.column_services_heading' => 'Services column — heading',
+        'settings.footer.services_nav_link_path' => 'Services column — first link path (e.g. services or full URL)',
+        'settings.footer.services_nav_services_label' => 'Services column — first link label',
+        'settings.footer.services_nav_fleet_label' => 'Services column — Our Fleet label',
+        'settings.footer.services_nav_third_label' => 'Services column — third link label',
+        'settings.footer.column_company_heading' => 'Company column — heading',
+        'settings.footer.company_nav_about_label' => 'Company column — About Us label',
+        'settings.footer.company_nav_contact_label' => 'Company column — Contact Us label',
+        'settings.footer.copyright_prefix' => 'Copyright bar — text before credit link (e.g. © Copyright 2025 - Made by )',
+        'settings.footer.credit_name' => 'Copyright bar — credit link text (e.g. JBStudio)',
+        'settings.footer.credit_url' => 'Copyright bar — credit link URL',
+        'settings.footer.legal_get_template_label' => 'Bottom bar — Get Template link label',
+        'settings.footer.legal_get_template_url' => 'Bottom bar — Get Template URL',
+        'settings.footer.legal_privacy_label' => 'Bottom bar — Privacy Policy link label',
     ],
 
     /**
@@ -355,6 +388,7 @@ return [
      */
     'section_labels' => [
         'branding' => 'Branding (site-wide logo & favicon)',
+        'footer' => 'Footer (site-wide — newsletter, contacts, columns, links)',
         'hero' => 'Hero (headline, copy, CTAs, image)',
         'below_hero' => 'Below hero (white strip — intro paragraph)',
         'our_services' => 'Our Services (#our-services — left column copy; cards are in repeater below)',
@@ -432,6 +466,12 @@ return [
         ],
         'settings.branding.favicon' => [
             'type' => 'image',
+        ],
+        'settings.footer.newsletter_intro' => [
+            'type' => 'textarea',
+        ],
+        'settings.footer.copyright_prefix' => [
+            'type' => 'textarea',
         ],
         'services.hero.banner_image' => [
             'type' => 'image',
