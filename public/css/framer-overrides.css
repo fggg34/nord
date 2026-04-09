@@ -94,3 +94,10 @@ h1.framer-text.framer-styles-preset-93tzfa {
     background: transparent !important;
     min-height: unset !important;
 }
+
+/* Framer breakpoint me9n7f — .hidden-me9n7f hides on narrow viewports; force visible on mobile */
+@media (max-width: 809.98px) {
+    .hidden-me9n7f {
+        display: block !important;
+    }
+}
