@@ -87,3 +87,10 @@ h1.framer-text.framer-styles-preset-93tzfa {
 .framer-1rs7gjw-container {
     display: none;
 }
+
+/* Home — Why Us CMS cards: strip grey box so illustrations/GIFs sit flush */
+.framer-whyus-illus {
+    padding: 0 !important;
+    background: transparent !important;
+    min-height: unset !important;
+}
