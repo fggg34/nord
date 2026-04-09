@@ -226,8 +226,38 @@ h1.framer-text.framer-styles-preset-93tzfa {
 }
 
 /* Framer breakpoint me9n7f — .hidden-me9n7f hides on narrow viewports; force visible on mobile */
+/* Stats / SSR variant visibility & layout (same breakpoint) */
 @media (max-width: 809.98px) {
     .hidden-me9n7f {
         display: block !important;
+    }
+
+    #stats-section .hidden-8cyn1i {
+        display: block !important;
+    }
+
+    .framer-PfgXC .framer-1pvdl8z {
+        display: none;
+    }
+
+    .framer-kqqwr.framer-n1y79h {
+        display: block;
+    }
+
+    section.framer-PfgXC.framer-FgXOS.framer-193rj2l.framer-v-193rj2l.test {
+        padding: 40px 20px !important;
+    }
+
+    .framer-VIjlE .framer-13qnswk-container span {
+        font-size: 40px !important;
+    }
+
+    .framer-v7hyd2 .framer-1edbz8z-container.hidden-8cyn1i {
+        display: block !important;
+    }
+
+    .ssr-variant.hidden-8cyn1i {
+        display: block !important;
+        width: 100%;
     }
 }
