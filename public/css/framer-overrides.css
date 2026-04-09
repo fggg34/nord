@@ -2,6 +2,11 @@
     white-space: normal;
 }
 
+[data-nce-hover-default]:hover {
+    transform: unset !important;
+    filter: unset !important;
+}
+
 .framer-1qeb4j3 {
     position: unset !important;
 }
