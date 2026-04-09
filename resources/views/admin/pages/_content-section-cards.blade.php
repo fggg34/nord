@@ -46,6 +46,34 @@
                             <span style="font-size: 0.75rem; color: var(--cms-muted);">Upload replaces the current image. Uses the public disk (<code>storage/app/public</code> → <code>public/storage</code>).</span>
                         </div>
                     </x-admin.form-field>
+                @elseif ($widget['type'] === 'video')
+                    @php
+                        $fallback = '';
+                        $vid = trim((string) $row->value);
+                        $preview = $vid !== '' ? cms_public_url($vid, $fallback) : '';
+                    @endphp
+                    <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
+                            @if ($preview !== '')
+                                <video
+                                    src="{{ $preview }}"
+                                    controls
+                                    playsinline
+                                    preload="metadata"
+                                    style="max-width: min(100%, 420px); max-height: 220px; border-radius: 8px; border: 1px solid var(--cms-border, #e5e7eb); background: #111;"
+                                ></video>
+                            @else
+                                <span style="font-size: 0.85rem; color: var(--cms-muted);">No video uploaded yet.</span>
+                            @endif
+                            <input
+                                type="file"
+                                name="files[{{ $row->id }}]"
+                                accept="video/mp4,video/webm,video/ogg,video/quicktime,.mp4,.webm,.ogg,.mov"
+                                style="font-size: 0.85rem;"
+                            />
+                            <span style="font-size: 0.75rem; color: var(--cms-muted);">Optional. If set on the home “Clients say” section, it replaces the side image on the public page. Max ~40&nbsp;MB.</span>
+                        </div>
+                    </x-admin.form-field>
                 @else
                     <x-admin.form-field :label="CmsFieldPresenter::label($row)">
                         <x-admin.input-text

@@ -346,7 +346,8 @@ return [
         'home.critical_industries.intro' => 'Industries block — intro paragraph under the heading (left column)',
         'home.clients_say.title' => 'Section heading (What Our Clients Say)',
         'home.clients_say.description' => 'Intro paragraph (above the review grid)',
-        'home.clients_say.side_image' => 'Large side image (replaces video)',
+        'home.clients_say.side_image' => 'Large side image (shown when no side video is set)',
+        'home.clients_say.side_video' => 'Side video (optional — if uploaded, replaces the side image)',
         'settings.branding.logo' => 'Site logo (header; PNG, SVG, or WebP recommended)',
         'settings.branding.favicon' => 'Favicon (ICO, PNG, or SVG; shown in browser tab)',
         'settings.footer.ticker_line_1' => 'Footer ticker — first line (above “smarter?”)',
@@ -430,6 +431,9 @@ return [
         ],
         'home.clients_say.side_image' => [
             'type' => 'image',
+        ],
+        'home.clients_say.side_video' => [
+            'type' => 'video',
         ],
         'about-us.hero.banner_image' => [
             'type' => 'image',

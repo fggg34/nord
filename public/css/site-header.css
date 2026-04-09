@@ -360,3 +360,29 @@ body.site-header-menu-open {
         overflow: visible;
     }
 }
+
+/* Transparent bar + light nav text (e.g. over hero video) */
+header.site-header {
+    background: transparent;
+    transition:
+        background 0.38s ease,
+        box-shadow 0.38s ease,
+        backdrop-filter 0.38s ease,
+        -webkit-backdrop-filter 0.38s ease;
+}
+
+/* Solid dark bar after scroll — readable on any page background */
+header.site-header.is-scrolled {
+    background: rgba(18, 15, 13, 0.94);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+.site-header__nav a {
+    color: #fff;
+}
+
+.site-header__nav a.is-active {
+    color: #fff !important;
+}

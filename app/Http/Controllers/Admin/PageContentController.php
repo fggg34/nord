@@ -51,7 +51,7 @@ class PageContentController extends Controller
             'repeaters' => ['nullable', 'array'],
             'repeaters.*' => ['nullable', 'string'],
             'files' => ['nullable', 'array'],
-            'files.*' => ['nullable', 'file', 'max:5120', 'mimes:jpg,jpeg,png,gif,webp,svg,bmp,ico'],
+            'files.*' => ['nullable', 'file', 'max:40960', 'mimes:jpg,jpeg,png,gif,webp,svg,bmp,ico,mp4,webm,ogg,mov'],
             'repeater_files' => ['nullable', 'array'],
         ]);
 
@@ -66,7 +66,8 @@ class PageContentController extends Controller
                 continue;
             }
 
-            if (CmsFieldPresenter::widget($row)['type'] === 'image') {
+            $wt = CmsFieldPresenter::widget($row)['type'];
+            if ($wt === 'image' || $wt === 'video') {
                 continue;
             }
 
@@ -84,7 +85,16 @@ class PageContentController extends Controller
                 continue;
             }
 
-            if (CmsFieldPresenter::widget($row)['type'] !== 'image') {
+            $wt = CmsFieldPresenter::widget($row)['type'];
+            if ($wt !== 'image' && $wt !== 'video') {
+                continue;
+            }
+
+            $mime = (string) $file->getMimeType();
+            if ($wt === 'image' && ! str_starts_with($mime, 'image/')) {
+                continue;
+            }
+            if ($wt === 'video' && ! str_starts_with($mime, 'video/')) {
                 continue;
             }
 

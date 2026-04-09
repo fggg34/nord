@@ -119,5 +119,13 @@
 
         mqMobile.addEventListener('change', syncNavAria);
         syncNavAria();
+
+        var scrollThreshold = 20;
+        function syncScrolled() {
+            var y = window.scrollY || document.documentElement.scrollTop || 0;
+            root.classList.toggle('is-scrolled', y > scrollThreshold);
+        }
+        syncScrolled();
+        window.addEventListener('scroll', syncScrolled, { passive: true });
     })();
 </script>

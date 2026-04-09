@@ -22,7 +22,7 @@ class CmsFieldPresenter
     }
 
     /**
-     * @return array{type: 'text'|'textarea'|'select'|'image', options?: array<string, string>}
+     * @return array{type: 'text'|'textarea'|'select'|'image'|'video', options?: array<string, string>}
      */
     public static function widget(Content $row): array
     {
@@ -37,6 +37,9 @@ class CmsFieldPresenter
             }
             if ($type === 'image') {
                 return ['type' => 'image'];
+            }
+            if ($type === 'video') {
+                return ['type' => 'video'];
             }
 
             return ['type' => in_array($type, ['text', 'textarea'], true) ? $type : 'text'];
