@@ -12,26 +12,21 @@
     $__partnerLogosFiltered = array_values(array_filter($__partnerLogos, function ($__row) {
         return is_array($__row) && trim((string) ($__row['logo'] ?? '')) !== '';
     }));
-    $__partnerSlides = array_chunk($__partnerLogosFiltered, 6);
 @endphp
 <div class="partner-logos-slider" data-partner-slider>
-    <div class="partner-logos-slider__viewport">
-        <ul class="partner-logos-slider__track partner-logos-slider__list" data-partner-track style="display:flex;width:100%;height:100%;max-width:100%;max-height:100%;place-items:center;margin:0;padding:0;list-style-type:none;text-indent:none;gap:0;position:relative;flex-direction:row;will-change:auto;transform:translateX(0)">
-@foreach ($__partnerSlides as $__slide)
-            <li class="partner-logos-slider__slide">
-                <div class="partner-logos-slider__row" style="display:flex;width:100%;height:100%;max-width:100%;max-height:100%;place-items:center;margin:0;padding:0;gap:16px;position:relative;flex-direction:row;flex-wrap:nowrap">
-@foreach ($__slide as $__pl)
+    <div class="partner-logos-slider__viewport" data-partner-viewport>
+        <ul class="partner-logos-slider__track partner-logos-slider__list" data-partner-track style="display:flex;width:100%;height:100%;max-width:100%;max-height:100%;place-items:center;margin:0;padding:0;list-style-type:none;text-indent:none;gap:16px;position:relative;flex-direction:row;flex-wrap:nowrap;will-change:auto;transform:translateX(0)">
+@foreach ($__partnerLogosFiltered as $__pl)
 @php
     $__logoPath = is_array($__pl) ? trim((string) ($__pl['logo'] ?? '')) : '';
 @endphp
-                    <div class="framer-sqvc4y" data-framer-name="Partner logo" style="flex-shrink:0"><div class="framer-1ur70w1-container"><div class="framer-A984A framer-1cggzbj framer-v-1cggzbj" data-framer-name="Brand logo" style="height: 100%; width: 100%; opacity: 1;"><div class="framer-12eax30" data-framer-name="logo" style="opacity: 1;"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="auto" width="60" height="40" src="{{ cms_public_url($__logoPath, asset('assets/images/37166f800ba88776-0hEyP0wwW89T2DSLT3xi5NIwmC8.svg')) }}" alt="{{ e(is_array($__pl) ? ($__pl['alt'] ?? '') : '') }}" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:contain"></div></div></div></div></div>
-@endforeach
-                </div>
+            <li class="partner-logos-slider__slide">
+                <div class="framer-sqvc4y" data-framer-name="Partner logo" style="flex-shrink:0"><div class="framer-1ur70w1-container"><div class="framer-A984A framer-1cggzbj framer-v-1cggzbj" data-framer-name="Brand logo" style="height: 100%; width: 100%; opacity: 1;"><div class="framer-12eax30" data-framer-name="logo" style="opacity: 1;"><div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true"><img decoding="auto" width="60" height="40" src="{{ cms_public_url($__logoPath, asset('assets/images/37166f800ba88776-0hEyP0wwW89T2DSLT3xi5NIwmC8.svg')) }}" alt="{{ e(is_array($__pl) ? ($__pl['alt'] ?? '') : '') }}" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:contain"></div></div></div></div></div>
             </li>
 @endforeach
         </ul>
     </div>
-@if (count($__partnerSlides) > 1)
+@if (count($__partnerLogosFiltered) > 6)
     <div class="partner-logos-slider__nav" role="group" aria-label="Partner logos">
         <button type="button" class="partner-logos-slider__btn partner-logos-slider__btn--prev" data-partner-prev aria-label="Previous partners">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M15 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
