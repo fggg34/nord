@@ -58,3 +58,17 @@ if (! function_exists('cms_public_url')) {
         return '/storage/'.ltrim(str_replace('\\', '/', $v), '/');
     }
 }
+
+if (! function_exists('cms_is_video_path')) {
+    /**
+     * Whether a CMS media path points to a video file (by extension).
+     */
+    function cms_is_video_path(?string $storedPath): bool
+    {
+        if ($storedPath === null || trim($storedPath) === '') {
+            return false;
+        }
+
+        return (bool) preg_match('/\.(mp4|webm|mov|ogv|m4v)(\?|#|$)/i', $storedPath);
+    }
+}

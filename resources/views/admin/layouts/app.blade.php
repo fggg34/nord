@@ -22,6 +22,10 @@
                     }
                     return this.publicStoragePrefix + p.replace(/^\/+/, '');
                 },
+                isVideoPath(path) {
+                    const p = (path || '').trim().toLowerCase();
+                    return /\.(mp4|webm|mov|ogv|m4v)(\?|#|$)/.test(p);
+                },
                 add() {
                     const row = {};
                     this.fields.forEach((f) => { row[f.key] = ''; });

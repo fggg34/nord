@@ -33,7 +33,7 @@
                 </div>
                 <div class="cms-field-grid cms-field-grid--2" style="display: grid; gap: 0.85rem; grid-template-columns: 1fr;">
                     <template x-for="f in fields" :key="f.key">
-                        <div class="cms-repeater-field" :class="(f.type === 'textarea' || f.type === 'image' || f.type === 'html') ? 'cms-span-2' : ''" style="min-width: 0;">
+                        <div class="cms-repeater-field" :class="(f.type === 'textarea' || f.type === 'image' || f.type === 'image_or_video' || f.type === 'html') ? 'cms-span-2' : ''" style="min-width: 0;">
                             <label :for="'rep-'+index+'-'+f.key" style="display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 0.25rem; color: var(--cms-muted);" x-text="f.label"></label>
                             <input x-show="f.type === 'text'" type="text" class="cms-rep-input" x-model="item[f.key]" :placeholder="f.placeholder || ''" :id="'rep-'+index+'-'+f.key">
                             <textarea x-show="f.type === 'textarea'" class="cms-rep-textarea" x-model="item[f.key]" rows="3" :placeholder="f.placeholder || ''" :id="'rep-'+index+'-'+f.key"></textarea>
@@ -45,18 +45,22 @@
                                     x-init="$nextTick(() => { if (window.cmsInitRepTinyMCE) window.cmsInitRepTinyMCE($el, item, f.key); })"
                                 ></textarea>
                             </template>
-                            <div x-show="f.type === 'image'" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                <template x-if="item[f.key]">
+                            <div x-show="f.type === 'image' || f.type === 'image_or_video'" style="display: flex; flex-direction: column; gap: 0.5rem;">
+                                <template x-if="item[f.key] && isVideoPath(item[f.key])">
+                                    <video :src="storageSrc(item[f.key])" muted playsinline loop controls style="max-height: 120px; max-width: 220px; border-radius: 6px; border: 1px solid var(--cms-border); background: #0f172a;"></video>
+                                </template>
+                                <template x-if="item[f.key] && !isVideoPath(item[f.key])">
                                     <img :src="storageSrc(item[f.key])" alt="" style="max-height: 52px; max-width: 160px; object-fit: contain; border-radius: 6px; border: 1px solid var(--cms-border);" />
                                 </template>
                                 <input
                                     type="file"
                                     class="cms-rep-file"
                                     :name="'repeater_files[{{ $storageKey }}]['+index+']['+f.key+']'"
-                                    accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
+                                    :accept="f.type === 'image_or_video' ? 'image/jpeg,image/png,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime,video/ogg' : 'image/jpeg,image/png,image/webp,image/gif,image/svg+xml'"
                                     :id="'rep-'+index+'-'+f.key"
                                 />
-                                <span style="font-size: 0.72rem; color: var(--cms-muted);">JPEG, PNG, WebP, SVG, or GIF (incl. animated). New upload replaces the stored file for this row. Max ~15&nbsp;MB per image.</span>
+                                <span x-show="f.type === 'image'" style="font-size: 0.72rem; color: var(--cms-muted);">JPEG, PNG, WebP, SVG, or GIF (incl. animated). New upload replaces the stored file for this row. Max ~15&nbsp;MB per image.</span>
+                                <span x-show="f.type === 'image_or_video'" style="font-size: 0.72rem; color: var(--cms-muted);">Image (JPEG, PNG, WebP, SVG, GIF) or video (MP4, WebM, MOV). New upload replaces this row. Max ~15&nbsp;MB per image, ~80&nbsp;MB per video.</span>
                             </div>
                         </div>
                     </template>

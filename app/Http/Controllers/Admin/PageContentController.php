@@ -338,15 +338,31 @@ class PageContentController extends Controller
      */
     protected function mergeRepeaterImageUploads(array $items, array $rep, string $storageKey, Request $request): array
     {
-        $imageFieldKeys = collect($rep['fields'] ?? [])
-            ->filter(fn (array $f) => ($f['type'] ?? '') === 'image')
-            ->pluck('key')
-            ->filter()
+        $mediaFields = collect($rep['fields'] ?? [])
+            ->filter(fn (array $f) => in_array($f['type'] ?? '', ['image', 'image_or_video'], true))
+            ->mapWithKeys(fn (array $f) => [(string) $f['key'] => (string) ($f['type'] ?? 'image')])
+            ->filter(fn ($_, string $k) => $k !== '')
             ->all();
 
-        if ($imageFieldKeys === []) {
+        if ($mediaFields === []) {
             return $items;
         }
+
+        $allowedImageMimes = [
+            'image/jpeg',
+            'image/png',
+            'image/gif',
+            'image/webp',
+            'image/svg+xml',
+            'image/bmp',
+        ];
+        $allowedVideoMimes = [
+            'video/mp4',
+            'video/webm',
+            'video/quicktime',
+            'video/ogg',
+            'application/ogg',
+        ];
 
         $bag = $request->file('repeater_files', []);
         if (! is_array($bag) || ! isset($bag[$storageKey]) || ! is_array($bag[$storageKey])) {
@@ -367,27 +383,23 @@ class PageContentController extends Controller
                 continue;
             }
 
-            foreach ($imageFieldKeys as $fk) {
+            foreach ($mediaFields as $fk => $fieldType) {
                 $file = $uploads[$fk] ?? null;
                 if (! $file instanceof UploadedFile || ! $file->isValid()) {
                     continue;
                 }
 
                 $mime = strtolower((string) $file->getMimeType());
-                $allowedImageMimes = [
-                    'image/jpeg',
-                    'image/png',
-                    'image/gif',
-                    'image/webp',
-                    'image/svg+xml',
-                    'image/bmp',
-                ];
-                if (! in_array($mime, $allowedImageMimes, true)) {
+                $allowed = $fieldType === 'image_or_video'
+                    ? array_merge($allowedImageMimes, $allowedVideoMimes)
+                    : $allowedImageMimes;
+                if (! in_array($mime, $allowed, true)) {
                     continue;
                 }
 
-                // Animated GIFs and hero-style assets need more headroom than static icons (was 5 MB).
-                $maxBytes = 15360 * 1024;
+                $maxBytes = ($fieldType === 'image_or_video' && str_starts_with($mime, 'video/')) || $mime === 'application/ogg'
+                    ? 81920 * 1024
+                    : 15360 * 1024;
                 if ($file->getSize() > $maxBytes) {
                     continue;
                 }
@@ -422,7 +434,7 @@ class PageContentController extends Controller
             foreach ($fieldKeys as $fk) {
                 $raw = isset($item[$fk]) ? (string) $item[$fk] : '';
                 $type = (string) ($fieldDefs->get($fk, [])['type'] ?? 'text');
-                if ($type === 'image' && $raw !== '' && ! str_starts_with($raw, 'cms/')
+                if (($type === 'image' || $type === 'image_or_video') && $raw !== '' && ! str_starts_with($raw, 'cms/')
                     && ! str_starts_with($raw, 'assets/')
                     && ! preg_match('#^https?://#i', $raw) && ! str_starts_with($raw, '/')) {
                     $raw = '';

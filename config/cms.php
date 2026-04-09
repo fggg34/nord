@@ -78,11 +78,11 @@ return [
             'section' => 'cms_repeaters',
             'key' => 'service_cards',
             'label' => 'Services section (#industries-scroll) — service cards',
-            'description' => 'Cards under the Services heading on the home page. Edit the heading and intro in the “Services (#industries-scroll)” fields above. Each row: title (h5), image, optional alt. Keeps Framer layout and scroll animations.',
+            'description' => 'Cards under the Services heading on the home page. Edit the heading and intro in the “Services (#industries-scroll)” fields above. Each row: title (h5), image or short looping video, optional alt. Keeps Framer layout and scroll animations.',
             'fields' => [
                 ['key' => 'title', 'label' => 'Card title', 'type' => 'text', 'placeholder' => 'e.g. National & International Freight'],
-                ['key' => 'image', 'label' => 'Card image', 'type' => 'image'],
-                ['key' => 'alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Describe the photo'],
+                ['key' => 'image', 'label' => 'Card image or video', 'type' => 'image_or_video'],
+                ['key' => 'alt', 'label' => 'Image / video alt text', 'type' => 'text', 'placeholder' => 'Describe the visual for accessibility'],
             ],
         ],
         [
