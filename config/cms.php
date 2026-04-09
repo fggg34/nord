@@ -264,7 +264,8 @@ return [
         'home.hero.cta_primary_link' => 'Primary button link (path or full URL, optional #anchor)',
         'home.hero.cta_secondary_text' => 'Secondary button label (hero)',
         'home.hero.cta_secondary_link' => 'Secondary button link (path or full URL)',
-        'home.hero.hero_image' => 'Hero background image (replaces video)',
+        'home.hero.hero_image' => 'Hero background image (used when no hero video, or as video poster)',
+        'home.hero.hero_video' => 'Hero background video (optional — MP4/WebM; if uploaded, replaces the hero image)',
         'home.stats.label' => 'Quick facts tag (animated, e.g. QUICK FACTS)',
         'home.stats.heading' => 'Quick facts main heading',
         'home.stats.stat_1_value' => 'Stat 1 — big number',
@@ -417,6 +418,9 @@ return [
     'field_overrides' => [
         'home.hero.hero_image' => [
             'type' => 'image',
+        ],
+        'home.hero.hero_video' => [
+            'type' => 'video',
         ],
         'home.why_us.description' => [
             'type' => 'textarea',
