@@ -56,7 +56,7 @@
                                     accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml"
                                     :id="'rep-'+index+'-'+f.key"
                                 />
-                                <span style="font-size: 0.72rem; color: var(--cms-muted);">New upload replaces the stored file for this row.</span>
+                                <span style="font-size: 0.72rem; color: var(--cms-muted);">JPEG, PNG, WebP, SVG, or GIF (incl. animated). New upload replaces the stored file for this row. Max ~15&nbsp;MB per image.</span>
                             </div>
                         </div>
                     </template>

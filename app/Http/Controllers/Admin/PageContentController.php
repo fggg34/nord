@@ -373,7 +373,21 @@ class PageContentController extends Controller
                     continue;
                 }
 
-                $maxBytes = 5120 * 1024;
+                $mime = strtolower((string) $file->getMimeType());
+                $allowedImageMimes = [
+                    'image/jpeg',
+                    'image/png',
+                    'image/gif',
+                    'image/webp',
+                    'image/svg+xml',
+                    'image/bmp',
+                ];
+                if (! in_array($mime, $allowedImageMimes, true)) {
+                    continue;
+                }
+
+                // Animated GIFs and hero-style assets need more headroom than static icons (was 5 MB).
+                $maxBytes = 15360 * 1024;
                 if ($file->getSize() > $maxBytes) {
                     continue;
                 }
