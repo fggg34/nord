@@ -31,6 +31,10 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     width: 100%;
 }
 
+.partner-logos-slider__track.partner-logos-slider__list {
+    list-style: none;
+}
+
 .partner-logos-slider__track {
     display: flex;
     flex-direction: row;
@@ -43,9 +47,10 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     width: 100%;
     min-width: 0;
     box-sizing: border-box;
+    list-style: none;
 }
 
-.partner-logos-slider__list > li {
+.partner-logos-slider__row > .framer-sqvc4y {
     flex: 1 1 0;
     min-width: 0;
 }
