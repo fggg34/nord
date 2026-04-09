@@ -6,8 +6,8 @@
 
 .site-header {
     --site-header-text: rgb(28, 24, 23);
-    --site-header-orange: rgb(249, 64, 6);
-    --site-header-orange-deep: rgb(174, 45, 4);
+    --site-header-orange: #c40023;
+    --site-header-orange-deep: #b0001f;
 
     position: fixed;
     top: 0;
@@ -118,8 +118,8 @@
     overflow: hidden;
     text-decoration: none;
     background: linear-gradient(
-        rgb(249, 64, 6) 0%,
-        rgb(174, 45, 4) 100%
+        #c40023 0%,
+        #b0001f 100%
     );
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
 }

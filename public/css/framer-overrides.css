@@ -2,6 +2,10 @@
     white-space: normal;
 }
 
+.framer-1qeb4j3 {
+    position: unset !important;
+}
+
 /*
  * Framer export: neutralize white-space: pre only (not pre-wrap / pre-line).
  * Avoid [style*="white-space:pre"] alone — it matches "white-space:pre-wrap".
