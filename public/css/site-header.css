@@ -349,6 +349,23 @@
         height: 36px;
         min-height: 36px;
     }
+
+    .site-header__menu-btn-lines {
+        background: #fff;
+    }
+
+    .site-header__menu-btn-lines::before,
+    .site-header__menu-btn-lines::after {
+        background: #fff;
+    }
+
+    .site-header__nav a {
+        color: #000;
+    }
+
+    .site-header__nav a.is-active {
+        color: #000 !important;
+    }
 }
 
 body.site-header-menu-open {
@@ -387,10 +404,13 @@ body.page-home header.site-header.is-scrolled {
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.06);
 }
 
-.site-header__nav a {
-    color: #fff;
-}
+/* Dark header bar: light nav text (desktop — mobile overrides in max-width: 809.98px) */
+@media (min-width: 810px) {
+    .site-header__nav a {
+        color: #fff;
+    }
 
-.site-header__nav a.is-active {
-    color: #fff !important;
+    .site-header__nav a.is-active {
+        color: #fff !important;
+    }
 }
