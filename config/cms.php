@@ -350,6 +350,7 @@ return [
         'home.clients_say.side_video' => 'Side video (optional — if uploaded, replaces the side image)',
         'settings.branding.logo' => 'Site logo (header; PNG, SVG, or WebP recommended)',
         'settings.branding.favicon' => 'Favicon (ICO, PNG, or SVG; shown in browser tab)',
+        'settings.footer.footer_logo' => 'Footer — large logo (left column above newsletter; PNG, SVG, or WebP)',
         'settings.footer.ticker_line_1' => 'Footer ticker — first line (above “smarter?”)',
         'settings.footer.ticker_line_2' => 'Footer ticker — second line (e.g. “ve smarter?”)',
         'settings.footer.cta_get_quote' => 'Footer ticker — CTA button label (e.g. Get a Custom Quote)',
@@ -469,6 +470,9 @@ return [
             'type' => 'image',
         ],
         'settings.branding.favicon' => [
+            'type' => 'image',
+        ],
+        'settings.footer.footer_logo' => [
             'type' => 'image',
         ],
         'settings.footer.newsletter_intro' => [
