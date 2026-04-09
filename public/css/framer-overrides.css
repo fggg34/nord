@@ -20,6 +20,83 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     margin-left: 3px;
 }
 
+/* Home: partner logos — 6 per slide, prev/next */
+.partner-logos-slider {
+    position: relative;
+    width: 100%;
+}
+
+.partner-logos-slider__viewport {
+    overflow: hidden;
+    width: 100%;
+}
+
+.partner-logos-slider__track {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    transition: transform 0.35s ease;
+}
+
+.partner-logos-slider__slide {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+.partner-logos-slider__list > li {
+    flex: 1 1 0;
+    min-width: 0;
+}
+
+.partner-logos-slider__nav {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    transform: translateY(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    padding: 0 2px;
+}
+
+.partner-logos-slider__btn {
+    pointer-events: auto;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    margin: 0;
+    padding: 0;
+    border: 1px solid rgba(28, 24, 23, 0.12);
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.95);
+    color: rgb(28, 24, 23);
+    cursor: pointer;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+    transition: background 0.2s ease, opacity 0.2s ease;
+}
+
+.partner-logos-slider__btn:hover:not(:disabled) {
+    background: #fff;
+}
+
+.partner-logos-slider__btn:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .partner-logos-slider__track {
+        transition: none;
+    }
+}
+
 /*
  * Framer export: neutralize white-space: pre only (not pre-wrap / pre-line).
  * Avoid [style*="white-space:pre"] alone — it matches "white-space:pre-wrap".
