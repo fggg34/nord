@@ -6,6 +6,15 @@
     position: unset !important;
 }
 
+/* Framer secondary/pill CTA: on hover, separate icon from label by 3px */
+a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"] > .framer-uhu0pr[data-framer-name="icon"] {
+    transition: margin-left 0.2s ease;
+}
+
+a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0pr[data-framer-name="icon"] {
+    margin-left: 3px;
+}
+
 /*
  * Framer export: neutralize white-space: pre only (not pre-wrap / pre-line).
  * Avoid [style*="white-space:pre"] alone — it matches "white-space:pre-wrap".
