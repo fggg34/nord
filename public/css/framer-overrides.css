@@ -84,6 +84,14 @@ h1.framer-text.framer-styles-preset-93tzfa {
     display: none !important;
 }
 
+.site-header__logo img {
+    display: block;
+    height: 70px !important;
+    width: auto;
+    max-width: 235px !important;
+    object-fit: contain;
+}
+
 .framer-1rs7gjw-container {
     display: none;
 }
