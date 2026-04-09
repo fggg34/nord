@@ -33,7 +33,7 @@
                     <div class="framer-rOBNv framer-LQZ0A framer-1rtee3t framer-v-1rtee3t"
                          data-framer-name="tag" style="opacity: 1;">
                         <div class="framer-1jru3ku" data-border="true" data-framer-appear-id="1jru3ku" data-framer-name="shape"
-                             style="--border-bottom-width: 4px; --border-color: var(--token-0cfc16fd-3729-4b64-9ac8-d1037c8fcb3d, #c40023); --border-left-width: 4px; --border-right-width: 4px; --border-style: solid; --border-top-width: 4px; will-change: transform; border-radius: 56px; opacity: 1; transform: none;"
+                             style="--border-bottom-width: 4px; --border-color: #c40023; --border-left-width: 4px; --border-right-width: 4px; --border-style: solid; --border-top-width: 4px; will-change: transform; border-radius: 56px; opacity: 1; transform: none;"
                              data-nce-scroll="true">
                         </div>
                         <div class="framer-12dfj9l" style="opacity: 1;">
@@ -68,7 +68,7 @@
             {{-- Close / Expand button --}}
             <div class="framer-ntvsza-container" style="opacity: 1;">
                 <div class="framer-YuKtw framer-qsesjr framer-v-qsesjr" data-border="true" data-framer-name="contract"
-                     style="--border-bottom-width: 1px; --border-color: var(--token-0cfc16fd-3729-4b64-9ac8-d1037c8fcb3d, #c40023); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; background-color: rgba(0, 0, 0, 0); height: 100%; width: 100%; border-radius: 32px; transform: none; opacity: 1;">
+                     style="--border-bottom-width: 1px; --border-color: #c40023; --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; background-color: rgba(0, 0, 0, 0); height: 100%; width: 100%; border-radius: 32px; transform: none; opacity: 1;">
 
                     {{-- X icon (close — visible when expanded) --}}
                     <div data-framer-component-type="SVG" data-framer-name="cross"
@@ -105,7 +105,7 @@
                  data-framer-name="image - end"
                  style="height: 100%; width: 100%; border-radius: 8px; opacity: 1;">
                 <div class="framer-1nbhg90" data-framer-name="frame"
-                     style="background-color: var(--token-0cfc16fd-3729-4b64-9ac8-d1037c8fcb3d, #c40023); transform: none; transform-origin: 50% 50% 0px;">
+                     style="background-color: #c40023; transform: none; transform-origin: 50% 50% 0px;">
                 </div>
                 <figure class="framer-w9jxa7" data-framer-name="image" style="border-radius: 8px; opacity: 1;">
                     <div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0"
