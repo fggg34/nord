@@ -85,7 +85,7 @@
                            style="opacity: 1;">
 
                             <div class="framer-1ohlfe3" data-framer-name="text"
-                                 style="--border-bottom-width: 1px; --border-color: var(--token-0cfc16fd-3729-4b64-9ac8-d1037c8fcb3d, rgb(249, 64, 6)); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; backdrop-filter: blur(4px); background: linear-gradient(rgba(249, 63, 6, 0) 0%, rgba(175, 44, 4, 0) 100%); border-radius: 40px; opacity: 1;"
+                                 style="--border-bottom-width: 1px; --border-color: var(--token-0cfc16fd-3729-4b64-9ac8-d1037c8fcb3d, #c40023); --border-left-width: 1px; --border-right-width: 1px; --border-style: solid; --border-top-width: 1px; backdrop-filter: blur(4px); background: linear-gradient(rgba(196, 0, 35, 0) 0%, rgba(176, 0, 31, 0) 100%); border-radius: 40px; opacity: 1;"
                                  data-border="true">
                                 <div class="framer-kfq9mg" data-framer-name="Know Our Services"
                                      style="justify-content: center; --extracted-r6o4lv: var(--variable-reference-i0SGihRuo-z4t52u6Tr); --framer-paragraph-spacing: 0px; --variable-reference-i0SGihRuo-z4t52u6Tr: var(--token-93ed733c-d50c-4cfe-9503-161904973ec7, rgb(255, 255, 255)); transform: none; opacity: 1;"
