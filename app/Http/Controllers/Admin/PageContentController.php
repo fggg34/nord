@@ -19,6 +19,7 @@ class PageContentController extends Controller
     {
         $this->assertPageAllowed($page);
         $this->ensureRepeaterRows($page);
+        $this->ensureFlatFieldRows($page);
 
         $rows = Content::query()
             ->where('page', $page)
@@ -262,6 +263,48 @@ class PageContentController extends Controller
                     'type' => 'repeater',
                 ]
             );
+        }
+    }
+
+    /**
+     * Create missing flat content rows for sections listed in admin_visible_sections so
+     * they always appear in the admin (e.g. Our fleet → Fleet section / left column).
+     */
+    protected function ensureFlatFieldRows(string $page): void
+    {
+        $byPage = config('cms.admin_flat_field_defaults', []);
+        if (! isset($byPage[$page]) || ! is_array($byPage[$page])) {
+            return;
+        }
+
+        $allowedSections = config('cms.admin_visible_sections.'.$page);
+        if (! is_array($allowedSections)) {
+            return;
+        }
+
+        foreach ($byPage[$page] as $section => $defaults) {
+            if (! in_array($section, $allowedSections, true)) {
+                continue;
+            }
+            if (! is_array($defaults)) {
+                continue;
+            }
+            foreach ($defaults as $key => $value) {
+                if (! is_string($key)) {
+                    continue;
+                }
+                Content::query()->firstOrCreate(
+                    [
+                        'page' => $page,
+                        'section' => $section,
+                        'key' => $key,
+                    ],
+                    [
+                        'value' => is_string($value) ? $value : '',
+                        'type' => null,
+                    ]
+                );
+            }
         }
     }
 

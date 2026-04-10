@@ -34,6 +34,27 @@ return [
     ],
 
     /**
+     * Ensured on admin "edit page" load: create missing content rows so flat fields appear in the editor.
+     * Values are only used when the row is first created (firstOrCreate).
+     *
+     * @var array<string, array<string, array<string, string>>>
+     */
+    'admin_flat_field_defaults' => [
+        'our-fleet' => [
+            'fleet_categories' => [
+                'tag' => 'Vehicle Categories',
+                'heading' => 'Built for Every Route and Requirement',
+                'intro_1' => 'At Loginord, versatility is key. Our fleet is strategically diversified to meet the full spectrum of transportation demands — from heavy industrial freight to time-sensitive cold chain deliveries and agile urban distribution.',
+                'intro_2' => 'Whether you\'re moving raw materials, consumer goods, or specialized cargo, we have the right vehicle to ensure safety, compliance, and on-time performance.',
+                'cta_label' => 'Talk to Our Fleet Team',
+                'cta_url' => 'contact-us',
+                'left_media' => '',
+                'left_media_alt' => '',
+            ],
+        ],
+    ],
+
+    /**
      * JSON repeaters (type=repeater on contents row). Not referenced by Framer blades until you wire them.
      * Stored as JSON array of objects; keys match "fields" below.
      */
