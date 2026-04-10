@@ -14,13 +14,23 @@
 @if(count($policySections))
 <style>
     .pp-content-wrap {
-        max-width: 1200px;
+        display: flex;
+        width: 1400px;
+        padding: 0;
+        max-width: 100%;
         margin: 0 auto;
-        padding: 80px 40px;
-        display: grid;
-        grid-template-columns: 280px 1fr;
-        gap: 60px;
-        align-items: start;
+        align-items: flex-start;
+        box-sizing: border-box;
+    }
+    .pp-content-wrap > * {
+        width: 57% !important;
+        flex: 0 0 57%;
+        box-sizing: border-box;
+        min-width: 0;
+    }
+    .pp-content-wrap > nav {
+        width: 40% !important;
+        flex: 0 0 40%;
     }
     .pp-toc {
         position: sticky;
@@ -99,9 +109,15 @@
 
     @media (max-width: 809px) {
         .pp-content-wrap {
-            grid-template-columns: 1fr;
+            flex-direction: column;
+            width: 100%;
             padding: 40px 20px;
             gap: 40px;
+        }
+        .pp-content-wrap > *,
+        .pp-content-wrap > nav {
+            width: 100% !important;
+            flex: 1 1 auto !important;
         }
         .pp-toc {
             position: relative;
