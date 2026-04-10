@@ -30,6 +30,7 @@ return [
         'contact-us' => ['hero', 'below_hero'],
         'services' => ['hero', 'below_hero', 'our_services', 'features', 'our_process'],
         'our-fleet' => ['hero', 'by_the_numbers', 'features_section', 'fleet_categories'],
+        'privacy-policy' => ['hero', 'title', 'body'],
     ],
 
     /**
@@ -429,6 +430,9 @@ return [
             'type' => 'textarea',
         ],
         'home.services_industries.intro' => [
+            'type' => 'textarea',
+        ],
+        'privacy-policy.hero.description' => [
             'type' => 'textarea',
         ],
         'home.critical_industries.intro' => [
