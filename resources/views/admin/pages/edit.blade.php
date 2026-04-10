@@ -275,7 +275,7 @@
             </x-admin.section-card>
         @endif
 
-        @if (in_array($page, ['services', 'our-fleet'], true))
+        @if (in_array($page, ['services', 'our-fleet', 'privacy-policy'], true))
             @push('scripts')
                 <script src="https://cdn.jsdelivr.net/npm/tinymce@7/tinymce.min.js"></script>
                 <script>

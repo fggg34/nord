@@ -30,7 +30,7 @@ return [
         'contact-us' => ['hero', 'below_hero'],
         'services' => ['hero', 'below_hero', 'our_services', 'features', 'our_process'],
         'our-fleet' => ['hero', 'by_the_numbers', 'features_section', 'fleet_categories'],
-        'privacy-policy' => ['hero', 'title', 'body'],
+        'privacy-policy' => ['hero'],
     ],
 
     /**
@@ -236,6 +236,17 @@ return [
                 ['key' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'e.g. Live GPS Tracking'],
                 ['key' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'One line under the title'],
                 ['key' => 'alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Optional; defaults to title'],
+            ],
+        ],
+        [
+            'page' => 'privacy-policy',
+            'section' => 'cms_repeaters',
+            'key' => 'policy_sections',
+            'label' => 'Privacy Policy — content sections (Table of Contents + body)',
+            'description' => 'Each row becomes a numbered section in the public page. The Table of Contents sidebar is auto-generated from titles. Body supports rich text (TinyMCE).',
+            'fields' => [
+                ['key' => 'title', 'label' => 'Section title', 'type' => 'text', 'placeholder' => 'e.g. Who We Are'],
+                ['key' => 'body', 'label' => 'Section body (rich text)', 'type' => 'html', 'placeholder' => ''],
             ],
         ],
         [
