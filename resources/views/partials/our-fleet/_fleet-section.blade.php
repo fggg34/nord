@@ -71,6 +71,33 @@
                     </div>
                 </div>
 
+                @php
+                    $__fleetLeftMedia = trim((string) (content('our-fleet', 'fleet_categories', 'left_media') ?? ''));
+                    $__fleetLeftMediaAlt = (string) (content('our-fleet', 'fleet_categories', 'left_media_alt') ?? '');
+                @endphp
+                @if ($__fleetLeftMedia !== '')
+                    <div class="fleet-left-media framer-1pdurdw" data-framer-name="left media" style="margin-top: 1rem; width: 100%; max-width: 100%; border-radius: 8px; overflow: hidden;">
+                        @if (cms_is_video_path($__fleetLeftMedia))
+                            <video
+                                src="{{ cms_public_url($__fleetLeftMedia, '') }}"
+                                controls
+                                playsinline
+                                preload="metadata"
+                                muted
+                                style="display: block; width: 100%; height: auto; border-radius: 8px; background: #0f172a;"
+                            ></video>
+                        @else
+                            <img
+                                src="{{ cms_public_url($__fleetLeftMedia, '') }}"
+                                alt="{{ e($__fleetLeftMediaAlt) }}"
+                                loading="lazy"
+                                decoding="async"
+                                style="display: block; width: 100%; height: auto; border-radius: 8px; object-fit: cover;"
+                            />
+                        @endif
+                    </div>
+                @endif
+
             </div>
 
             {{-- CTA Button --}}

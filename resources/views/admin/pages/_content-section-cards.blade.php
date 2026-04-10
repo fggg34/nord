@@ -74,6 +74,43 @@
                             <span style="font-size: 0.75rem; color: var(--cms-muted);">Optional. If set on the home “Clients say” section, it replaces the side image on the public page. Max ~40&nbsp;MB.</span>
                         </div>
                     </x-admin.form-field>
+                @elseif ($widget['type'] === 'image_or_video')
+                    @php
+                        $fallback = asset('assets/images/ed05f9acd87eadf4-YS8lEtRBWRD8b6HqR7UwqBKcVAc.jpg');
+                        $stored = trim((string) $row->value);
+                        $preview = $stored !== '' ? cms_public_url($stored, $fallback) : '';
+                        $isVid = $stored !== '' && cms_is_video_path($stored);
+                    @endphp
+                    <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
+                        <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
+                            @if ($preview !== '')
+                                @if ($isVid)
+                                    <video
+                                        src="{{ $preview }}"
+                                        controls
+                                        playsinline
+                                        preload="metadata"
+                                        style="max-width: min(100%, 420px); max-height: 220px; border-radius: 8px; border: 1px solid var(--cms-border, #e5e7eb); background: #111;"
+                                    ></video>
+                                @else
+                                    <img
+                                        src="{{ $preview }}"
+                                        alt=""
+                                        style="max-width: min(100%, 420px); max-height: 220px; object-fit: cover; border-radius: 8px; border: 1px solid var(--cms-border, #e5e7eb);"
+                                    />
+                                @endif
+                            @else
+                                <span style="font-size: 0.85rem; color: var(--cms-muted);">No image or video yet.</span>
+                            @endif
+                            <input
+                                type="file"
+                                name="files[{{ $row->id }}]"
+                                accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime,video/ogg"
+                                style="font-size: 0.85rem;"
+                            />
+                            <span style="font-size: 0.75rem; color: var(--cms-muted);">Image (JPEG, PNG, WebP, SVG, GIF) or video (MP4, WebM, MOV). Upload replaces the current file. Max ~15&nbsp;MB per image, ~80&nbsp;MB per video.</span>
+                        </div>
+                    </x-admin.form-field>
                 @else
                     <x-admin.form-field :label="CmsFieldPresenter::label($row)">
                         <x-admin.input-text

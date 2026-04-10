@@ -67,7 +67,7 @@ class PageContentController extends Controller
             }
 
             $wt = CmsFieldPresenter::widget($row)['type'];
-            if ($wt === 'image' || $wt === 'video') {
+            if ($wt === 'image' || $wt === 'video' || $wt === 'image_or_video') {
                 continue;
             }
 
@@ -86,16 +86,30 @@ class PageContentController extends Controller
             }
 
             $wt = CmsFieldPresenter::widget($row)['type'];
-            if ($wt !== 'image' && $wt !== 'video') {
+            if ($wt !== 'image' && $wt !== 'video' && $wt !== 'image_or_video') {
                 continue;
             }
 
-            $mime = (string) $file->getMimeType();
-            if ($wt === 'image' && ! str_starts_with($mime, 'image/')) {
-                continue;
-            }
-            if ($wt === 'video' && ! str_starts_with($mime, 'video/')) {
-                continue;
+            if ($wt === 'image_or_video') {
+                $allowedImage = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp'];
+                $allowedVideo = ['video/mp4', 'video/webm', 'video/quicktime', 'video/ogg', 'application/ogg'];
+                $allowed = array_merge($allowedImage, $allowedVideo);
+                $mime = $this->normalizeRepeaterUploadMime($file, $allowed);
+                if ($mime === null) {
+                    continue;
+                }
+                $maxBytes = (str_starts_with($mime, 'video/') || $mime === 'application/ogg') ? 81920 * 1024 : 15360 * 1024;
+                if ($file->getSize() > $maxBytes) {
+                    continue;
+                }
+            } else {
+                $mime = (string) $file->getMimeType();
+                if ($wt === 'image' && ! str_starts_with($mime, 'image/')) {
+                    continue;
+                }
+                if ($wt === 'video' && ! str_starts_with($mime, 'video/')) {
+                    continue;
+                }
             }
 
             $old = $row->value;

@@ -216,13 +216,13 @@ return [
             'section' => 'cms_repeaters',
             'key' => 'fleet_category_cards',
             'label' => 'Fleet section — category cards (accordion)',
-            'description' => 'Right column in the Fleet section: each row is one card (index number, title, image, rich HTML body). Order matches the stack on the public Our fleet page.',
+            'description' => 'Right column in the Fleet section: each row is one accordion card. You can use image or video only (leave title and description empty), or add optional index, title, alt text, and rich HTML. Order matches the stack on the public Our fleet page. Left column copy (tag, heading, intros, CTA) is edited in “Fleet section” above; optional left-column media is there too.',
             'fields' => [
                 ['key' => 'number', 'label' => 'Index (optional)', 'type' => 'text', 'placeholder' => 'e.g. 01 — leave empty for auto 01, 02, …'],
-                ['key' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'e.g. Heavy-duty Semi-Trailers'],
-                ['key' => 'image', 'label' => 'Image', 'type' => 'image'],
-                ['key' => 'image_alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Describe the photo'],
-                ['key' => 'body', 'label' => 'Description (rich text)', 'type' => 'html', 'placeholder' => ''],
+                ['key' => 'title', 'label' => 'Title (optional)', 'type' => 'text', 'placeholder' => 'e.g. Heavy-duty Semi-Trailers — omit for image/video-only card'],
+                ['key' => 'image', 'label' => 'Image or video', 'type' => 'image_or_video'],
+                ['key' => 'image_alt', 'label' => 'Image / video alt text (optional)', 'type' => 'text', 'placeholder' => 'Describe the visual for accessibility'],
+                ['key' => 'body', 'label' => 'Description (rich text, optional)', 'type' => 'html', 'placeholder' => ''],
             ],
         ],
         [
@@ -349,6 +349,8 @@ return [
         'our-fleet.fleet_categories.intro_2' => 'Fleet section — second intro paragraph',
         'our-fleet.fleet_categories.cta_label' => 'Fleet section — CTA button label',
         'our-fleet.fleet_categories.cta_url' => 'Fleet section — CTA link (path e.g. contact-us, or full URL)',
+        'our-fleet.fleet_categories.left_media' => 'Fleet section — optional left column image or video (no text required)',
+        'our-fleet.fleet_categories.left_media_alt' => 'Fleet section — alt text for left column image/video',
         'our-fleet.features_section.heading' => 'Features (#features) — main heading',
         'our-fleet.features_section.description' => 'Features (#features) — intro paragraph under the heading',
         'privacy-policy.hero.title' => 'Hero title (animated)',
@@ -546,6 +548,12 @@ return [
             'type' => 'textarea',
         ],
         'our-fleet.fleet_categories.cta_url' => [
+            'type' => 'text',
+        ],
+        'our-fleet.fleet_categories.left_media' => [
+            'type' => 'image_or_video',
+        ],
+        'our-fleet.fleet_categories.left_media_alt' => [
             'type' => 'text',
         ],
         'our-fleet.features_section.description' => [

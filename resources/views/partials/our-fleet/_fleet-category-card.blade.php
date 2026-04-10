@@ -5,9 +5,14 @@
         $number = str_pad((string) ($index + 1), 2, '0', STR_PAD_LEFT);
     }
     $chars    = preg_split('//u', $number, -1, PREG_SPLIT_NO_EMPTY) ?: ['0', '1'];
-    $img      = cms_public_url($card['image'] ?? null, asset('assets/images/b9e7aba949a61bc7-sqjR9log69svYrWvzRtPpLFHarc.jpg'));
-    $alt      = (string) (($card['image_alt'] ?? '') !== '' ? $card['image_alt'] : $title);
+    $mediaRaw = (string) ($card['image'] ?? '');
+    $mediaUrl = $mediaRaw !== ''
+        ? cms_public_url($mediaRaw, asset('assets/images/b9e7aba949a61bc7-sqjR9log69svYrWvzRtPpLFHarc.jpg'))
+        : '';
+    $isVideo  = $mediaRaw !== '' && cms_is_video_path($mediaRaw);
+    $alt      = (string) (($card['image_alt'] ?? '') !== '' ? $card['image_alt'] : ($title !== '' ? $title : 'Fleet category'));
     $body     = (string) ($card['body'] ?? '');
+    $bodyHasContent = trim(strip_tags($body)) !== '';
     $expanded = (bool) ($expanded ?? true);
 @endphp
 
@@ -53,15 +58,17 @@
                     </div>
                 </div>
 
-                {{-- Title --}}
-                <div class="framer-174gm5d" data-framer-name="title"
-                     style="justify-content: flex-start; --extracted-1w1cjl5: var(--token-0698ec6e-98d5-4dc5-82cd-980692a5f3e9, rgb(28, 24, 23)); --framer-paragraph-spacing: 0px; opacity: 1;"
-                     data-framer-component-type="RichTextContainer">
-                    <h6 class="framer-text framer-styles-preset-1adjllf" data-styles-preset="RzpL6gaF9" dir="auto"
-                        style="--framer-text-color:var(--extracted-1w1cjl5, var(--token-0698ec6e-98d5-4dc5-82cd-980692a5f3e9, rgb(28, 24, 23)))">
-                        {{ e($title !== '' ? $title : '—') }}
-                    </h6>
-                </div>
+                {{-- Title (optional — omit for image/video-only cards) --}}
+                @if ($title !== '')
+                    <div class="framer-174gm5d" data-framer-name="title"
+                         style="justify-content: flex-start; --extracted-1w1cjl5: var(--token-0698ec6e-98d5-4dc5-82cd-980692a5f3e9, rgb(28, 24, 23)); --framer-paragraph-spacing: 0px; opacity: 1;"
+                         data-framer-component-type="RichTextContainer">
+                        <h6 class="framer-text framer-styles-preset-1adjllf" data-styles-preset="RzpL6gaF9" dir="auto"
+                            style="--framer-text-color:var(--extracted-1w1cjl5, var(--token-0698ec6e-98d5-4dc5-82cd-980692a5f3e9, rgb(28, 24, 23)))">
+                            {{ e($title) }}
+                        </h6>
+                    </div>
+                @endif
 
             </div>
 
@@ -118,17 +125,19 @@
             </div>
         </div>
 
-        {{-- ── Description / copy ── --}}
-        <div class="framer-ecrg75 fleet-card-body" data-framer-name="copy" style="opacity: 1;">
-            <div class="framer-1g9piqy" data-framer-name="text"
-                 style="justify-content: flex-start; --extracted-r6o4lv: var(--token-0698ec6e-98d5-4dc5-82cd-980692a5f3e9, rgb(28, 24, 23)); --framer-paragraph-spacing: 0px; opacity: 1;"
-                 data-framer-component-type="RichTextContainer">
-                <div class="framer-text framer-styles-preset-18qugew" data-styles-preset="CkgWlN8A8" dir="auto"
-                     style="--framer-text-color:var(--extracted-r6o4lv, var(--token-0698ec6e-98d5-4dc5-82cd-980692a5f3e9, rgb(28, 24, 23)))">
-                    {!! $body !!}
+        {{-- ── Description / copy (hidden when empty — image or video only) ── --}}
+        @if ($bodyHasContent)
+            <div class="framer-ecrg75 fleet-card-body" data-framer-name="copy" style="opacity: 1;">
+                <div class="framer-1g9piqy" data-framer-name="text"
+                     style="justify-content: flex-start; --extracted-r6o4lv: var(--token-0698ec6e-98d5-4dc5-82cd-980692a5f3e9, rgb(28, 24, 23)); --framer-paragraph-spacing: 0px; opacity: 1;"
+                     data-framer-component-type="RichTextContainer">
+                    <div class="framer-text framer-styles-preset-18qugew" data-styles-preset="CkgWlN8A8" dir="auto"
+                         style="--framer-text-color:var(--extracted-r6o4lv, var(--token-0698ec6e-98d5-4dc5-82cd-980692a5f3e9, rgb(28, 24, 23)))">
+                        {!! $body !!}
+                    </div>
                 </div>
             </div>
-        </div>
+        @endif
 
     </div>
 </div>
