@@ -124,10 +124,10 @@ return [
             'section' => 'cms_repeaters',
             'key' => 'why_us_cards',
             'label' => 'Why Us section — feature cards (2×2 grid)',
-            'description' => 'Each row: illustration (PNG, JPEG, WebP, SVG, or animated GIF), card title, optional alt. Replaces the animated Framer compositions with a single image per card.',
+            'description' => 'Each row: illustration (PNG, JPEG, WebP, SVG, or animated GIF), card title, optional alt. Replaces the animated Framer compositions with a single image per card. Illustrations accept up to 32 MB per file.',
             'fields' => [
                 ['key' => 'title', 'label' => 'Card text', 'type' => 'text', 'placeholder' => 'e.g. Multilingual support across Europe and the US'],
-                ['key' => 'icon', 'label' => 'Illustration / icon image', 'type' => 'image'],
+                ['key' => 'icon', 'label' => 'Illustration / icon image', 'type' => 'image', 'max_mb' => 32],
                 ['key' => 'alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Short description for accessibility'],
             ],
         ],
