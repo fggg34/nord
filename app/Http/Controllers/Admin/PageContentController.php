@@ -329,22 +329,36 @@ class PageContentController extends Controller
     }
 
     /**
-     * @param  array<int, mixed>  $items
-     * @return array<int, array<string, string>>
+     * Max upload size for a repeater image / image_or_video field (bytes).
+     *
+     * @param  array<string, mixed>  $fieldDef
      */
+    protected function repeaterMediaMaxBytes(array $fieldDef, string $mime): int
+    {
+        if (isset($fieldDef['max_mb']) && is_numeric($fieldDef['max_mb'])) {
+            return (int) $fieldDef['max_mb'] * 1024 * 1024;
+        }
+
+        $fieldType = (string) ($fieldDef['type'] ?? 'image');
+        $isVideo = ($fieldType === 'image_or_video')
+            && (str_starts_with($mime, 'video/') || $mime === 'application/ogg');
+
+        return $isVideo ? 81920 * 1024 : 15360 * 1024;
+    }
+
     /**
      * @param  array<int, mixed>  $items
      * @return array<int, array<string, string>>
      */
     protected function mergeRepeaterImageUploads(array $items, array $rep, string $storageKey, Request $request): array
     {
-        $mediaFields = collect($rep['fields'] ?? [])
+        $mediaFieldDefs = collect($rep['fields'] ?? [])
             ->filter(fn (array $f) => in_array($f['type'] ?? '', ['image', 'image_or_video'], true))
-            ->mapWithKeys(fn (array $f) => [(string) $f['key'] => (string) ($f['type'] ?? 'image')])
-            ->filter(fn ($_, string $k) => $k !== '')
+            ->filter(fn (array $f) => ($f['key'] ?? '') !== '')
+            ->keyBy(fn (array $f) => (string) $f['key'])
             ->all();
 
-        if ($mediaFields === []) {
+        if ($mediaFieldDefs === []) {
             return $items;
         }
 
@@ -383,12 +397,13 @@ class PageContentController extends Controller
                 continue;
             }
 
-            foreach ($mediaFields as $fk => $fieldType) {
+            foreach ($mediaFieldDefs as $fk => $fieldDef) {
                 $file = $uploads[$fk] ?? null;
                 if (! $file instanceof UploadedFile || ! $file->isValid()) {
                     continue;
                 }
 
+                $fieldType = (string) ($fieldDef['type'] ?? 'image');
                 $mime = strtolower((string) $file->getMimeType());
                 $allowed = $fieldType === 'image_or_video'
                     ? array_merge($allowedImageMimes, $allowedVideoMimes)
@@ -397,9 +412,7 @@ class PageContentController extends Controller
                     continue;
                 }
 
-                $maxBytes = ($fieldType === 'image_or_video' && str_starts_with($mime, 'video/')) || $mime === 'application/ogg'
-                    ? 81920 * 1024
-                    : 15360 * 1024;
+                $maxBytes = $this->repeaterMediaMaxBytes($fieldDef, $mime);
                 if ($file->getSize() > $maxBytes) {
                     continue;
                 }

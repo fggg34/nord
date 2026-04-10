@@ -91,10 +91,10 @@ return [
             'section' => 'cms_repeaters',
             'key' => 'industry_cards',
             'label' => 'Industries section — industry cards',
-            'description' => 'Dark industry cards on the home page. Edit the section heading and intro in “Critical industries (Industries block)” above. Each row: title (heading), image, optional alt.',
+            'description' => 'Dark industry cards on the home page. Edit the section heading and intro in “Critical industries (Industries block)” above. Each row: title (heading), image, optional alt. Card images accept up to 32 MB per file.',
             'fields' => [
                 ['key' => 'title', 'label' => 'Card title', 'type' => 'text', 'placeholder' => 'e.g. Food & Beverage'],
-                ['key' => 'image', 'label' => 'Card image', 'type' => 'image'],
+                ['key' => 'image', 'label' => 'Card image', 'type' => 'image', 'max_mb' => 32],
                 ['key' => 'alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Describe the photo'],
             ],
         ],

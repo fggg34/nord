@@ -59,7 +59,8 @@
                                     :accept="f.type === 'image_or_video' ? 'image/jpeg,image/png,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime,video/ogg' : 'image/jpeg,image/png,image/webp,image/gif,image/svg+xml'"
                                     :id="'rep-'+index+'-'+f.key"
                                 />
-                                <span x-show="f.type === 'image'" style="font-size: 0.72rem; color: var(--cms-muted);">JPEG, PNG, WebP, SVG, or GIF (incl. animated). New upload replaces the stored file for this row. Max ~15&nbsp;MB per image.</span>
+                                <span x-show="f.type === 'image' && f.max_mb" style="font-size: 0.72rem; color: var(--cms-muted);">JPEG, PNG, WebP, SVG, or GIF (incl. animated). New upload replaces the stored file for this row. Max ~<span x-text="f.max_mb"></span>&nbsp;MB per image.</span>
+                                <span x-show="f.type === 'image' && !f.max_mb" style="font-size: 0.72rem; color: var(--cms-muted);">JPEG, PNG, WebP, SVG, or GIF (incl. animated). New upload replaces the stored file for this row. Max ~15&nbsp;MB per image.</span>
                                 <span x-show="f.type === 'image_or_video'" style="font-size: 0.72rem; color: var(--cms-muted);">Image (JPEG, PNG, WebP, SVG, GIF) or video (MP4, WebM, MOV). New upload replaces this row. Max ~15&nbsp;MB per image, ~80&nbsp;MB per video.</span>
                             </div>
                         </div>
