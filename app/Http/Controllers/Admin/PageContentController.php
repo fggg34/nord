@@ -347,6 +347,44 @@ class PageContentController extends Controller
     }
 
     /**
+     * Match finfo MIME to our allowlist; if missing (e.g. application/octet-stream for GIF on some hosts), trust extension.
+     *
+     * @param  array<int, string>  $allowed
+     */
+    protected function normalizeRepeaterUploadMime(UploadedFile $file, array $allowed): ?string
+    {
+        $mime = strtolower((string) $file->getMimeType());
+        if (in_array($mime, $allowed, true)) {
+            return $mime;
+        }
+
+        $ext = strtolower((string) $file->getClientOriginalExtension());
+        if ($ext === '') {
+            $ext = strtolower((string) ($file->guessExtension() ?? ''));
+        }
+
+        $fromExt = match ($ext) {
+            'gif' => 'image/gif',
+            'jpg', 'jpeg' => 'image/jpeg',
+            'png' => 'image/png',
+            'webp' => 'image/webp',
+            'svg' => 'image/svg+xml',
+            'bmp' => 'image/bmp',
+            'mp4' => 'video/mp4',
+            'webm' => 'video/webm',
+            'mov' => 'video/quicktime',
+            'ogg' => 'application/ogg',
+            default => null,
+        };
+
+        if ($fromExt !== null && in_array($fromExt, $allowed, true)) {
+            return $fromExt;
+        }
+
+        return null;
+    }
+
+    /**
      * @param  array<int, mixed>  $items
      * @return array<int, array<string, string>>
      */
@@ -404,11 +442,11 @@ class PageContentController extends Controller
                 }
 
                 $fieldType = (string) ($fieldDef['type'] ?? 'image');
-                $mime = strtolower((string) $file->getMimeType());
                 $allowed = $fieldType === 'image_or_video'
                     ? array_merge($allowedImageMimes, $allowedVideoMimes)
                     : $allowedImageMimes;
-                if (! in_array($mime, $allowed, true)) {
+                $mime = $this->normalizeRepeaterUploadMime($file, $allowed);
+                if ($mime === null) {
                     continue;
                 }
 
