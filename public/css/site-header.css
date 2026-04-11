@@ -153,8 +153,8 @@
 }
 
 .site-header__quote-icon img {
-    width: 40px;
-    height: 40px;
+    width: 25px;
+    height: auto;
     display: block;
 }
 
@@ -343,11 +343,9 @@
         font-size: 14px;
     }
 
-    .site-header__quote-icon,
     .site-header__quote-icon img {
-        width: 36px;
-        height: 36px;
-        min-height: 36px;
+        width: 25px;
+        height: auto;
     }
 
     .site-header__menu-btn-lines {
