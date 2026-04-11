@@ -266,3 +266,39 @@ h1.framer-text.framer-styles-preset-93tzfa {
 #main [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"] {
     background-image: url("/assets/images/nce-ticker-arrow.svg") !important;
 }
+
+/*
+ * Why Us background — vertical arrow strip (#main .framer-rofhq5-container).
+ * Framer’s ticker runtime isn’t in the Laravel export; animate the column like
+ * the horizontal tickers: seamless loop by translating −50% (list is two mirrored halves).
+ */
+#main .framer-rofhq5-container > section {
+    overflow: hidden !important;
+}
+
+#main .framer-rofhq5-container > section > ul {
+    position: relative !important;
+    top: 0 !important;
+    flex-shrink: 0 !important;
+    height: auto !important;
+    max-height: none !important;
+    width: 100%;
+    will-change: transform;
+    animation: loginord-whyus-vertical-ticker 55s linear infinite;
+}
+
+@keyframes loginord-whyus-vertical-ticker {
+    from {
+        transform: translate3d(0, 0, 0);
+    }
+    to {
+        transform: translate3d(0, -50%, 0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    #main .framer-rofhq5-container > section > ul {
+        animation: none !important;
+        transform: none !important;
+    }
+}
