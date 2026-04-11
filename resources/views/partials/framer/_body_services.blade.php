@@ -452,7 +452,8 @@
  *      and multiple children)
  *   2. NORMALIZE: Framer SSR pre-clones items for seamless looping. Detect
  *      repeats via text-content fingerprinting (robust to attribute/style diffs).
- *      Ensure exactly 3 identical sets exist for the CSS translateX(-100%/3) loop.
+ *      Keep at least 3 identical sets; add more until the row fills the viewport.
+ *      Keyframes use translateX(-100%/N) with --nce-ticker-segments (N = set count).
  *   3. RESET: Clear SSR positioning artifacts (negative left, existing transforms)
  *   4. REVEAL: Force opacity:1 on the track and its ancestors up to the ticker
  *      container (Framer gates visibility behind hydration)
@@ -465,7 +466,7 @@
         s.id = styleId;
         s.textContent = [
             '@keyframes nce-ticker-scroll {',
-            '  from { transform: translateX(calc(-100% / 3)); }',
+            '  from { transform: translateX(calc(-100% / var(--nce-ticker-segments, 3))); }',
             '  to { transform: translateX(0); }',
             '}',
             '.nce-ticker-track {',
@@ -578,23 +579,22 @@
 
             // Detect unique set size
             var uniqueCount = detectUniqueCount(children);
-            var currentSets = children.length / uniqueCount;
 
-            // Normalize to exactly 3 sets
-            if (currentSets > 3) {
-                for (var i = children.length - 1; i >= uniqueCount * 3; i--) {
-                    track.removeChild(children[i]);
-                }
-            } else if (currentSets < 3) {
-                var originals = children.slice(0, uniqueCount);
-                for (var s = 0; s < 3 - currentSets; s++) {
-                    originals.forEach(function(child) {
-                        var clone = child.cloneNode(true);
-                        clone.style.opacity = '1';
-                        clone.style.flexShrink = '0';
-                        track.appendChild(clone);
-                    });
-                }
+            function appendOneSet() {
+                var originals = Array.prototype.slice.call(track.children, 0, uniqueCount);
+                originals.forEach(function(child) {
+                    var clone = child.cloneNode(true);
+                    clone.style.opacity = '1';
+                    clone.style.flexShrink = '0';
+                    track.appendChild(clone);
+                });
+            }
+
+            // At least 3 identical sets for seamless looping; do not trim SSR extras.
+            var currentSets = track.children.length / uniqueCount;
+            while (currentSets < 3) {
+                appendOneSet();
+                currentSets = track.children.length / uniqueCount;
             }
 
             // Prevent flex shrinking on all items
@@ -607,11 +607,25 @@
             if (prefersReducedMotion) {
                 track.style.animation = 'none';
             } else {
-                // Animate with duration proportional to content width
+                // After layout: add sets until the track covers the viewport (no empty gap), then animate.
                 requestAnimationFrame(function() {
-                    var w = track.scrollWidth;
-                    var dur = Math.max(12, w / 3 / 40); // ~40px/s (slower)
-                    track.style.animation = 'nce-ticker-scroll ' + dur + 's linear infinite';
+                    requestAnimationFrame(function() {
+                        var cw = container.clientWidth || container.getBoundingClientRect().width;
+                        var numSets = track.children.length / uniqueCount;
+                        var setW = track.scrollWidth / numSets;
+                        var guard = 0;
+                        while (cw > 0 && track.scrollWidth < cw + setW && numSets < 48 && guard < 48) {
+                            appendOneSet();
+                            numSets = track.children.length / uniqueCount;
+                            setW = track.scrollWidth / numSets;
+                            guard++;
+                        }
+                        numSets = track.children.length / uniqueCount;
+                        track.style.setProperty('--nce-ticker-segments', String(numSets));
+                        var w = track.scrollWidth;
+                        var dur = Math.max(12, w / numSets / 40); // ~40px/s; one cycle = one set width
+                        track.style.animation = 'nce-ticker-scroll ' + dur + 's linear infinite';
+                    });
                 });
             }
         });
