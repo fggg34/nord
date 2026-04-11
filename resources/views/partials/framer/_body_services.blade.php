@@ -225,10 +225,12 @@
     el.style.webkitFilter = finalFilter;
     el.setAttribute('data-nce-scroll-revealed', 'true');
     el.removeAttribute('data-nce-scroll-observing');
+    el.removeAttribute('data-nce-scroll-animating');
   }
 
   function revealElement(el) {
     if (!el || el.hasAttribute('data-nce-scroll-revealed')) return;
+    if (el.hasAttribute('data-nce-scroll-animating')) return;
 
     var initialTransform = getInitialTransform(el);
 
@@ -253,6 +255,8 @@
     }
     var initialFilter = getInitialFilter(el);
     var finalFilter = getFinalFilter(el);
+
+    el.setAttribute('data-nce-scroll-animating', 'true');
 
     try {
       var animation = el.animate(
@@ -345,7 +349,7 @@
 
   function observeTaggedElements() {
     if (!observer) return;
-    document.querySelectorAll('[data-nce-scroll]:not([data-nce-scroll-revealed]):not([data-nce-scroll-observing])').forEach(function(el) {
+    document.querySelectorAll('[data-nce-scroll]:not([data-nce-scroll-revealed]):not([data-nce-scroll-observing]):not([data-nce-scroll-animating])').forEach(function(el) {
       el.setAttribute('data-nce-scroll-observing', 'true');
       observer.observe(el);
     });
@@ -356,7 +360,7 @@
     var topThreshold = Math.max(viewportHeight * 0.92, 120);
     var bottomThreshold = Math.max(viewportHeight * 0.08, 24);
 
-    document.querySelectorAll('[data-nce-scroll]:not([data-nce-scroll-revealed])').forEach(function(el) {
+    document.querySelectorAll('[data-nce-scroll]:not([data-nce-scroll-revealed]):not([data-nce-scroll-animating])').forEach(function(el) {
       var rect = el.getBoundingClientRect();
       if ((rect.width === 0 && rect.height === 0) || rect.bottom <= 0) return;
       if (isWithinRevealBand(rect, topThreshold, bottomThreshold)) {
@@ -380,7 +384,7 @@
   function runPass() {
     tagRuntimeCandidates();
 
-    var els = document.querySelectorAll('[data-nce-scroll]:not([data-nce-scroll-revealed])');
+    var els = document.querySelectorAll('[data-nce-scroll]:not([data-nce-scroll-revealed]):not([data-nce-scroll-animating])');
     if (els.length === 0) return;
 
     if (prefersReducedMotion) {
