@@ -89,7 +89,9 @@
     font-weight: 600;
     padding-left: 10px;
 }
-
+h2.framer-text {
+    font-size: 42px;
+}
 /* Framer-style orange accent bar (cf. framer-z2k00g) */
 /* .site-header__nav a.is-active::before {
     content: "";
