@@ -1,5 +1,10 @@
 @php
-    $logoDefault = asset('assets/images/7a8ad5ffe1d0e0dd-gAwdzX5sAYe1G4iwpCz5uyohzY.svg');
+    $logoFallback = asset('assets/images/7a8ad5ffe1d0e0dd-gAwdzX5sAYe1G4iwpCz5uyohzY.svg');
+    $logoPath = content('settings', 'branding', 'logo');
+    $logoSrc =
+        $logoPath !== null && trim((string) $logoPath) !== ''
+            ? cms_public_url($logoPath, $logoFallback)
+            : $logoFallback;
     $quoteHref = route('contact-us') . '#contacts';
     $nav = [
         ['label' => 'Home', 'url' => url('/')],
@@ -17,7 +22,14 @@
             data-framer-name="logo"
             aria-label="Company logo. Leads to homepage"
         >
-            <img src="{{ $logoDefault }}" width="132" height="32" alt="" decoding="async" />
+            <img
+                src="{{ $logoSrc }}"
+                width="132"
+                height="32"
+                alt=""
+                decoding="sync"
+                fetchpriority="high"
+            />
         </a>
         <nav
             class="site-header__nav-wrap"

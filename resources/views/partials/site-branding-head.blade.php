@@ -1,4 +1,14 @@
 @php
+    $logoPathPreload = content('settings', 'branding', 'logo');
+    $logoPreloadUrl =
+        $logoPathPreload !== null && trim((string) $logoPathPreload) !== ''
+            ? cms_public_url($logoPathPreload, '')
+            : '';
+@endphp
+@if ($logoPreloadUrl !== '')
+    <link rel="preload" href="{{ $logoPreloadUrl }}" as="image" fetchpriority="high">
+@endif
+@php
     $favPath = content('settings', 'branding', 'favicon');
     $favUrl = ($favPath !== null && trim((string) $favPath) !== '')
         ? cms_public_url($favPath, '')
