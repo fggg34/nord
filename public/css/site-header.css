@@ -111,51 +111,111 @@
     display: block;
 }
 
-.site-header__quote {
+/* Framer CTA pill: glass outline + label + circular icon (cf. framer-1sg2rgo wrapper) */
+.site-header__quote.framer-1sg2rgo {
     display: inline-flex;
+    flex-direction: row;
     align-items: stretch;
-    border-radius: 999px;
-    overflow: hidden;
+    max-width: 100%;
     text-decoration: none;
-    background: linear-gradient(
-        #c40023 0%,
-        #b0001f 100%
-    );
-    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+    color: inherit;
+    box-sizing: border-box;
 }
 
-.site-header__quote:hover {
-    filter: brightness(1.03);
-}
-
-.site-header__quote:hover:active {
-    filter: brightness(0.97);
-}
-
-.site-header__quote-text {
-    display: flex;
-    align-items: center;
-    padding: 0 22px;
-    color: #fff;
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-    font-weight: 700;
-    font-size: 15px;
-    line-height: 1;
-}
-
-.site-header__quote-icon {
-    width: 40px;
-    min-height: 40px;
+.site-header__quote .framer-1ohlfe3 {
     display: flex;
     align-items: center;
     justify-content: center;
+    box-sizing: border-box;
+    border: 1px solid #c40023;
+    border-right: none;
+    border-radius: 40px 0 0 40px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    background: linear-gradient(rgba(249, 63, 6, 0) 0%, rgba(175, 44, 4, 0) 100%);
+}
+
+.site-header__quote .framer-kfq9mg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 22px;
+    min-height: 40px;
+    box-sizing: border-box;
+}
+
+.site-header__quote .site-header__quote-text {
+    margin: 0;
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    line-height: 1.2;
+    color: #fff;
+}
+
+.site-header__quote .framer-uhu0pr {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    min-width: 40px;
     flex-shrink: 0;
 }
 
-.site-header__quote-icon img {
-    width: 25px;
-    height: auto;
+.site-header__quote .framer-9gjsjv {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 0;
+    box-sizing: border-box;
+    border: 1px solid #c40023;
+    border-radius: 0 40px 40px 0;
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    background: linear-gradient(rgba(249, 63, 6, 0) 0%, rgba(175, 44, 4, 0) 100%);
+    pointer-events: none;
+}
+
+.site-header__quote .framer-qcft76 {
+    position: relative;
+    z-index: 1;
+    width: 40px;
+    height: 40px;
+    border-radius: 40px;
+    overflow: hidden;
+}
+
+.site-header__quote .framer-4qeivn {
+    width: 100%;
+    height: 100%;
+}
+
+.site-header__quote [data-framer-background-image-wrapper="true"] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    border-radius: inherit;
+}
+
+.site-header__quote .site-header__quote-img {
     display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+.site-header__quote:hover {
+    filter: brightness(1.04);
+}
+
+.site-header__quote:hover:active {
+    filter: brightness(0.96);
 }
 
 /* Hamburger — hidden on desktop */
@@ -338,14 +398,13 @@
         height: 1.25em;
     }
 
-    .site-header__quote-text {
+    .site-header__quote .framer-kfq9mg {
         padding: 0 16px;
-        font-size: 14px;
     }
 
-    .site-header__quote-icon img {
-        width: 25px;
-        height: auto;
+    .site-header__quote .site-header__quote-text {
+        font-size: 14px;
+        color: #fff;
     }
 
     .site-header__menu-btn-lines {
