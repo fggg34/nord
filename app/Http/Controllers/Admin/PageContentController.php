@@ -52,7 +52,9 @@ class PageContentController extends Controller
             'repeaters' => ['nullable', 'array'],
             'repeaters.*' => ['nullable', 'string'],
             'files' => ['nullable', 'array'],
-            'files.*' => ['nullable', 'file', 'max:40960', 'mimes:jpg,jpeg,png,gif,webp,svg,bmp,ico,mp4,webm,ogg,mov'],
+            // Size only here — MIME/extension checks run per field below (image / video / image_or_video).
+            // Matches ~80 MB video cap for image_or_video; strict mimes:… rejects many valid MP4/MOV variants.
+            'files.*' => ['nullable', 'file', 'max:81920'],
             'repeater_files' => ['nullable', 'array'],
         ]);
 
@@ -93,7 +95,15 @@ class PageContentController extends Controller
 
             if ($wt === 'image_or_video') {
                 $allowedImage = ['image/jpeg', 'image/png', 'image/gif', 'image/webp', 'image/svg+xml', 'image/bmp'];
-                $allowedVideo = ['video/mp4', 'video/webm', 'video/quicktime', 'video/ogg', 'application/ogg'];
+                $allowedVideo = [
+                    'video/mp4',
+                    'video/webm',
+                    'video/quicktime',
+                    'video/ogg',
+                    'video/x-m4v',
+                    'application/mp4',
+                    'application/ogg',
+                ];
                 $allowed = array_merge($allowedImage, $allowedVideo);
                 $mime = $this->normalizeRepeaterUploadMime($file, $allowed);
                 if ($mime === null) {
@@ -428,8 +438,10 @@ class PageContentController extends Controller
             'svg' => 'image/svg+xml',
             'bmp' => 'image/bmp',
             'mp4' => 'video/mp4',
+            'm4v' => 'video/x-m4v',
             'webm' => 'video/webm',
             'mov' => 'video/quicktime',
+            'ogv' => 'video/ogg',
             'ogg' => 'application/ogg',
             default => null,
         };
@@ -470,6 +482,8 @@ class PageContentController extends Controller
             'video/webm',
             'video/quicktime',
             'video/ogg',
+            'video/x-m4v',
+            'application/mp4',
             'application/ogg',
         ];
 
