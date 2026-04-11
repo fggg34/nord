@@ -268,23 +268,34 @@ h1.framer-text.framer-styles-preset-93tzfa {
 }
 
 /*
- * Why Us background — vertical arrow strip (#main .framer-rofhq5-container).
- * Framer’s ticker runtime isn’t in the Laravel export; animate the column like
- * the horizontal tickers: seamless loop by translating −50% (list is two mirrored halves).
+ * Why Us background — vertical arrow strip (.framer-rofhq5-container).
+ * Motion is on .loginord-vertical-ticker-track (wrapper), not the <ul>, so Framer
+ * runtime cannot overwrite the animated transform on the same node as the list.
  */
 #main .framer-rofhq5-container > section {
     overflow: hidden !important;
 }
 
-#main .framer-rofhq5-container > section > ul {
+#main .framer-rofhq5-container .loginord-vertical-ticker-track {
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    width: 100%;
+    align-self: stretch;
+    box-sizing: border-box;
+    will-change: transform;
+    animation: loginord-whyus-vertical-ticker 55s linear infinite !important;
+}
+
+#main ul.loginord-vertical-ticker-ul {
     position: relative !important;
     top: 0 !important;
+    align-self: stretch !important;
     flex-shrink: 0 !important;
+    box-sizing: border-box !important;
     height: auto !important;
     max-height: none !important;
     width: 100%;
-    will-change: transform;
-    animation: loginord-whyus-vertical-ticker 55s linear infinite;
 }
 
 @keyframes loginord-whyus-vertical-ticker {
@@ -297,7 +308,7 @@ h1.framer-text.framer-styles-preset-93tzfa {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    #main .framer-rofhq5-container > section > ul {
+    #main .framer-rofhq5-container .loginord-vertical-ticker-track {
         animation: none !important;
         transform: none !important;
     }
