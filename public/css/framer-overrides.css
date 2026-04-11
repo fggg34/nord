@@ -261,3 +261,8 @@ h1.framer-text.framer-styles-preset-93tzfa {
         width: 100%;
     }
 }
+
+/* Ticker arrow SVG: load from a real file so inline data: URLs cannot fail parsing */
+#main [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"] {
+    background-image: url("/assets/images/nce-ticker-arrow.svg") !important;
+}
