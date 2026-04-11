@@ -25,7 +25,7 @@
             return;
         }
 
-        var y = 0;
+        var y = null;
         var pxPerFrame = 0.35;
 
         function loop() {
@@ -34,9 +34,12 @@
                 requestAnimationFrame(loop);
                 return;
             }
-            y -= pxPerFrame;
-            if (y <= -half) {
-                y = 0;
+            if (y === null) {
+                y = -half;
+            }
+            y += pxPerFrame;
+            if (y >= 0) {
+                y = -half;
             }
             track.style.setProperty("transform", "translate3d(0," + y + "px,0)", "important");
             requestAnimationFrame(loop);

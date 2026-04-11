@@ -298,12 +298,13 @@ h1.framer-text.framer-styles-preset-93tzfa {
     width: 100%;
 }
 
+/* Seamless loop: duplicated column; motion top → bottom */
 @keyframes loginord-whyus-vertical-ticker {
     from {
-        transform: translate3d(0, 0, 0);
+        transform: translate3d(0, -50%, 0);
     }
     to {
-        transform: translate3d(0, -50%, 0);
+        transform: translate3d(0, 0, 0);
     }
 }
 
