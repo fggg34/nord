@@ -34,7 +34,7 @@
                             href="{{ $item['url'] }}"
                             @if ($active) aria-current="page" @endif
                             class="{{ $active ? 'is-active' : '' }}"
-                        >{{ $item['label'] }}</a>
+                        ><span>{{ $item['label'] }}</span></a>
                     </li>
                 @endforeach
             </ul>
