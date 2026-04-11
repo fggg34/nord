@@ -109,6 +109,7 @@
 
 .site-header__cta {
     display: block;
+    border: 0;
 }
 
 /* Framer CTA pill: glass outline + label + circular icon (cf. framer-1sg2rgo wrapper) */
@@ -122,17 +123,21 @@
     box-sizing: border-box;
 }
 
+a.site-header__quote.framer-1sg2rgo.framer-164f1w4 {
+    border: 0 !important;
+}
+
 .site-header__quote .framer-1ohlfe3 {
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    border-radius: 40px;
     border: 1px solid #c40023;
-    border-right: none;
-    border-radius: 40px 0 0 40px;
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    background: linear-gradient(rgba(249, 63, 6, 0) 0%, rgba(175, 44, 4, 0) 100%);
+    border-right: 1px solid #c40023;
+    backdrop-filter: unset;
+    -webkit-backdrop-filter: unset;
+    background: linear-gradient(#c40023 0%, #b0001f 100%) !important;
 }
 
 .site-header__quote .framer-kfq9mg {
@@ -158,25 +163,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    min-width: 40px;
     flex-shrink: 0;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    border-radius: 40px;
+    border: 1px solid #c40023;
+    background: linear-gradient(#c40023 0%, #b0001f 100%);
+}
+
+.site-header__quote .framer-uhu0pr img {
+    width: 20px;
+    height: 20px;
 }
 
 .site-header__quote .framer-9gjsjv {
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: 0;
-    box-sizing: border-box;
-    border: 1px solid #c40023;
-    border-radius: 0 40px 40px 0;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    background: linear-gradient(rgba(249, 63, 6, 0) 0%, rgba(175, 44, 4, 0) 100%);
-    pointer-events: none;
+    display: none;
 }
 
 .site-header__quote .framer-qcft76 {
@@ -193,6 +195,12 @@
     height: 100%;
 }
 
+.site-header__quote .framer-4qeivn > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .site-header__quote [data-framer-background-image-wrapper="true"] {
     position: absolute;
     top: 0;
@@ -200,13 +208,16 @@
     bottom: 0;
     left: 0;
     border-radius: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .site-header__quote .site-header__quote-img {
     display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
     object-position: center;
 }
 
