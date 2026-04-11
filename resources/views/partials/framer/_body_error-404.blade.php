@@ -386,8 +386,8 @@
         s.id = styleId;
         s.textContent = [
             '@keyframes nce-ticker-scroll {',
-            '  from { transform: translateX(0); }',
-            '  to { transform: translateX(calc(-100% / 3)); }',
+            '  from { transform: translateX(calc(-100% / 3)); }',
+            '  to { transform: translateX(0); }',
             '}',
             '.nce-ticker-track {',
             '  display: flex !important;',
