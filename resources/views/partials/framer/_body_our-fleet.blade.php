@@ -548,7 +548,7 @@
                 // Animate with duration proportional to content width
                 requestAnimationFrame(function() {
                     var w = track.scrollWidth;
-                    var dur = Math.max(10, w / 3 / 50); // ~50px/s
+                    var dur = Math.max(12, w / 3 / 40); // ~40px/s (slower)
                     track.style.animation = 'nce-ticker-scroll ' + dur + 's linear infinite';
                 });
             }
