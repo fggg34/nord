@@ -57,6 +57,10 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     opacity: 0.2 !important;
 }
 
+footer.framer-tt4gx a:hover {
+    text-decoration: underline !important;
+}
+
 /* Home: partner logos — 6 per slide, prev/next */
 .partner-logos-slider {
     position: relative;
