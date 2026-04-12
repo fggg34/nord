@@ -58,7 +58,9 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
 }
 
 footer.framer-tt4gx a:hover {
+    color: #fff !important;
     text-decoration: underline !important;
+    text-decoration-color: #fff !important;
 }
 
 /* Home: partner logos — 6 per slide, prev/next */
