@@ -38,9 +38,10 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     margin-left: 3px;
 }
 
-/* Home: ticker arrows — Why Us strip (.framer-jjv3u4), header strip (.framer-nrlx07) */
+/* Home: ticker arrows — Why Us (.framer-jjv3u4), header (.framer-nrlx07), footer CTA (.framer-12f18so) */
 #main .framer-jjv3u4 [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"],
-#main .framer-nrlx07 [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"] {
+#main .framer-nrlx07 [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"],
+#main .framer-12f18so [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"] {
     background-image: url(/assets/images/nce-ticker-arrow.svg) !important;
 }
 
