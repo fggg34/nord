@@ -205,12 +205,29 @@ h1.framer-text.framer-styles-preset-93tzfa {
 #main header.framer-UwEjd {
     display: none !important;
 }
+.framer-GwcEh:hover a > div {
+    background:linear-gradient(#c40023 0%, #b0001f 100%) !important;
+    color: #fff !important;
+}
+
+.framer-GwcEh:hover a > div * {
+     color: #fff !important;
+    
+}
+
+.framer-GwcEh:hover a > div img {
+    filter: brightness(0) invert(1);
+}
+
+.framer-GwcEh a > div {
+    border-radius: 40px;
+}
 
 .site-header__logo img {
     display: block;
-    height: 70px !important;
+    height: 75px !important;
     width: auto;
-    max-width: 235px !important;
+    max-width: 250px !important;
     object-fit: contain;
 }
 
