@@ -40,6 +40,12 @@ return [
      * @var array<string, array<string, array<string, string>>>
      */
     'admin_flat_field_defaults' => [
+        'about-us' => [
+            'our_locations' => [
+                'world_map_image' => '',
+                'world_map_alt' => '',
+            ],
+        ],
         'our-fleet' => [
             'fleet_categories' => [
                 'tag' => 'Vehicle Categories',
@@ -328,6 +334,8 @@ return [
         'about-us.our_locations.card_image_alt' => 'Location card image — alt text',
         'about-us.our_locations.background_image' => 'Our Locations — full-width background (blurred layer)',
         'about-us.our_locations.background_alt' => 'Background image — alt text',
+        'about-us.our_locations.world_map_image' => 'Our Locations — world map graphic (SVG/PNG behind the location card)',
+        'about-us.our_locations.world_map_alt' => 'World map image — alt text (optional; leave empty if decorative)',
         'about-us.team.tag' => 'Team — small tag (e.g. THE TEAM)',
         'about-us.team.heading' => 'Team — main heading',
         'about-us.team.intro' => 'Team — intro paragraph (left column)',
@@ -441,7 +449,7 @@ return [
         'clients_say' => 'What Our Clients Say (heading, intro, side image)',
         'our_history' => 'Our History (#our-history heading only; timeline is in repeaters below)',
         'mission_values' => 'Our Values (#stats-section — tag & heading left; rows in repeater below)',
-        'our_locations' => 'Our Locations (map section — copy, card image, background)',
+        'our_locations' => 'Our Locations (map section — copy, world map, card image, background)',
         'team' => 'Team (#stats-section-1 — tag, heading, intro; cards in repeater below)',
         'certified' => 'Certified (#certified — tag, heading, intro; rows in repeater below)',
         'by_the_numbers' => 'By the numbers (#stats-section — tag & heading; stat columns in repeater below)',
@@ -502,6 +510,9 @@ return [
             'type' => 'image',
         ],
         'about-us.our_locations.background_image' => [
+            'type' => 'image',
+        ],
+        'about-us.our_locations.world_map_image' => [
             'type' => 'image',
         ],
         'about-us.team.intro' => [
