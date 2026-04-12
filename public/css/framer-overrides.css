@@ -38,8 +38,9 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     margin-left: 3px;
 }
 
-/* Home: vertical ticker arrows inside .framer-jjv3u4 */
-#main .framer-jjv3u4 [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"] {
+/* Home: ticker arrows — Why Us strip (.framer-jjv3u4), header strip (.framer-nrlx07) */
+#main .framer-jjv3u4 [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"],
+#main .framer-nrlx07 [data-framer-component-type="SVG"].framer-m0j189[aria-hidden="true"] {
     background-image: url(/assets/images/nce-ticker-arrow.svg) !important;
 }
 
