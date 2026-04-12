@@ -342,14 +342,12 @@ return [
         'about-us.certified.tag' => 'Certified — small tag (e.g. INDUSTRY STANDARDS)',
         'about-us.certified.heading' => 'Certified — main heading',
         'about-us.certified.intro' => 'Certified — intro paragraph (left column)',
-        'contact-us.hero.title' => 'Hero — top heading (animated, split media)',
+        'contact-us.hero.title' => 'Hero — top heading (animated)',
         'contact-us.hero.tag' => 'Hero — badge next to heading (e.g. OUR SERVICES)',
         'contact-us.hero.subtitle' => 'Hero — bottom heading (animated)',
-        'contact-us.hero.split_image_1' => 'Hero — left split image or video',
-        'contact-us.hero.split_image_1_alt' => 'Hero — left media alt text',
-        'contact-us.hero.split_image_2' => 'Hero — right split image or video',
-        'contact-us.hero.split_image_2_alt' => 'Hero — right media alt text',
-        'contact-us.below_hero.paragraph' => 'Below hero (Desktop strip) — intro paragraph under split media',
+        'contact-us.hero.banner_image' => 'Hero — main image or video',
+        'contact-us.hero.banner_alt' => 'Hero media — alt text',
+        'contact-us.below_hero.paragraph' => 'Below hero (Desktop strip) — intro paragraph under hero media',
         'services.hero.title' => 'Hero — top heading (animated)',
         'services.hero.tag' => 'Hero — small label (e.g. OUR SERVICES)',
         'services.hero.subtitle' => 'Hero — bottom heading (animated)',
@@ -557,11 +555,11 @@ return [
         'our-fleet.hero.banner_image' => [
             'type' => 'image_or_video',
         ],
-        'contact-us.hero.split_image_1' => [
+        'contact-us.hero.banner_image' => [
             'type' => 'image_or_video',
         ],
-        'contact-us.hero.split_image_2' => [
-            'type' => 'image_or_video',
+        'contact-us.hero.banner_alt' => [
+            'type' => 'text',
         ],
         'contact-us.below_hero.paragraph' => [
             'type' => 'textarea',
