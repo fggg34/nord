@@ -49,6 +49,45 @@
         });
     }
 
+    /** Let the inline nce-scroll polyfill (loaded later in the page) observe new nodes. */
+    function pingScrollPolyfill() {
+        requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+                if (typeof window.dispatchEvent === 'function') {
+                    window.dispatchEvent(new Event('resize'));
+                }
+            });
+        });
+    }
+
+    /**
+     * If IntersectionObserver / visibility checks never run (hidden breakpoint, zero layout, etc.),
+     * letters stay at opacity 0. Reveal any still-hidden spans after the polyfill had time to run.
+     */
+    function scheduleRevealFallback(root) {
+        window.setTimeout(function () {
+            if (!root || !root.querySelectorAll) {
+                return;
+            }
+            root.querySelectorAll('[data-nce-scroll]').forEach(function (el) {
+                if (el.hasAttribute('data-nce-scroll-revealed')) {
+                    return;
+                }
+                if (el.hasAttribute('data-nce-scroll-animating')) {
+                    return;
+                }
+                var op = parseFloat(window.getComputedStyle(el).opacity || '0');
+                if (op < 0.05) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'none';
+                    el.style.webkitFilter = 'none';
+                    el.style.filter = 'none';
+                    el.setAttribute('data-nce-scroll-revealed', 'true');
+                }
+            });
+        }, 700);
+    }
+
     window.__cmsFramerSplitBuildAdjacent = function (root) {
         if (!root || !root.getAttribute) {
             return;
@@ -62,5 +101,7 @@
 
         root.removeAttribute('data-cms-text');
         buildWordCharSpans(root, text);
+        pingScrollPolyfill();
+        scheduleRevealFallback(root);
     };
 })();

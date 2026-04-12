@@ -49,6 +49,20 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     width: 100%;
     container-type: inline-size;
     container-name: partner-logos;
+    -webkit-mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgb(0, 0, 0) 12.5%,
+        rgb(0, 0, 0) 87.5%,
+        rgba(0, 0, 0, 0) 100%
+    );
+    mask-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 0) 0%,
+        rgb(0, 0, 0) 12.5%,
+        rgb(0, 0, 0) 87.5%,
+        rgba(0, 0, 0, 0) 100%
+    );
 }
 
 .partner-logos-slider__track.partner-logos-slider__list {
@@ -357,4 +371,10 @@ section#stats-section {
 
 .loginord-history__media {
     background: transparent !important;
+}
+
+/* Stats “QUICK FACTS” tag: split-letter spans need stable layout for scroll-triggered reveal */
+#main #stats-section .framer-12dfj9l {
+    min-height: 1.25em;
+    visibility: visible;
 }
