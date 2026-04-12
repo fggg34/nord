@@ -54,6 +54,7 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     width: 134px;
     height: 119px;
     position: relative;
+    opacity: 0.2 !important;
 }
 
 /* Home: partner logos — 6 per slide, prev/next */
