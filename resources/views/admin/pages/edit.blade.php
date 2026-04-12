@@ -12,6 +12,11 @@
         $groupedHomeCriticalIndustries = collect();
 
         $repeatersMain = $repeaters;
+        $repeatersSettingsHeaderNav = collect();
+        if ($page === 'settings') {
+            $repeatersSettingsHeaderNav = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'header_nav_items')->values();
+            $repeatersMain = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') !== 'header_nav_items')->values();
+        }
         $repeatersTeamTail = collect();
         $repeatersCertifiedTail = collect();
         $repeatersServicesCoreCaps = collect();
@@ -52,7 +57,7 @@
             <h1>{{ $pageLabel }}</h1>
             <p>
                 @if ($page === 'settings')
-                    Site-wide branding: upload a logo (header on all pages) and favicon (browser tab). Save to apply on the public site.
+                    Site-wide branding, header navigation links, and footer content. Save to apply on the public site.
                 @else
                     Edit copy for this page only. Changes apply on the public site after save.
                 @endif
@@ -69,7 +74,30 @@
         @csrf
         @method('PUT')
 
-        @include('admin.pages._content-section-cards', ['sections' => $groupedMain])
+        @if ($page === 'settings')
+            @include('admin.pages._content-section-cards', ['sections' => $grouped->only(['branding'])])
+            @if ($repeatersSettingsHeaderNav->isNotEmpty())
+                <x-admin.section-card
+                    title="Header — primary navigation"
+                    description="Links in the top bar on every public page (order matches the list). Use a site path (e.g. services or /services), full https URL, or optional #anchor."
+                >
+                    <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                        @foreach ($repeatersSettingsHeaderNav as $rep)
+                            <x-admin.repeater
+                                :label="$rep['label']"
+                                :description="$rep['description'] ?? null"
+                                :fields="$rep['fields']"
+                                :items="$rep['items']"
+                                :storage-key="$rep['storage_key']"
+                            />
+                        @endforeach
+                    </div>
+                </x-admin.section-card>
+            @endif
+            @include('admin.pages._content-section-cards', ['sections' => $grouped->only(['footer'])])
+        @else
+            @include('admin.pages._content-section-cards', ['sections' => $groupedMain])
+        @endif
 
         @if ($page === 'home' && $groupedHomeServicesIndustries->isNotEmpty())
             @include('admin.pages._content-section-cards', ['sections' => $groupedHomeServicesIndustries])

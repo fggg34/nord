@@ -289,6 +289,17 @@ return [
                 ['key' => 'phone', 'label' => 'Phone', 'type' => 'text', 'placeholder' => 'e.g. +1 (832) 555-0192'],
             ],
         ],
+        [
+            'page' => 'settings',
+            'section' => 'cms_repeaters',
+            'key' => 'header_nav_items',
+            'label' => 'Header — primary navigation links',
+            'description' => 'Shown in the top navigation on every public page. Each row: label and path or URL (same rules as footer links: site path, /path, full https, or #fragment).',
+            'fields' => [
+                ['key' => 'label', 'label' => 'Link label', 'type' => 'text', 'placeholder' => 'e.g. Services'],
+                ['key' => 'link', 'label' => 'Path or URL', 'type' => 'text', 'placeholder' => 'e.g. /, services, /our-fleet, https://…'],
+            ],
+        ],
     ],
 
     /**

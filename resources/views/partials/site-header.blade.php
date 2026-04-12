@@ -6,13 +6,34 @@
             ? cms_public_url($logoPath, $logoFallback)
             : $logoFallback;
     $quoteHref = route('contact-us') . '#contacts';
-    $nav = [
-        ['label' => 'Home', 'url' => url('/')],
-        ['label' => 'About Us', 'url' => url('/about-us')],
-        ['label' => 'Services', 'url' => url('/services')],
-        ['label' => 'Fleet', 'url' => url('/our-fleet')],
-        ['label' => 'Contact Us', 'url' => url('/contact-us')],
-    ];
+    $nav = [];
+    $rawHeaderNav = content('settings', 'cms_repeaters', 'header_nav_items');
+    $headerNavItems = json_decode($rawHeaderNav ?? '[]', true);
+    if (is_array($headerNavItems)) {
+        foreach ($headerNavItems as $row) {
+            if (! is_array($row)) {
+                continue;
+            }
+            $label = trim((string) ($row['label'] ?? ''));
+            if ($label === '') {
+                continue;
+            }
+            $linkRaw = isset($row['link']) ? trim((string) $row['link']) : '';
+            $nav[] = [
+                'label' => $label,
+                'url' => cms_link($linkRaw !== '' ? $linkRaw : null, '/'),
+            ];
+        }
+    }
+    if ($nav === []) {
+        $nav = [
+            ['label' => 'Home', 'url' => url('/')],
+            ['label' => 'About Us', 'url' => url('/about-us')],
+            ['label' => 'Services', 'url' => url('/services')],
+            ['label' => 'Fleet', 'url' => url('/our-fleet')],
+            ['label' => 'Contact Us', 'url' => url('/contact-us')],
+        ];
+    }
 @endphp
 <header class="site-header" role="banner" aria-label="Primary">
     <div class="site-header__inner">
