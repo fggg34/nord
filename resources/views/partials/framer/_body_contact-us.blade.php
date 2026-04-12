@@ -406,7 +406,7 @@
  *   3. RESET: Clear SSR positioning artifacts (negative left, existing transforms)
  *   4. REVEAL: Force opacity:1 on the track and its ancestors up to the ticker
  *      container (Framer gates visibility behind hydration)
- *   5. ANIMATE: Apply CSS @keyframes with duration scaled to content width (~50px/s)
+ *   5. ANIMATE: Apply CSS @keyframes with fixed 50s duration (linear infinite)
  */
 (function() {
     var styleId = 'nce-ticker-style';
@@ -571,8 +571,7 @@
                         }
                         numSets = track.children.length / uniqueCount;
                         track.style.setProperty('--nce-ticker-segments', String(numSets));
-                        var w = track.scrollWidth;
-                        var dur = Math.max(12, w / numSets / 40); // ~40px/s; one cycle = one set width
+                        var dur = 50;
                         track.style.animation = 'nce-ticker-scroll ' + dur + 's linear infinite';
                     });
                 });
