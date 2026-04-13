@@ -45,27 +45,39 @@
                                     x-init="$nextTick(() => { if (window.cmsInitRepTinyMCE) window.cmsInitRepTinyMCE($el, item, f.key); })"
                                 ></textarea>
                             </template>
-                            <div x-show="f.type === 'image' || f.type === 'image_or_video'" style="display: flex; flex-direction: column; gap: 0.5rem;">
-                                <template x-if="item[f.key] && isVideoPath(item[f.key])">
-                                    <video :src="storageSrc(item[f.key])" muted playsinline loop controls style="max-height: 120px; max-width: 220px; border-radius: 6px; border: 1px solid var(--cms-border); background: #0f172a;"></video>
-                                </template>
-                                <template x-if="item[f.key] && !isVideoPath(item[f.key])">
-                                    <img :src="storageSrc(item[f.key])" alt="" style="max-height: 52px; max-width: 160px; object-fit: contain; border-radius: 6px; border: 1px solid var(--cms-border);" />
-                                </template>
-                                <div x-show="item[f.key]" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;">
-                                    <button
-                                        type="button"
-                                        @click="item[f.key] = ''"
-                                        style="font-size: 0.8rem; font-weight: 600; color: #b91c1c; background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 0.35rem 0.65rem; cursor: pointer;"
-                                    >Remove media (leave empty)</button>
+                            <div x-show="f.type === 'image' || f.type === 'image_or_video'" class="cms-rep-media-stack">
+                                <div class="cms-rep-media-card">
+                                    <div class="cms-rep-media-preview">
+                                        <template x-if="item[f.key] && isVideoPath(item[f.key])">
+                                            <video :src="storageSrc(item[f.key])" muted playsinline loop controls style="max-height: 100px; max-width: 100%; border-radius: 8px; border: 1px solid var(--cms-border); background: #0f172a;"></video>
+                                        </template>
+                                        <template x-if="item[f.key] && !isVideoPath(item[f.key])">
+                                            <img :src="storageSrc(item[f.key])" alt="" style="max-height: 72px; max-width: 100%; width: auto; object-fit: contain; border-radius: 8px; border: 1px solid var(--cms-border);" />
+                                        </template>
+                                        <template x-if="!item[f.key]">
+                                            <div style="font-size: 0.8rem; color: var(--cms-muted); padding: 0.35rem 0;">No file in this slot — upload to add.</div>
+                                        </template>
+                                    </div>
+                                    <div class="cms-rep-media-actions">
+                                        <input
+                                            type="file"
+                                            class="cms-rep-file"
+                                            :name="'repeater_files[{{ $storageKey }}]['+index+']['+f.key+']'"
+                                            :accept="f.type === 'image_or_video' ? 'image/jpeg,image/png,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime,video/ogg' : 'image/jpeg,image/png,image/webp,image/gif,image/svg+xml'"
+                                            :id="'rep-'+index+'-'+f.key"
+                                        />
+                                        <button
+                                            type="button"
+                                            class="cms-btn-remove-media"
+                                            x-show="item[f.key]"
+                                            @click="item[f.key] = ''; const inp = $el.closest('.cms-rep-media-actions').querySelector('.cms-rep-file'); if (inp) inp.value = '';"
+                                            title="Clear this file (saved when you submit)"
+                                        >
+                                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                            <span x-text="f.type === 'image_or_video' ? 'Remove media' : 'Remove image'"></span>
+                                        </button>
+                                    </div>
                                 </div>
-                                <input
-                                    type="file"
-                                    class="cms-rep-file"
-                                    :name="'repeater_files[{{ $storageKey }}]['+index+']['+f.key+']'"
-                                    :accept="f.type === 'image_or_video' ? 'image/jpeg,image/png,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime,video/ogg' : 'image/jpeg,image/png,image/webp,image/gif,image/svg+xml'"
-                                    :id="'rep-'+index+'-'+f.key"
-                                />
                                 <span x-show="f.type === 'image' && f.max_mb" style="font-size: 0.72rem; color: var(--cms-muted);">JPEG, PNG, WebP, SVG, or GIF (incl. animated). New upload replaces the stored file for this row. Max ~<span x-text="f.max_mb"></span>&nbsp;MB per image.</span>
                                 <span x-show="f.type === 'image' && !f.max_mb" style="font-size: 0.72rem; color: var(--cms-muted);">JPEG, PNG, WebP, SVG, or GIF (incl. animated). New upload replaces the stored file for this row. Max ~15&nbsp;MB per image.</span>
                                 <span x-show="f.type === 'image_or_video'" style="font-size: 0.72rem; color: var(--cms-muted);">Image (JPEG, PNG, WebP, SVG, GIF) or video (MP4, WebM, MOV). New upload replaces this row. Max ~15&nbsp;MB per image, ~80&nbsp;MB per video.</span>

@@ -103,6 +103,140 @@
             background: rgba(37, 99, 235, 0.28);
             color: #fff;
         }
+
+        /* Media fields: upload + remove (flat + repeater) */
+        .cms-media-field {
+            width: 100%;
+            max-width: 32rem;
+            border: 1px solid var(--cms-border);
+            border-radius: 12px;
+            background: var(--cms-surface);
+            overflow: hidden;
+            box-shadow: var(--cms-shadow);
+        }
+        .cms-media-field--pending-clear {
+            border-color: #f59e0b;
+            box-shadow: 0 0 0 1px rgba(245, 158, 11, 0.25);
+        }
+        .cms-media-preview-wrap {
+            background: #f8fafc;
+            border-bottom: 1px solid var(--cms-border);
+        }
+        .cms-media-field--pending-clear .cms-media-preview-wrap {
+            opacity: 0.45;
+            filter: grayscale(0.85);
+        }
+        .cms-media-preview-wrap img,
+        .cms-media-preview-wrap video {
+            display: block;
+            max-width: 100%;
+            max-height: 220px;
+            width: 100%;
+            object-fit: cover;
+        }
+        .cms-media-preview-wrap--empty {
+            padding: 1.25rem 1rem;
+            font-size: 0.875rem;
+            color: var(--cms-muted);
+        }
+        .cms-media-toolbar {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.65rem;
+            padding: 0.85rem 1rem;
+        }
+        .cms-media-toolbar input[type="file"] {
+            font-size: 0.8rem;
+            max-width: 100%;
+        }
+        .cms-btn-remove-media {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            padding: 0.45rem 0.85rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            font-family: inherit;
+            color: #b91c1c;
+            background: #fff;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.15s, border-color 0.15s, color 0.15s;
+        }
+        .cms-btn-remove-media:hover {
+            background: #fef2f2;
+            border-color: #f87171;
+        }
+        .cms-btn-remove-media svg {
+            flex-shrink: 0;
+            opacity: 0.9;
+        }
+        .cms-media-clear-banner {
+            display: none;
+            align-items: center;
+            justify-content: space-between;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            margin: 0 1rem 0.85rem;
+            padding: 0.55rem 0.75rem;
+            font-size: 0.8125rem;
+            color: #92400e;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+        }
+        .cms-media-field--pending-clear .cms-media-clear-banner {
+            display: flex;
+        }
+        .cms-btn-undo-clear {
+            padding: 0.25rem 0.6rem;
+            font-size: 0.8125rem;
+            font-weight: 600;
+            font-family: inherit;
+            color: var(--cms-accent);
+            background: #fff;
+            border: 1px solid var(--cms-border);
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        .cms-btn-undo-clear:hover {
+            background: var(--cms-accent-soft);
+        }
+        .cms-media-help {
+            margin: 0 1rem 1rem;
+            font-size: 0.75rem;
+            color: var(--cms-muted);
+            line-height: 1.45;
+        }
+
+        .cms-rep-media-card {
+            border: 1px solid var(--cms-border);
+            border-radius: 10px;
+            background: #fafafa;
+            padding: 0.75rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.65rem;
+        }
+        .cms-rep-media-actions {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .cms-rep-media-stack {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        .cms-rep-media-preview {
+            min-height: 2.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
     </style>
     @stack('styles')
 </head>
@@ -114,5 +248,30 @@
     </main>
 </div>
 @stack('scripts')
+<script>
+(function () {
+    document.addEventListener('click', function (e) {
+        var removeBtn = e.target.closest('[data-cms-remove-media]');
+        if (removeBtn) {
+            e.preventDefault();
+            var row = removeBtn.closest('[data-cms-media-row]');
+            if (!row) return;
+            row.classList.add('cms-media-field--pending-clear');
+            var input = row.querySelector('.cms-clear-file-input');
+            if (input) input.removeAttribute('disabled');
+            return;
+        }
+        var undoBtn = e.target.closest('[data-cms-undo-clear]');
+        if (undoBtn) {
+            e.preventDefault();
+            var row2 = undoBtn.closest('[data-cms-media-row]');
+            if (!row2) return;
+            row2.classList.remove('cms-media-field--pending-clear');
+            var input2 = row2.querySelector('.cms-clear-file-input');
+            if (input2) input2.setAttribute('disabled', 'disabled');
+        }
+    });
+})();
+</script>
 </body>
 </html>

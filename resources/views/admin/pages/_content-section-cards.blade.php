@@ -32,25 +32,31 @@
                         $preview = cms_public_url($row->value, $fallback);
                     @endphp
                     <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
-                        <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
-                            <img
-                                src="{{ $preview }}"
-                                alt=""
-                                style="max-width: min(100%, 420px); max-height: 220px; object-fit: cover; border-radius: 8px; border: 1px solid var(--cms-border, #e5e7eb);"
-                            />
-                            <input
-                                type="file"
-                                name="files[{{ $row->id }}]"
-                                accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,image/x-icon,.ico"
-                                style="font-size: 0.85rem;"
-                            />
+                        <div class="cms-media-field" data-cms-media-row>
+                            <div class="cms-media-preview-wrap">
+                                <img src="{{ $preview }}" alt="" loading="lazy" decoding="async" />
+                            </div>
+                            <div class="cms-media-toolbar">
+                                <input
+                                    type="file"
+                                    name="files[{{ $row->id }}]"
+                                    accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,image/x-icon,.ico"
+                                />
+                                @if ($hasMedia)
+                                    <input type="hidden" name="clear_files[{{ $row->id }}]" value="1" class="cms-clear-file-input" disabled>
+                                    <button type="button" class="cms-btn-remove-media" data-cms-remove-media aria-label="Remove image">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                        Remove image
+                                    </button>
+                                @endif
+                            </div>
                             @if ($hasMedia)
-                                <label style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; color: var(--cms-text);">
-                                    <input type="checkbox" name="clear_files[{{ $row->id }}]" value="1">
-                                    Remove current image (leave empty)
-                                </label>
+                                <div class="cms-media-clear-banner">
+                                    <span>Current image will be removed when you save.</span>
+                                    <button type="button" class="cms-btn-undo-clear" data-cms-undo-clear>Undo</button>
+                                </div>
                             @endif
-                            <span style="font-size: 0.75rem; color: var(--cms-muted);">Upload replaces the current image. Uses the public disk (<code>storage/app/public</code> → <code>public/storage</code>).</span>
+                            <p class="cms-media-help">Upload a new file to replace the image. Uses the public disk (<code>storage/app/public</code> → <code>public/storage</code>).</p>
                         </div>
                     </x-admin.form-field>
                 @elseif ($widget['type'] === 'video')
@@ -61,31 +67,35 @@
                         $preview = $vid !== '' ? cms_public_url($vid, $fallback) : '';
                     @endphp
                     <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
-                        <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
-                            @if ($preview !== '')
-                                <video
-                                    src="{{ $preview }}"
-                                    controls
-                                    playsinline
-                                    preload="metadata"
-                                    style="max-width: min(100%, 420px); max-height: 220px; border-radius: 8px; border: 1px solid var(--cms-border, #e5e7eb); background: #111;"
-                                ></video>
-                            @else
-                                <span style="font-size: 0.85rem; color: var(--cms-muted);">No video uploaded yet.</span>
-                            @endif
-                            <input
-                                type="file"
-                                name="files[{{ $row->id }}]"
-                                accept="video/mp4,video/webm,video/ogg,video/quicktime,.mp4,.webm,.ogg,.mov"
-                                style="font-size: 0.85rem;"
-                            />
+                        <div class="cms-media-field" data-cms-media-row>
+                            <div class="cms-media-preview-wrap">
+                                @if ($preview !== '')
+                                    <video src="{{ $preview }}" controls playsinline preload="metadata"></video>
+                                @else
+                                    <div class="cms-media-preview-wrap--empty">No video uploaded yet.</div>
+                                @endif
+                            </div>
+                            <div class="cms-media-toolbar">
+                                <input
+                                    type="file"
+                                    name="files[{{ $row->id }}]"
+                                    accept="video/mp4,video/webm,video/ogg,video/quicktime,.mp4,.webm,.ogg,.mov"
+                                />
+                                @if ($hasMedia)
+                                    <input type="hidden" name="clear_files[{{ $row->id }}]" value="1" class="cms-clear-file-input" disabled>
+                                    <button type="button" class="cms-btn-remove-media" data-cms-remove-media aria-label="Remove video">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                        Remove video
+                                    </button>
+                                @endif
+                            </div>
                             @if ($hasMedia)
-                                <label style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; color: var(--cms-text);">
-                                    <input type="checkbox" name="clear_files[{{ $row->id }}]" value="1">
-                                    Remove current video (leave empty)
-                                </label>
+                                <div class="cms-media-clear-banner">
+                                    <span>Current video will be removed when you save.</span>
+                                    <button type="button" class="cms-btn-undo-clear" data-cms-undo-clear>Undo</button>
+                                </div>
                             @endif
-                            <span style="font-size: 0.75rem; color: var(--cms-muted);">Optional. If set on the home “Clients say” section, it replaces the side image on the public page. Max ~40&nbsp;MB.</span>
+                            <p class="cms-media-help">Optional. Max ~40&nbsp;MB. On the home “Clients say” section, a video replaces the side image on the public page.</p>
                         </div>
                     </x-admin.form-field>
                 @elseif ($widget['type'] === 'image_or_video')
@@ -97,39 +107,39 @@
                         $isVid = $stored !== '' && cms_is_video_path($stored);
                     @endphp
                     <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
-                        <div style="display: flex; flex-direction: column; gap: 0.75rem; align-items: flex-start;">
-                            @if ($preview !== '')
-                                @if ($isVid)
-                                    <video
-                                        src="{{ $preview }}"
-                                        controls
-                                        playsinline
-                                        preload="metadata"
-                                        style="max-width: min(100%, 420px); max-height: 220px; border-radius: 8px; border: 1px solid var(--cms-border, #e5e7eb); background: #111;"
-                                    ></video>
+                        <div class="cms-media-field" data-cms-media-row>
+                            <div class="cms-media-preview-wrap">
+                                @if ($preview !== '')
+                                    @if ($isVid)
+                                        <video src="{{ $preview }}" controls playsinline preload="metadata"></video>
+                                    @else
+                                        <img src="{{ $preview }}" alt="" loading="lazy" decoding="async" />
+                                    @endif
                                 @else
-                                    <img
-                                        src="{{ $preview }}"
-                                        alt=""
-                                        style="max-width: min(100%, 420px); max-height: 220px; object-fit: cover; border-radius: 8px; border: 1px solid var(--cms-border, #e5e7eb);"
-                                    />
+                                    <div class="cms-media-preview-wrap--empty">No image or video yet.</div>
                                 @endif
-                            @else
-                                <span style="font-size: 0.85rem; color: var(--cms-muted);">No image or video yet.</span>
-                            @endif
-                            <input
-                                type="file"
-                                name="files[{{ $row->id }}]"
-                                accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime,video/ogg"
-                                style="font-size: 0.85rem;"
-                            />
+                            </div>
+                            <div class="cms-media-toolbar">
+                                <input
+                                    type="file"
+                                    name="files[{{ $row->id }}]"
+                                    accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime,video/ogg"
+                                />
+                                @if ($hasMedia)
+                                    <input type="hidden" name="clear_files[{{ $row->id }}]" value="1" class="cms-clear-file-input" disabled>
+                                    <button type="button" class="cms-btn-remove-media" data-cms-remove-media aria-label="Remove file">
+                                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="3 6 5 6 21 6"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+                                        Remove file
+                                    </button>
+                                @endif
+                            </div>
                             @if ($hasMedia)
-                                <label style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; color: var(--cms-text);">
-                                    <input type="checkbox" name="clear_files[{{ $row->id }}]" value="1">
-                                    Remove current file (leave empty)
-                                </label>
+                                <div class="cms-media-clear-banner">
+                                    <span>Current file will be removed when you save.</span>
+                                    <button type="button" class="cms-btn-undo-clear" data-cms-undo-clear>Undo</button>
+                                </div>
                             @endif
-                            <span style="font-size: 0.75rem; color: var(--cms-muted);">Image (JPEG, PNG, WebP, SVG, GIF) or video (MP4, WebM, MOV). Upload replaces the current file. Max ~15&nbsp;MB per image, ~80&nbsp;MB per video.</span>
+                            <p class="cms-media-help">Image (JPEG, PNG, WebP, SVG, GIF) or video (MP4, WebM, MOV). Max ~15&nbsp;MB per image, ~80&nbsp;MB per video.</p>
                         </div>
                     </x-admin.form-field>
                 @else
