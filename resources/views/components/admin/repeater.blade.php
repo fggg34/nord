@@ -52,6 +52,13 @@
                                 <template x-if="item[f.key] && !isVideoPath(item[f.key])">
                                     <img :src="storageSrc(item[f.key])" alt="" style="max-height: 52px; max-width: 160px; object-fit: contain; border-radius: 6px; border: 1px solid var(--cms-border);" />
                                 </template>
+                                <div x-show="item[f.key]" style="display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem;">
+                                    <button
+                                        type="button"
+                                        @click="item[f.key] = ''"
+                                        style="font-size: 0.8rem; font-weight: 600; color: #b91c1c; background: #fef2f2; border: 1px solid #fecaca; border-radius: 6px; padding: 0.35rem 0.65rem; cursor: pointer;"
+                                    >Remove media (leave empty)</button>
+                                </div>
                                 <input
                                     type="file"
                                     class="cms-rep-file"

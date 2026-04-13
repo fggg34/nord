@@ -28,6 +28,7 @@
                 @elseif ($widget['type'] === 'image')
                     @php
                         $fallback = asset('assets/images/ed05f9acd87eadf4-YS8lEtRBWRD8b6HqR7UwqBKcVAc.jpg');
+                        $hasMedia = trim((string) $row->value) !== '';
                         $preview = cms_public_url($row->value, $fallback);
                     @endphp
                     <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
@@ -43,6 +44,12 @@
                                 accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,image/x-icon,.ico"
                                 style="font-size: 0.85rem;"
                             />
+                            @if ($hasMedia)
+                                <label style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; color: var(--cms-text);">
+                                    <input type="checkbox" name="clear_files[{{ $row->id }}]" value="1">
+                                    Remove current image (leave empty)
+                                </label>
+                            @endif
                             <span style="font-size: 0.75rem; color: var(--cms-muted);">Upload replaces the current image. Uses the public disk (<code>storage/app/public</code> → <code>public/storage</code>).</span>
                         </div>
                     </x-admin.form-field>
@@ -50,6 +57,7 @@
                     @php
                         $fallback = '';
                         $vid = trim((string) $row->value);
+                        $hasMedia = $vid !== '';
                         $preview = $vid !== '' ? cms_public_url($vid, $fallback) : '';
                     @endphp
                     <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
@@ -71,6 +79,12 @@
                                 accept="video/mp4,video/webm,video/ogg,video/quicktime,.mp4,.webm,.ogg,.mov"
                                 style="font-size: 0.85rem;"
                             />
+                            @if ($hasMedia)
+                                <label style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; color: var(--cms-text);">
+                                    <input type="checkbox" name="clear_files[{{ $row->id }}]" value="1">
+                                    Remove current video (leave empty)
+                                </label>
+                            @endif
                             <span style="font-size: 0.75rem; color: var(--cms-muted);">Optional. If set on the home “Clients say” section, it replaces the side image on the public page. Max ~40&nbsp;MB.</span>
                         </div>
                     </x-admin.form-field>
@@ -78,6 +92,7 @@
                     @php
                         $fallback = asset('assets/images/ed05f9acd87eadf4-YS8lEtRBWRD8b6HqR7UwqBKcVAc.jpg');
                         $stored = trim((string) $row->value);
+                        $hasMedia = $stored !== '';
                         $preview = $stored !== '' ? cms_public_url($stored, $fallback) : '';
                         $isVid = $stored !== '' && cms_is_video_path($stored);
                     @endphp
@@ -108,6 +123,12 @@
                                 accept="image/jpeg,image/png,image/webp,image/gif,image/svg+xml,video/mp4,video/webm,video/quicktime,video/ogg"
                                 style="font-size: 0.85rem;"
                             />
+                            @if ($hasMedia)
+                                <label style="display: inline-flex; align-items: center; gap: 0.5rem; font-size: 0.85rem; cursor: pointer; color: var(--cms-text);">
+                                    <input type="checkbox" name="clear_files[{{ $row->id }}]" value="1">
+                                    Remove current file (leave empty)
+                                </label>
+                            @endif
                             <span style="font-size: 0.75rem; color: var(--cms-muted);">Image (JPEG, PNG, WebP, SVG, GIF) or video (MP4, WebM, MOV). Upload replaces the current file. Max ~15&nbsp;MB per image, ~80&nbsp;MB per video.</span>
                         </div>
                     </x-admin.form-field>

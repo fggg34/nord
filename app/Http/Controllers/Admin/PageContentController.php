@@ -56,7 +56,33 @@ class PageContentController extends Controller
             // Matches ~80 MB video cap for image_or_video; strict mimes:… rejects many valid MP4/MOV variants.
             'files.*' => ['nullable', 'file', 'max:81920'],
             'repeater_files' => ['nullable', 'array'],
+            'clear_files' => ['nullable', 'array'],
+            'clear_files.*' => ['nullable', 'in:1'],
         ]);
+
+        foreach (($validated['clear_files'] ?? []) as $id => $_) {
+            $id = (int) $id;
+            if ($id <= 0) {
+                continue;
+            }
+
+            $row = Content::query()->find($id);
+            if ($row === null || $row->page !== $page || $row->type === 'repeater') {
+                continue;
+            }
+
+            $wt = CmsFieldPresenter::widget($row)['type'];
+            if ($wt !== 'image' && $wt !== 'video' && $wt !== 'image_or_video') {
+                continue;
+            }
+
+            $old = $row->value;
+            if (is_string($old) && $old !== '' && str_starts_with($old, 'cms/')) {
+                Storage::disk('public')->delete($old);
+            }
+
+            $row->update(['value' => '']);
+        }
 
         foreach ($validated['fields'] ?? [] as $id => $value) {
             $id = (int) $id;
@@ -143,6 +169,14 @@ class PageContentController extends Controller
                 continue;
             }
 
+            $previous = Content::query()
+                ->where('page', $rep['page'])
+                ->where('section', $rep['section'])
+                ->where('key', $rep['key'])
+                ->first();
+            $oldDecoded = json_decode((string) ($previous?->value ?? '[]'), true);
+            $oldItems = is_array($oldDecoded) ? $oldDecoded : [];
+
             $items = json_decode((string) $json, true);
             if (! is_array($items)) {
                 $items = [];
@@ -150,6 +184,8 @@ class PageContentController extends Controller
 
             $items = $this->mergeRepeaterImageUploads($items, $rep, (string) $storageKey, $request);
             $items = $this->sanitizeRepeaterItems($items, $rep);
+
+            $this->pruneRemovedRepeaterMedia($rep, $oldItems, $items);
 
             Content::query()->updateOrCreate(
                 [
@@ -537,6 +573,51 @@ class PageContentController extends Controller
         }
 
         return $items;
+    }
+
+    /**
+     * Delete files under storage/app/public/cms that were dropped from a repeater (cleared field, replaced upload, or removed row).
+     *
+     * @param  array<int, mixed>  $oldItems
+     * @param  array<int, mixed>  $newItems
+     */
+    protected function pruneRemovedRepeaterMedia(array $rep, array $oldItems, array $newItems): void
+    {
+        $oldPaths = $this->collectRepeaterCmsMediaPaths($rep, $oldItems);
+        $newPaths = $this->collectRepeaterCmsMediaPaths($rep, $newItems);
+        foreach ($oldPaths as $path) {
+            if (! in_array($path, $newPaths, true)) {
+                Storage::disk('public')->delete($path);
+            }
+        }
+    }
+
+    /**
+     * @param  array<int, mixed>  $items
+     * @return array<int, string>
+     */
+    protected function collectRepeaterCmsMediaPaths(array $rep, array $items): array
+    {
+        $keys = collect($rep['fields'] ?? [])
+            ->filter(fn (array $f) => in_array($f['type'] ?? '', ['image', 'image_or_video'], true))
+            ->map(fn (array $f) => (string) ($f['key'] ?? ''))
+            ->filter()
+            ->all();
+
+        $paths = [];
+        foreach ($items as $row) {
+            if (! is_array($row)) {
+                continue;
+            }
+            foreach ($keys as $fk) {
+                $p = isset($row[$fk]) ? trim((string) $row[$fk]) : '';
+                if ($p !== '' && str_starts_with($p, 'cms/')) {
+                    $paths[] = $p;
+                }
+            }
+        }
+
+        return array_values(array_unique($paths));
     }
 
     protected function sanitizeRepeaterItems(array $items, array $rep): array
