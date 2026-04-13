@@ -28,10 +28,8 @@
         left: var(--our-locations-albania-pin-x);
         top: 83%;
         transform: translate(-50%, -50%);
-        width: 2.75rem;
-        height: 2.75rem;
-        max-width: min(12vw, 3rem);
-        max-height: min(12vw, 3rem);
+        width: 25px;
+        height: 25px;
         z-index: 3;
         pointer-events: auto;
     }
