@@ -18,17 +18,15 @@
         aspect-ratio: 295.06 / 147.58;
     }
     /*
-     * Hotspot over Albania (~20.2°E, 41.2°N) on equirectangular world map (same viewBox as asset).
-     * Tweak --our-locations-albania-pin-x / --our-locations-albania-pin-y if your CMS map differs.
+     * Map hotspot: tweak --our-locations-albania-pin-x if your CMS map differs.
      */
     .framer-d0jqi9 .framer-p48dwc {
         --our-locations-albania-pin-x: 55.6%;
-        --our-locations-albania-pin-y: 27.15%;
     }
     .framer-d0jqi9 .framer-p48dwc .framer-ynhqny-container {
         position: absolute;
         left: var(--our-locations-albania-pin-x);
-        top: var(--our-locations-albania-pin-y);
+        top: 83%;
         transform: translate(-50%, -50%);
         width: 2.75rem;
         height: 2.75rem;
