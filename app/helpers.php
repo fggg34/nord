@@ -72,3 +72,32 @@ if (! function_exists('cms_is_video_path')) {
         return (bool) preg_match('/\.(mp4|webm|mov|ogv|m4v)(\?|#|$)/i', $storedPath);
     }
 }
+
+if (! function_exists('seo_absolute_url')) {
+    /**
+     * Absolute URL for SEO images (CMS uploads, /assets, or external).
+     */
+    function seo_absolute_url(string $path): string
+    {
+        $path = trim($path);
+        if ($path === '') {
+            return url('/');
+        }
+        if (preg_match('#^https?://#i', $path)) {
+            return $path;
+        }
+
+        $u = cms_public_url($path, '');
+        if ($u === '') {
+            return url('/');
+        }
+        if (preg_match('#^https?://#i', $u)) {
+            return $u;
+        }
+        if (str_starts_with($u, '/')) {
+            return url($u);
+        }
+
+        return url('/'.ltrim($u, '/'));
+    }
+}

@@ -8,24 +8,18 @@
     <!-- End of headStart -->
 	<meta name="viewport" content="width=device-width">
 	<meta name="generator" content="Framer 8442ab0">
-	<title>Contact Page – Framer Template for Transport &amp; Logistics Companies</title>
-    <meta name="description" content="Easily customizable contact page from the Loginord Framer template. Built for transport and logistics businesses to connect with potential clients or partners. Built with a Contact Form.">
+	@include('partials.seo-head', [
+	    'page' => 'contact-us',
+	    'defaultTitle' => 'Contact Page – Framer Template for Transport & Logistics Companies',
+	    'defaultDescription' => 'Easily customizable contact page from the Loginord Framer template. Built for transport and logistics businesses to connect with potential clients or partners. Built with a Contact Form.',
+	    'defaultOgImage' => '/assets/images/95221dd86b926b19-TUsk3ygy6f75eOtFugQRJAXcjFY.jpg',
+	])
     <meta name="framer-search-index" content="{{ asset('search-index.json') }}">
     <meta name="framer-search-index-fallback" content="{{ asset('search-index.json') }}">
     <meta name="framer-html-plugin" content="disable">
     <link href="../assets/images/47ca88889afac36a-54405mITjKzrnYbhvtkOGz9fM.svg" rel="icon" media="(prefers-color-scheme: light)">
     <link href="../assets/images/dad6ab56b16aa0e8-pHNiOe8hCc9VlYYeYfAboBa5WQ.svg" rel="icon" media="(prefers-color-scheme: dark)">
     <link rel="apple-touch-icon" href="../assets/images/96445f00d3c5d75f-KTXj89urIY9zn4OnyyO1jUvgYU.png">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Contact Page – Framer Template for Transport &amp; Logistics Companies">
-    <meta property="og:description" content="Easily customizable contact page from the Loginord Framer template. Built for transport and logistics businesses to connect with potential clients or partners. Built with a Contact Form.">
-    <meta property="og:image" content="/assets/images/95221dd86b926b19-TUsk3ygy6f75eOtFugQRJAXcjFY.jpg">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Contact Page – Framer Template for Transport &amp; Logistics Companies">
-    <meta name="twitter:description" content="Easily customizable contact page from the Loginord Framer template. Built for transport and logistics businesses to connect with potential clients or partners. Built with a Contact Form.">
-    <meta name="twitter:image" content="/assets/images/95221dd86b926b19-TUsk3ygy6f75eOtFugQRJAXcjFY.jpg">
 	
 	<style data-framer-font-css="">/* latin-ext */
 @font-face {

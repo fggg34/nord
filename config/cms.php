@@ -25,12 +25,12 @@ return [
      * An explicit empty array means no flat sections in admin (rebuild from scratch).
      */
     'admin_visible_sections' => [
-        'settings' => ['branding', 'footer'],
-        'about-us' => ['hero', 'our_history', 'mission_values', 'our_locations', 'team', 'certified'],
-        'contact-us' => ['hero', 'below_hero'],
-        'services' => ['hero', 'below_hero', 'our_services', 'features', 'our_process'],
-        'our-fleet' => ['hero', 'by_the_numbers', 'features_section', 'fleet_categories'],
-        'privacy-policy' => ['hero'],
+        'settings' => ['branding', 'seo', 'footer'],
+        'about-us' => ['seo', 'hero', 'our_history', 'mission_values', 'our_locations', 'team', 'certified'],
+        'contact-us' => ['seo', 'hero', 'below_hero'],
+        'services' => ['seo', 'hero', 'below_hero', 'our_services', 'features', 'our_process'],
+        'our-fleet' => ['seo', 'hero', 'by_the_numbers', 'features_section', 'fleet_categories'],
+        'privacy-policy' => ['seo', 'hero'],
     ],
 
     /**
@@ -405,6 +405,42 @@ return [
         'home.clients_say.side_video' => 'Side video (optional — if uploaded, replaces the side image)',
         'settings.branding.logo' => 'Site logo (header; PNG, SVG, or WebP recommended)',
         'settings.branding.favicon' => 'Favicon (ICO, PNG, or SVG; shown in browser tab)',
+        'settings.seo.site_name' => 'SEO — site name (optional; used for og:site_name)',
+        'settings.seo.default_meta_description' => 'SEO — default meta description (used when a page leaves its own description empty)',
+        'settings.seo.default_og_image' => 'SEO — default share image (Open Graph / Twitter when a page has no image set)',
+        'settings.seo.twitter_card' => 'SEO — Twitter card type (e.g. summary_large_image or summary)',
+        'home.seo.meta_title' => 'SEO — page title (browser tab; falls back to template default if empty)',
+        'home.seo.meta_description' => 'SEO — meta description (falls back to site default, then template)',
+        'home.seo.og_image' => 'SEO — share image override (optional)',
+        'home.seo.robots' => 'SEO — robots (optional; e.g. noindex for staging; leave empty for normal indexing)',
+        'about-us.seo.meta_title' => 'SEO — page title',
+        'about-us.seo.meta_description' => 'SEO — meta description',
+        'about-us.seo.og_image' => 'SEO — share image override',
+        'about-us.seo.robots' => 'SEO — robots',
+        'contact-us.seo.meta_title' => 'SEO — page title',
+        'contact-us.seo.meta_description' => 'SEO — meta description',
+        'contact-us.seo.og_image' => 'SEO — share image override',
+        'contact-us.seo.robots' => 'SEO — robots',
+        'services.seo.meta_title' => 'SEO — page title',
+        'services.seo.meta_description' => 'SEO — meta description',
+        'services.seo.og_image' => 'SEO — share image override',
+        'services.seo.robots' => 'SEO — robots',
+        'our-fleet.seo.meta_title' => 'SEO — page title',
+        'our-fleet.seo.meta_description' => 'SEO — meta description',
+        'our-fleet.seo.og_image' => 'SEO — share image override',
+        'our-fleet.seo.robots' => 'SEO — robots',
+        'privacy-policy.seo.meta_title' => 'SEO — page title',
+        'privacy-policy.seo.meta_description' => 'SEO — meta description',
+        'privacy-policy.seo.og_image' => 'SEO — share image override',
+        'privacy-policy.seo.robots' => 'SEO — robots',
+        'error-404.seo.meta_title' => 'SEO — page title',
+        'error-404.seo.meta_description' => 'SEO — meta description',
+        'error-404.seo.og_image' => 'SEO — share image override',
+        'error-404.seo.robots' => 'SEO — robots',
+        'search.seo.meta_title' => 'SEO — page title',
+        'search.seo.meta_description' => 'SEO — meta description',
+        'search.seo.og_image' => 'SEO — share image override',
+        'search.seo.robots' => 'SEO — robots',
         'settings.footer.footer_logo' => 'Footer — large logo (left column above newsletter; PNG, SVG, or WebP)',
         'settings.footer.ticker_line_1' => 'Footer ticker — first line (above “smarter?”)',
         'settings.footer.ticker_line_2' => 'Footer ticker — second line (e.g. “ve smarter?”)',
@@ -445,6 +481,7 @@ return [
      */
     'section_labels' => [
         'branding' => 'Branding (site-wide logo & favicon)',
+        'seo' => 'SEO (meta title, description, sharing)',
         'footer' => 'Footer (site-wide — newsletter, contacts, columns, links)',
         'hero' => 'Hero (headline, copy, CTAs, image or video)',
         'below_hero' => 'Below hero (white strip — intro paragraph)',
@@ -534,6 +571,60 @@ return [
             'type' => 'image',
         ],
         'settings.branding.favicon' => [
+            'type' => 'image',
+        ],
+        'settings.seo.default_meta_description' => [
+            'type' => 'textarea',
+        ],
+        'settings.seo.default_og_image' => [
+            'type' => 'image',
+        ],
+        'home.seo.meta_description' => [
+            'type' => 'textarea',
+        ],
+        'home.seo.og_image' => [
+            'type' => 'image',
+        ],
+        'about-us.seo.meta_description' => [
+            'type' => 'textarea',
+        ],
+        'about-us.seo.og_image' => [
+            'type' => 'image',
+        ],
+        'contact-us.seo.meta_description' => [
+            'type' => 'textarea',
+        ],
+        'contact-us.seo.og_image' => [
+            'type' => 'image',
+        ],
+        'services.seo.meta_description' => [
+            'type' => 'textarea',
+        ],
+        'services.seo.og_image' => [
+            'type' => 'image',
+        ],
+        'our-fleet.seo.meta_description' => [
+            'type' => 'textarea',
+        ],
+        'our-fleet.seo.og_image' => [
+            'type' => 'image',
+        ],
+        'privacy-policy.seo.meta_description' => [
+            'type' => 'textarea',
+        ],
+        'privacy-policy.seo.og_image' => [
+            'type' => 'image',
+        ],
+        'error-404.seo.meta_description' => [
+            'type' => 'textarea',
+        ],
+        'error-404.seo.og_image' => [
+            'type' => 'image',
+        ],
+        'search.seo.meta_description' => [
+            'type' => 'textarea',
+        ],
+        'search.seo.og_image' => [
             'type' => 'image',
         ],
         'settings.footer.footer_logo' => [

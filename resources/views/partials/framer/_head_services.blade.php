@@ -8,24 +8,18 @@
     <!-- End of headStart -->
 	<meta name="viewport" content="width=device-width">
 	<meta name="generator" content="Framer 8442ab0">
-	<title>Transport &amp; Logistics Services – Framer Template for B2B Businesses</title>
-    <meta name="description" content="Explore the services section of the Loginord Framer template, designed for transport and logistics providers. Ideal to present offerings like freight, warehousing, and distribution.">
+	@include('partials.seo-head', [
+	    'page' => 'services',
+	    'defaultTitle' => 'Transport & Logistics Services – Framer Template for B2B Businesses',
+	    'defaultDescription' => 'Explore the services section of the Loginord Framer template, designed for transport and logistics providers. Ideal to present offerings like freight, warehousing, and distribution.',
+	    'defaultOgImage' => '/assets/images/95221dd86b926b19-TUsk3ygy6f75eOtFugQRJAXcjFY.jpg',
+	])
     <meta name="framer-search-index" content="{{ asset('search-index.json') }}">
     <meta name="framer-search-index-fallback" content="{{ asset('search-index.json') }}">
     <meta name="framer-html-plugin" content="disable">
     <link href="../assets/images/47ca88889afac36a-54405mITjKzrnYbhvtkOGz9fM.svg" rel="icon" media="(prefers-color-scheme: light)">
     <link href="../assets/images/dad6ab56b16aa0e8-pHNiOe8hCc9VlYYeYfAboBa5WQ.svg" rel="icon" media="(prefers-color-scheme: dark)">
     <link rel="apple-touch-icon" href="../assets/images/96445f00d3c5d75f-KTXj89urIY9zn4OnyyO1jUvgYU.png">
-    <!-- Open Graph / Facebook -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Transport &amp; Logistics Services – Framer Template for B2B Businesses">
-    <meta property="og:description" content="Explore the services section of the Loginord Framer template, designed for transport and logistics providers. Ideal to present offerings like freight, warehousing, and distribution.">
-    <meta property="og:image" content="/assets/images/95221dd86b926b19-TUsk3ygy6f75eOtFugQRJAXcjFY.jpg">
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Transport &amp; Logistics Services – Framer Template for B2B Businesses">
-    <meta name="twitter:description" content="Explore the services section of the Loginord Framer template, designed for transport and logistics providers. Ideal to present offerings like freight, warehousing, and distribution.">
-    <meta name="twitter:image" content="/assets/images/95221dd86b926b19-TUsk3ygy6f75eOtFugQRJAXcjFY.jpg">
 	
 	<style data-framer-font-css="">/* latin-ext */
 @font-face {

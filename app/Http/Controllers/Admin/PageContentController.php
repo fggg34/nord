@@ -251,8 +251,9 @@ class PageContentController extends Controller
     {
         $rank = function (string $s): int {
             return match ($s) {
+                'seo' => 0,
                 'branding' => 0,
-                'footer' => 1,
+                'footer' => 2,
                 'hero', 'stats' => 1,
                 'services_industries' => 2,
                 'critical_industries' => 3,

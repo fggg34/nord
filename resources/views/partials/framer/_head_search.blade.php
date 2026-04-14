@@ -1,7 +1,12 @@
 
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Site Search</title>
+@include('partials.seo-head', [
+    'page' => 'search',
+    'defaultTitle' => 'Site Search',
+    'defaultDescription' => 'Search pages and content on this site.',
+    'defaultOgImage' => '/assets/images/95221dd86b926b19-TUsk3ygy6f75eOtFugQRJAXcjFY.jpg',
+])
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #f8f9fa; color: #1a1a2e; padding: 2rem; }
