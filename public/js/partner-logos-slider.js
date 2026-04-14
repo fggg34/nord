@@ -1,6 +1,4 @@
 (function () {
-    var PER_PAGE = 6;
-
     function init(root) {
         var viewport = root.querySelector("[data-partner-viewport]");
         var track = root.querySelector("[data-partner-track]");
@@ -9,20 +7,30 @@
         if (!viewport || !track) return;
         var items = track.children;
         var n = items.length;
-        var pages = Math.ceil(n / PER_PAGE);
-        if (pages <= 1) return;
+        if (n <= 1) return;
 
         var i = 0;
 
+        function stepPx() {
+            if (n < 2) return viewport.offsetWidth;
+            return items[1].offsetLeft - items[0].offsetLeft;
+        }
+
         function shift() {
-            var w = viewport.offsetWidth;
-            track.style.transform = "translateX(" + -i * w + "px)";
+            var step = stepPx();
+            var maxOff = Math.max(0, track.scrollWidth - viewport.clientWidth);
+            var maxI = step > 0 ? Math.ceil(maxOff / step) : 0;
+            var off = Math.min(i * step, maxOff);
+            track.style.transform = "translateX(" + -off + "px)";
             if (prev) prev.disabled = i === 0;
-            if (next) next.disabled = i >= pages - 1;
+            if (next) next.disabled = i >= maxI;
         }
 
         function go(idx) {
-            i = Math.max(0, Math.min(pages - 1, idx));
+            var step = stepPx();
+            var maxOff = Math.max(0, track.scrollWidth - viewport.clientWidth);
+            var maxI = step > 0 ? Math.ceil(maxOff / step) : 0;
+            i = Math.max(0, Math.min(maxI, idx));
             shift();
         }
 
@@ -30,6 +38,10 @@
         if (next) next.addEventListener("click", function () { go(i + 1); });
 
         function bindResize() {
+            var step = stepPx();
+            var maxOff = Math.max(0, track.scrollWidth - viewport.clientWidth);
+            var maxI = step > 0 ? Math.ceil(maxOff / step) : 0;
+            if (i > maxI) i = maxI;
             shift();
         }
         if (typeof ResizeObserver !== "undefined") {
