@@ -13,7 +13,7 @@
             playsinline
             preload="auto"
             fetchpriority="high"
-            style="cursor:auto;width:100%;height:100%;border-radius:8px;display:block;object-fit:cover;background-color:rgba(0, 0, 0, 0);object-position:50% 50%"
+            style="cursor:auto;width:100%;height:472px;border-radius:8px;display:block;object-fit:cover;background-color:rgba(0, 0, 0, 0);object-position:50% 50%"
         ></video>
         <script>
         (function () {
