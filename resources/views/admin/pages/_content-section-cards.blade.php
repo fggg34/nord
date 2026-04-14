@@ -28,13 +28,20 @@
                 @elseif ($widget['type'] === 'image')
                     @php
                         $fallback = asset('assets/images/ed05f9acd87eadf4-YS8lEtRBWRD8b6HqR7UwqBKcVAc.jpg');
-                        $hasMedia = trim((string) $row->value) !== '';
-                        $preview = cms_public_url($row->value, $fallback);
+                        $stored = trim((string) $row->value);
+                        $hasMedia = $stored !== '';
+                        $preview = $hasMedia ? cms_public_url($stored, $fallback) : '';
                     @endphp
                     <x-admin.form-field :label="CmsFieldPresenter::label($row)" span="2">
                         <div class="cms-media-field" data-cms-media-row>
                             <div class="cms-media-preview-wrap">
-                                <img src="{{ $preview }}" alt="" loading="lazy" decoding="async" />
+                                @if ($preview !== '')
+                                    <img src="{{ $preview }}" alt="" loading="lazy" decoding="async" />
+                                @else
+                                    <div class="cms-media-preview-wrap--empty">
+                                        No custom image saved in the CMS yet. The public page uses the template default until you upload a file here—there is nothing to remove.
+                                    </div>
+                                @endif
                             </div>
                             <div class="cms-media-toolbar">
                                 <input
