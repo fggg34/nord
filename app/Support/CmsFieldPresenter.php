@@ -48,6 +48,11 @@ class CmsFieldPresenter
             return ['type' => in_array($type, ['text', 'textarea'], true) ? $type : 'text'];
         }
 
+        $inferred = self::inferMediaWidgetFromKey((string) $row->key);
+        if ($inferred !== null) {
+            return $inferred;
+        }
+
         if ($row->type === 'textarea') {
             return ['type' => 'textarea'];
         }
@@ -65,6 +70,31 @@ class CmsFieldPresenter
         }
 
         return ['type' => 'text'];
+    }
+
+    /**
+     * Detect image/video fields by key so the admin always shows upload + remove, even when
+     * {@see Content::$type} is "text" (common for instrumented rows) or the field is missing
+     * from config('cms.field_overrides'). Hero/banner fields were previously forced to plain text.
+     *
+     * @return array{type: 'image'|'video'|'image_or_video'}|null
+     */
+    public static function inferMediaWidgetFromKey(string $key): ?array
+    {
+        if ($key === 'left_media') {
+            return ['type' => 'image_or_video'];
+        }
+        if ($key === 'banner_image') {
+            return ['type' => 'image_or_video'];
+        }
+        if (str_ends_with($key, '_video')) {
+            return ['type' => 'video'];
+        }
+        if (str_ends_with($key, '_image')) {
+            return ['type' => 'image'];
+        }
+
+        return null;
     }
 
     public static function sectionHeading(string $section): string
