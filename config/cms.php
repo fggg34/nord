@@ -41,10 +41,6 @@ return [
      */
     'admin_flat_field_defaults' => [
         'about-us' => [
-            'our_history' => [
-                'background_image' => '',
-                'background_alt' => '',
-            ],
             'our_locations' => [
                 'world_map_image' => '',
                 'world_map_alt' => '',
@@ -339,8 +335,6 @@ return [
         'about-us.hero.banner_alt' => 'Hero banner alt text (images and video accessibility)',
         'about-us.hero.intro_paragraph' => 'Intro paragraph (white strip below hero banner)',
         'about-us.our_history.heading' => 'Our History — section heading',
-        'about-us.our_history.background_image' => 'Our History — full-bleed background (behind timeline; same pattern as Services features)',
-        'about-us.our_history.background_alt' => 'Our History — background image alt text',
         'about-us.mission_values.tag' => 'Our Values — small tag (e.g. OUR MISSION, VISION & VALUES)',
         'about-us.mission_values.heading' => 'Our Values — main heading (e.g. What Drives Us.)',
         'about-us.our_locations.tag' => 'Our Locations — small tag (e.g. GLOBAL REACH. LOCAL STRENGTH.)',
@@ -501,7 +495,7 @@ return [
         'critical_industries' => 'Critical industries (Industries block — heading & intro; industry cards in repeater below)',
         'why_us' => 'Why Us section (label, heading, copy, CTA)',
         'clients_say' => 'What Our Clients Say (heading, intro, side image)',
-        'our_history' => 'Our History (#our-history — heading, background image, alt; timeline rows are in repeaters below)',
+        'our_history' => 'Our History (#our-history heading only; timeline is in repeaters below)',
         'mission_values' => 'Our Values (#stats-section — tag & heading left; rows in repeater below)',
         'our_locations' => 'Our Locations (map section — copy, world map, card image, background)',
         'team' => 'Team (#stats-section-1 — tag, heading, intro; cards in repeater below)',
@@ -549,12 +543,6 @@ return [
             'type' => 'textarea',
         ],
         'about-us.our_history.heading' => [
-            'type' => 'text',
-        ],
-        'about-us.our_history.background_image' => [
-            'type' => 'image',
-        ],
-        'about-us.our_history.background_alt' => [
             'type' => 'text',
         ],
         'about-us.mission_values.tag' => [
