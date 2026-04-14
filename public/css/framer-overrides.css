@@ -423,3 +423,29 @@ section#stats-section {
 .framer-qsf05d {
     gap: 50px !important;
 }
+
+/* About — Our History: full-bleed background (Services #features–style stack; About head may omit these Framer rules) */
+#main #our-history.loginord-history--framer-bg {
+    background: transparent;
+    position: relative;
+    isolation: isolate;
+}
+
+#main #our-history.loginord-history--framer-bg .framer-nr4cy1 {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+}
+
+#main #our-history.loginord-history--framer-bg .framer-jj5911 {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#main #our-history.loginord-history--framer-bg .framer-1eobsjm {
+    position: relative;
+    z-index: 1;
+}

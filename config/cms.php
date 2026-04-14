@@ -144,8 +144,22 @@ return [
         [
             'page' => 'about-us',
             'section' => 'cms_repeaters',
+            'key' => 'history_timeline',
+            'label' => 'Our History — timeline (years & content)',
+            'description' => 'Each row: year label, headline, story, optional image. Order = timeline order. Scrolling the section updates the active year and the panel on the right.',
+            'fields' => [
+                ['key' => 'year', 'label' => 'Year', 'type' => 'text', 'placeholder' => 'e.g. 2010'],
+                ['key' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'e.g. One Truck. One Dream.'],
+                ['key' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Paragraph for this milestone'],
+                ['key' => 'image', 'label' => 'Image', 'type' => 'image'],
+                ['key' => 'alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Describe the photo'],
+            ],
+        ],
+        [
+            'page' => 'about-us',
+            'section' => 'cms_repeaters',
             'key' => 'mission_values_items',
-            'label' => 'Our Values (#stats-section) — rows',
+            'label' => 'Our Values (#stats-section) — rows (under timeline)',
             'description' => 'Right column: each row is an orange-arrow block with a title and description (e.g. Mission, Vision, Values). Upload an arrow/icon image per row (SVG/PNG); leave empty to use the default arrow. Order matches the public page.',
             'fields' => [
                 ['key' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'e.g. Mission'],
@@ -324,8 +338,9 @@ return [
         'about-us.hero.banner_image' => 'Hero banner image or video',
         'about-us.hero.banner_alt' => 'Hero banner alt text (images and video accessibility)',
         'about-us.hero.intro_paragraph' => 'Intro paragraph (white strip below hero banner)',
-        'about-us.our_history.background_image' => 'Full-width background photo (between intro strip and Our Values)',
-        'about-us.our_history.background_alt' => 'Background image — alt text',
+        'about-us.our_history.heading' => 'Our History — section heading',
+        'about-us.our_history.background_image' => 'Our History — full-bleed background (behind timeline; same pattern as Services features)',
+        'about-us.our_history.background_alt' => 'Our History — background image alt text',
         'about-us.mission_values.tag' => 'Our Values — small tag (e.g. OUR MISSION, VISION & VALUES)',
         'about-us.mission_values.heading' => 'Our Values — main heading (e.g. What Drives Us.)',
         'about-us.our_locations.tag' => 'Our Locations — small tag (e.g. GLOBAL REACH. LOCAL STRENGTH.)',
@@ -486,7 +501,7 @@ return [
         'critical_industries' => 'Critical industries (Industries block — heading & intro; industry cards in repeater below)',
         'why_us' => 'Why Us section (label, heading, copy, CTA)',
         'clients_say' => 'What Our Clients Say (heading, intro, side image)',
-        'our_history' => 'Full-width background (between intro and Our Values)',
+        'our_history' => 'Our History (#our-history — heading, background image, alt; timeline rows are in repeaters below)',
         'mission_values' => 'Our Values (#stats-section — tag & heading left; rows in repeater below)',
         'our_locations' => 'Our Locations (map section — copy, world map, card image, background)',
         'team' => 'Team (#stats-section-1 — tag, heading, intro; cards in repeater below)',
@@ -532,6 +547,9 @@ return [
         ],
         'about-us.hero.intro_paragraph' => [
             'type' => 'textarea',
+        ],
+        'about-us.our_history.heading' => [
+            'type' => 'text',
         ],
         'about-us.our_history.background_image' => [
             'type' => 'image',
