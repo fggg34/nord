@@ -37,4 +37,63 @@
     }
 @endphp
 
-<section class="framer-1usp193" data-framer-name="Features Section" id="features"><div class="ssr-variant"><div class="framer-1hroiaz-container"><div class="framer-TDsxi framer-uslge framer-v-uslge" data-framer-name="default" style="background-color: var(--token-1e0f44e7-e745-45d4-a9c4-0dd04bfcb626, rgb(254, 217, 205)); height: 100%; width: 100%; opacity: 1;"></div></div></div><div class="framer-8cyj1l" data-framer-name="wrapper">@include('partials.our-fleet._features_section')</div></section>
+<main class="loginord-history framer-lffq0j" data-framer-name="Our history" id="our-history"
+      style="--history-count: {{ count($historyItems) }}">
+    <div class="loginord-history__pin">
+        <h2 class="loginord-history__heading">{{ e($historyHeading) }}</h2>
+
+        <div class="loginord-history__body">
+            {{-- Left: tag indicator + years --}}
+            <div class="loginord-history__left">
+                <div class="loginord-history__left-inner">
+                    <div class="loginord-history__indicator" aria-hidden="true">
+                        <span class="loginord-history__dot"></span>
+                        <span class="loginord-history__line"></span>
+                        <span class="loginord-history__tag">Year</span>
+                    </div>
+
+                    <div class="loginord-history__years" role="tablist" aria-orientation="vertical">
+                        @foreach ($historyItems as $idx => $item)
+                            <button
+                                type="button"
+                                class="loginord-history__year{{ $idx === 0 ? ' is-active' : '' }}"
+                                data-history-index="{{ $idx }}"
+                                role="tab"
+                                aria-selected="{{ $idx === 0 ? 'true' : 'false' }}"
+                                id="our-history-year-{{ $idx }}"
+                                aria-controls="our-history-pane-{{ $idx }}"
+                            >{{ e($item['year'] !== '' ? $item['year'] : '—') }}</button>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+
+            {{-- Right: content panes --}}
+            <div class="loginord-history__right">
+                <div class="loginord-history__panes">
+                    @foreach ($historyItems as $idx => $item)
+                        @php
+                            $imgUrl = ($item['image'] ?? '') !== '' ? cms_public_url($item['image'], '') : '';
+                        @endphp
+                        <article
+                            class="loginord-history__pane{{ $idx === 0 ? ' is-active' : '' }}"
+                            data-history-index="{{ $idx }}"
+                            role="tabpanel"
+                            id="our-history-pane-{{ $idx }}"
+                            aria-labelledby="our-history-year-{{ $idx }}"
+                            @if ($idx !== 0) hidden @endif
+                        >
+                            <h3 class="loginord-history__pane-title">{{ e($item['title']) }}</h3>
+                            <p class="loginord-history__pane-desc">{{ e($item['description']) }}</p>
+                            <div class="loginord-history__media">
+                                @if ($imgUrl !== '')
+                                    <img src="{{ $imgUrl }}" alt="{{ e($item['alt'] ?? '') }}" width="1200" height="750" loading="lazy" decoding="async">
+                                @endif
+                            </div>
+                        </article>
+                    @endforeach
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
