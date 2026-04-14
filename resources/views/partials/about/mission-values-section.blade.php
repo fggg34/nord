@@ -13,18 +13,20 @@
                 $missionRows[] = [
                     'title' => (string) ($row['title'] ?? ''),
                     'description' => (string) ($row['description'] ?? ''),
+                    'arrow_image' => (string) ($row['arrow_image'] ?? ''),
+                    'arrow_alt' => (string) ($row['arrow_alt'] ?? ''),
                 ];
             }
         }
     }
     if ($missionRows === []) {
         $missionRows = [
-            ['title' => 'Mission', 'description' => 'To deliver seamless, efficient, and honest logistics solutions for growing businesses.'],
-            ['title' => 'Vision', 'description' => 'To become the most trusted logistics partner for companies across borders.'],
-            ['title' => 'Values', 'description' => 'Reliability. Transparency. Sustainability. Respect.'],
+            ['title' => 'Mission', 'description' => 'To deliver seamless, efficient, and honest logistics solutions for growing businesses.', 'arrow_image' => '', 'arrow_alt' => ''],
+            ['title' => 'Vision', 'description' => 'To become the most trusted logistics partner for companies across borders.', 'arrow_image' => '', 'arrow_alt' => ''],
+            ['title' => 'Values', 'description' => 'Reliability. Transparency. Sustainability. Respect.', 'arrow_image' => '', 'arrow_alt' => ''],
         ];
     }
-    $arrowSrc = asset('assets/images/ad0ec91db203cf1e-m1GbbtQhZ7EjlEriUBWyLPdgXPA.svg');
+    $defaultArrowSrc = asset('assets/images/ad0ec91db203cf1e-m1GbbtQhZ7EjlEriUBWyLPdgXPA.svg');
     $containerClasses = ['framer-1da65ss-container', 'framer-mo8p5h-container', 'framer-mf660z-container'];
 @endphp
 <section class="framer-1hu0j2w" data-framer-name="Our Values Section" id="stats-section">
@@ -49,6 +51,8 @@
                 @foreach ($missionRows as $idx => $row)
                     @php
                         $wrapClass = $containerClasses[$idx % count($containerClasses)];
+                        $arrowSrc = cms_public_url($row['arrow_image'] ?? null, $defaultArrowSrc);
+                        $arrowAlt = trim((string) ($row['arrow_alt'] ?? ''));
                     @endphp
                     <div class="ssr-variant">
                         <div class="{{ $wrapClass }}">
@@ -56,7 +60,7 @@
                                 <figure class="framer-b2bu52" data-framer-name="arrow" style="will-change: transform; opacity:0; transform:translateY(40px);" data-nce-scroll="true" data-nce-initial-transform="translateY(40px)">
                                     <div class="framer-yftsd4" style="opacity: 1;">
                                         <div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true">
-                                            <img decoding="auto" loading="lazy" width="40" height="40" src="{{ $arrowSrc }}" alt="" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover">
+                                            <img decoding="auto" loading="lazy" width="40" height="40" src="{{ $arrowSrc }}" alt="{{ e($arrowAlt) }}" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover">
                                         </div>
                                     </div>
                                 </figure>

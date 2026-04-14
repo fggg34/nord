@@ -156,10 +156,12 @@ return [
             'section' => 'cms_repeaters',
             'key' => 'mission_values_items',
             'label' => 'Our Values (#stats-section) — rows (under timeline)',
-            'description' => 'Right column: each row is an orange-arrow block with a title and description (e.g. Mission, Vision, Values). Order matches the public page.',
+            'description' => 'Right column: each row is an orange-arrow block with a title and description (e.g. Mission, Vision, Values). Upload an arrow/icon image per row (SVG/PNG); leave empty to use the default arrow. Order matches the public page.',
             'fields' => [
                 ['key' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'e.g. Mission'],
                 ['key' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Supporting paragraph'],
+                ['key' => 'arrow_image', 'label' => 'Arrow / icon image', 'type' => 'image'],
+                ['key' => 'arrow_alt', 'label' => 'Arrow image alt text', 'type' => 'text', 'placeholder' => 'Optional; for accessibility'],
             ],
         ],
         [
