@@ -14,6 +14,16 @@
 	    'defaultDescription' => 'Professional Framer website template for logistics and transport businesses. Services, About & Team, Fleet, & Industry-ready sections. Launch fast and make a statement with our present and future clients.',
 	    'defaultOgImage' => '/assets/images/95221dd86b926b19-TUsk3ygy6f75eOtFugQRJAXcjFY.jpg',
 	])
+@php
+    $__headHeroVideo = trim((string) (content('home', 'hero', 'hero_video') ?? ''));
+@endphp
+@if ($__headHeroVideo !== '')
+@php
+    $u = cms_public_url($__headHeroVideo, '');
+    $heroVideoHref = (is_string($u) && str_starts_with($u, 'http')) ? $u : url($u);
+@endphp
+    <link rel="preload" href="{{ $heroVideoHref }}" as="video" fetchpriority="high">
+@endif
     <meta name="framer-search-index" content="search-index.json">
     <meta name="framer-search-index-fallback" content="search-index.json">
     <meta name="framer-html-plugin" content="disable">
