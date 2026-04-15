@@ -77,7 +77,7 @@
                 <a
                     class="site-header__quote framer-1sg2rgo framer-164f1w4"
                     data-framer-name="wrapper"
-                    href="https://delectas.com/contact-us#contacts/"
+                    href="{{ $quoteHref }}"
                 >
                     <div class="framer-1ohlfe3" data-framer-name="text">
                         <div class="framer-kfq9mg">
@@ -155,6 +155,29 @@
         root.querySelectorAll('.site-header__nav a').forEach(function (link) {
             link.addEventListener('click', close);
         });
+
+        var quoteLink = root.querySelector('a.site-header__quote');
+        if (quoteLink) {
+            quoteLink.addEventListener('click', function (e) {
+                close();
+                try {
+                    var href = quoteLink.getAttribute('href');
+                    if (!href || href.indexOf('#contacts') === -1) return;
+                    var u = new URL(href, window.location.href);
+                    if (u.hash !== '#contacts') return;
+                    var section = document.getElementById('contacts');
+                    if (!section) return;
+                    var pathHere = window.location.pathname.replace(/\/$/, '') || '/';
+                    var pathTarget = u.pathname.replace(/\/$/, '') || '/';
+                    if (pathHere !== pathTarget) return;
+                    e.preventDefault();
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    if (history.replaceState) {
+                        history.replaceState(null, '', u.pathname + u.hash);
+                    }
+                } catch (err) {}
+            });
+        }
 
         document.addEventListener('keydown', function (e) {
             if (e.key === 'Escape') close();
