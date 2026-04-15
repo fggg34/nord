@@ -49,11 +49,11 @@ section.framer-3Bk79.framer-TtKYf.framer-b1l0uz.framer-v-b1l0uz {
 
 .framer-q0zZ3 .framer-guy106 {
     width: 100% !important;
-    max-width: 100%;
+    max-width: 100% !important;
 }
 
 .framer-q0zZ3.framer-qaqwy3 {
-    padding-bottom: 60px;
+    padding-bottom: 60px !important;
 }
 
 /* Framer secondary/pill CTA: on hover, separate icon from label by 3px */
