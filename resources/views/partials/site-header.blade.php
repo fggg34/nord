@@ -77,7 +77,7 @@
                 <a
                     class="site-header__quote framer-1sg2rgo framer-164f1w4"
                     data-framer-name="wrapper"
-                    href="{{ $quoteHref }}"
+                    href="/contact-us"
                 >
                     <div class="framer-1ohlfe3" data-framer-name="text">
                         <div class="framer-kfq9mg">
