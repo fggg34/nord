@@ -26,7 +26,7 @@ return [
      */
     'admin_visible_sections' => [
         'settings' => ['branding', 'seo', 'footer'],
-        'about-us' => ['seo', 'hero', 'our_history', 'mission_values', 'our_locations', 'team', 'certified'],
+        'about-us' => ['seo', 'hero', 'our_history', 'features', 'mission_values', 'our_locations', 'team', 'certified'],
         'contact-us' => ['seo', 'hero', 'below_hero'],
         'services' => ['seo', 'hero', 'below_hero', 'our_services', 'features', 'our_process'],
         'our-fleet' => ['seo', 'hero', 'by_the_numbers', 'features_section', 'fleet_categories'],
@@ -149,6 +149,19 @@ return [
                 ['key' => 'description', 'label' => 'Description', 'type' => 'textarea', 'placeholder' => 'Paragraph for this milestone'],
                 ['key' => 'image', 'label' => 'Image', 'type' => 'image'],
                 ['key' => 'alt', 'label' => 'Image alt text', 'type' => 'text', 'placeholder' => 'Describe the photo'],
+            ],
+        ],
+        [
+            'page' => 'about-us',
+            'section' => 'cms_repeaters',
+            'key' => 'features_items',
+            'label' => 'Features section (#features) — icon rows',
+            'description' => 'About page block below the history timeline. Tag, heading, and background image are in “Features (#features)” above. Each row: icon, title, short description.',
+            'fields' => [
+                ['key' => 'icon', 'label' => 'Icon', 'type' => 'image'],
+                ['key' => 'alt', 'label' => 'Icon alt text', 'type' => 'text', 'placeholder' => 'Optional; defaults to title'],
+                ['key' => 'title', 'label' => 'Title', 'type' => 'text', 'placeholder' => 'e.g. Certified Reliability'],
+                ['key' => 'description', 'label' => 'Short description', 'type' => 'textarea', 'placeholder' => 'One or two lines'],
             ],
         ],
         [
@@ -335,6 +348,10 @@ return [
         'about-us.hero.banner_alt' => 'Hero banner alt text (images and video accessibility)',
         'about-us.hero.intro_paragraph' => 'Intro paragraph (white strip below hero banner)',
         'about-us.our_history.heading' => 'Our History — section heading',
+        'about-us.features.tag' => 'Features section (#features) — small label (e.g. FUELING EVERY MOVE)',
+        'about-us.features.heading' => 'Features section — main heading',
+        'about-us.features.background_image' => 'Features section — background photo (truck)',
+        'about-us.features.background_alt' => 'Features background — alt text',
         'about-us.mission_values.tag' => 'Our Values — small tag (e.g. OUR MISSION, VISION & VALUES)',
         'about-us.mission_values.heading' => 'Our Values — main heading (e.g. What Drives Us.)',
         'about-us.our_locations.tag' => 'Our Locations — small tag (e.g. GLOBAL REACH. LOCAL STRENGTH.)',
@@ -568,6 +585,12 @@ return [
         ],
         'about-us.certified.intro' => [
             'type' => 'textarea',
+        ],
+        'about-us.features.background_image' => [
+            'type' => 'image',
+        ],
+        'about-us.features.background_alt' => [
+            'type' => 'text',
         ],
         'settings.branding.logo' => [
             'type' => 'image',
