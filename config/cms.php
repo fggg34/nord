@@ -41,6 +41,12 @@ return [
      */
     'admin_flat_field_defaults' => [
         'about-us' => [
+            'features' => [
+                'tag' => '',
+                'heading' => '',
+                'background_image' => '',
+                'background_alt' => '',
+            ],
             'our_locations' => [
                 'world_map_image' => '',
                 'world_map_alt' => '',

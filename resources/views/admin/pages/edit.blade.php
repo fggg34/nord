@@ -19,6 +19,7 @@
         }
         $repeatersTeamTail = collect();
         $repeatersCertifiedTail = collect();
+        $repeatersAboutUsFeatures = collect();
         $repeatersServicesCoreCaps = collect();
         $repeatersServicesFeatures = collect();
         $repeatersServicesProcess = collect();
@@ -27,9 +28,10 @@
         $repeatersHomeServiceCards = collect();
         $repeatersHomeIndustryCards = collect();
         if ($page === 'about-us') {
+            $repeatersAboutUsFeatures = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'features_items')->values();
             $repeatersTeamTail = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'team_members')->values();
             $repeatersCertifiedTail = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'certified_items')->values();
-            $repeatersMain = $repeaters->filter(fn (array $r) => ! in_array($r['key'] ?? '', ['team_members', 'certified_items'], true))->values();
+            $repeatersMain = $repeaters->filter(fn (array $r) => ! in_array($r['key'] ?? '', ['team_members', 'certified_items', 'features_items'], true))->values();
         }
         if ($page === 'services') {
             $repeatersServicesCoreCaps = $repeaters->filter(fn (array $r) => ($r['key'] ?? '') === 'core_capabilities')->values();
@@ -97,6 +99,25 @@
             @include('admin.pages._content-section-cards', ['sections' => $grouped->only(['footer'])])
         @else
             @include('admin.pages._content-section-cards', ['sections' => $groupedMain])
+        @endif
+
+        @if ($page === 'about-us' && $repeatersAboutUsFeatures->isNotEmpty())
+            <x-admin.section-card
+                title="Features section (#features) — icon rows"
+                description="Shown below the history timeline on the public About page. Tag, heading, and background are in the “Features (#features)” fields with the other section cards above. Each row: icon, title, short description."
+            >
+                <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    @foreach ($repeatersAboutUsFeatures as $rep)
+                        <x-admin.repeater
+                            :label="$rep['label']"
+                            :description="$rep['description'] ?? null"
+                            :fields="$rep['fields']"
+                            :items="$rep['items']"
+                            :storage-key="$rep['storage_key']"
+                        />
+                    @endforeach
+                </div>
+            </x-admin.section-card>
         @endif
 
         @if ($page === 'home' && $groupedHomeServicesIndustries->isNotEmpty())
