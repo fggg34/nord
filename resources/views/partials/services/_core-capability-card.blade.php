@@ -40,7 +40,6 @@
                 <div class="ssr-variant">
                     <div class="framer-l71w6v-container" data-framer-name="img - service" name="img - service">
                         <div name="img - service" class="framer-Z0z4Z framer-rlntoc framer-v-ut5ihd" data-framer-name="image - start" style="max-height: 100%; width: 100%; border-radius: 8px; opacity: 1;">
-                            <div class="framer-1nbhg90" data-framer-name="frame" style="background-color: #c40023; opacity: 1;"></div>
                             <figure class="framer-w9jxa7" data-framer-name="image" style="border-radius: 8px; opacity: 1;">
                                 <div style="position:absolute;border-radius:inherit;corner-shape:inherit;top:0;right:0;bottom:0;left:0" data-framer-background-image-wrapper="true">
                                     <img decoding="auto" loading="lazy" width="2400" height="2227" src="{{ $imgSrc }}" alt="{{ e($imgAlt) }}" style="display:block;width:100%;height:100%;border-radius:inherit;corner-shape:inherit;object-position:center;object-fit:cover">
