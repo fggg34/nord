@@ -76,6 +76,16 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
     background-image: url(/assets/images/nce-ticker-arrow.svg) !important;
 }
 
+@media (max-width: 809.98px) {
+    .framer-mNwbp .framer-m0j189 {
+        width: 65px !important;
+        height: 65px !important;
+        min-width: 65px !important;
+        min-height: 65px !important;
+        background-size: 100% 100% !important;
+    }
+}
+
 /*
  * Footer CTA ticker (.framer-12f18so): Framer SSR only sizes .framer-xli0f4 (134×119).
  * We use .framer-m0j189 for the asset, so restore the same box here or the background has no area.
