@@ -38,6 +38,15 @@
     padding-top: 60px;
 }
 
+/*
+ * Clients & partners: Framer’s .framer-1d5z8zi uses overflow:hidden.
+ * The partner slider nav is position:absolute; with 2-up slides the row is taller
+ * and the controls can be clipped on narrow viewports.
+ */
+#main .framer-mNwbp .framer-10n5cte .framer-1d5z8zi {
+    overflow: visible !important;
+}
+
 .loginord-history__pane-title {
     font-size: 35px !important;
 }
@@ -163,6 +172,14 @@ footer.framer-tt4gx a:hover {
     .partner-logos-slider__slide {
         flex: 0 0 calc((100cqw - 16px) / 2);
         width: calc((100cqw - 16px) / 2);
+    }
+
+    .partner-logos-slider {
+        overflow: visible;
+    }
+
+    .partner-logos-slider__nav {
+        z-index: 20;
     }
 }
 
