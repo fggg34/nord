@@ -659,3 +659,11 @@ section#features [data-framer-name="card"] {
         align-items: stretch !important;
     }
 }
+
+/* Feature card title: Framer preset uses width:1px + flex 1 0 0 for flex text columns */
+.framer-68J19 .framer-qlfc52 {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+}
