@@ -242,10 +242,8 @@
 }</style><style data-nce-breakpoints="">
 @media (min-width: 1200px) { .hidden-1ieiq5d { display: none !important; } }
 @media (min-width: 810px) and (max-width: 1199.98px) { .hidden-14ex2b4 { display: none !important; } }
-@media (max-width: 809.98px) { .hidden-1k94c2q { display: none !important; } }
 @media (min-width: 1200px) { .hidden-l0x3ur { display: none !important; } }
 @media (min-width: 810px) and (max-width: 1199.98px) { .hidden-16bwdqt { display: none !important; } }
-@media (max-width: 809.98px) { .hidden-me9n7f { display: none !important; } }
 </style><style data-nce-scroll-fallback="">[data-nce-scroll]{opacity:1!important;transform:none!important}</style>
 
 
