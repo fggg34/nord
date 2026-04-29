@@ -159,6 +159,13 @@ footer.framer-tt4gx a:hover {
     list-style: none;
 }
 
+@media (max-width: 809.98px) {
+    .partner-logos-slider__slide {
+        flex: 0 0 calc((100cqw - 16px) / 2);
+        width: calc((100cqw - 16px) / 2);
+    }
+}
+
 .partner-logos-slider__slide > .framer-sqvc4y {
     width: 100%;
     min-width: 0;
