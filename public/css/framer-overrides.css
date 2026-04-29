@@ -658,6 +658,13 @@ section#features [data-framer-name="card"] {
         flex-direction: column !important;
         align-items: stretch !important;
     }
+
+    section#features .framer-onr887 {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0;
+        box-sizing: border-box;
+    }
 }
 
 /* Feature card title: Framer preset uses width:1px + flex 1 0 0 for flex text columns */
