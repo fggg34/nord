@@ -114,6 +114,12 @@ h2.framer-text {
     border: 0;
 }
 
+@media (min-width: 810px) {
+    .site-header__cta--drawer {
+        display: none !important;
+    }
+}
+
 /* Framer CTA pill: glass outline + label + circular icon (cf. framer-1sg2rgo wrapper) */
 .site-header__quote.framer-1sg2rgo {
     display: inline-flex;
@@ -320,6 +326,17 @@ a.site-header__quote.framer-1sg2rgo.framer-164f1w4 {
         overflow: visible;
     }
 
+    .site-header__cta--bar {
+        display: none !important;
+    }
+
+    .site-header__cta--drawer {
+        display: flex;
+        justify-content: center;
+        padding: 4px 16px 16px;
+        border-top: 1px solid rgba(28, 24, 23, 0.07);
+    }
+
     .site-header__inner {
         display: flex;
         flex-wrap: wrap;
@@ -334,9 +351,9 @@ a.site-header__quote.framer-1sg2rgo.framer-164f1w4 {
     }
 
     .site-header__logo {
-        flex: 0 1 auto;
+        flex: 1 1 auto;
         min-width: 0;
-        max-width: calc(100% - 200px);
+        max-width: calc(100% - 56px);
     }
 
     .site-header__logo img {
@@ -372,7 +389,7 @@ a.site-header__quote.framer-1sg2rgo.framer-164f1w4 {
     }
 
     .site-header.is-menu-open .site-header__nav-wrap {
-        max-height: min(75vh, 420px);
+        max-height: min(80vh, 520px);
         overflow-y: auto;
         overflow-x: hidden;
         -webkit-overflow-scrolling: touch;
@@ -448,7 +465,7 @@ a.site-header__quote.framer-1sg2rgo.framer-164f1w4 {
 
 @media (max-width: 380px) {
     .site-header__logo {
-        max-width: calc(100% - 168px);
+        max-width: calc(100% - 52px);
     }
 
     .site-header__quote .framer-kfq9mg {
