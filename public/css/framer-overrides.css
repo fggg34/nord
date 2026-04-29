@@ -603,3 +603,59 @@ section#stats-section {
 .framer-qsf05d {
     gap: 50px !important;
 }
+
+/* Features (#features): Framer export uses row + spacer + stack with width:1px — full width, hide spacer.
+   Section is a sibling of #main on services; scope by id only. */
+section#features .framer-1nw0ten {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+section#features .framer-1e9eghq {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box;
+    flex-flow: column nowrap !important;
+    align-items: stretch !important;
+    align-content: stretch !important;
+    justify-content: flex-start !important;
+    gap: 0;
+}
+
+section#features .framer-1e9eghq .framer-19oiuay[data-framer-name="spacer"] {
+    display: none !important;
+}
+
+section#features .framer-112nz65 {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+    align-items: stretch !important;
+    overflow: visible !important;
+}
+
+section#features .framer-112nz65 > .ssr-variant {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+}
+
+section#features .framer-16ozw88-container,
+section#features [data-framer-name="card"] {
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 809.98px) {
+    section#features [data-framer-name="card"] {
+        flex-direction: column !important;
+        align-items: stretch !important;
+    }
+}
