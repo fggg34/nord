@@ -679,6 +679,11 @@ section#features [data-framer-name="card"] {
         min-width: 0;
         box-sizing: border-box;
     }
+
+    /* About mission/values: empty row spacer (Framer desktop layout) — hide on small viewports */
+    section[data-framer-name="Our Values Section"] .framer-1l4tggj[data-framer-name="spacer"] {
+        display: none !important;
+    }
 }
 
 /* Feature card title: Framer preset uses width:1px + flex 1 0 0 for flex text columns */
