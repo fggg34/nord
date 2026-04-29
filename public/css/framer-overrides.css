@@ -47,6 +47,52 @@
     overflow: visible !important;
 }
 
+/* Home — “What Our Clients Say” (.framer-6vf25): tighter vertical padding + full-width intro row */
+#main .framer-6vf25.framer-vre7cc {
+    padding-top: 72px !important;
+    padding-bottom: 72px !important;
+}
+
+@media (max-width: 1199.98px) {
+    #main .framer-6vf25.framer-vre7cc {
+        padding-top: 56px !important;
+        padding-bottom: 56px !important;
+    }
+}
+
+@media (max-width: 809.98px) {
+    #main .framer-6vf25.framer-v-vmu1bf.framer-vre7cc {
+        padding-top: 48px !important;
+        padding-bottom: 48px !important;
+    }
+}
+
+#main .framer-6vf25 .framer-gmupk3 {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    align-content: stretch !important;
+    width: 100%;
+    max-width: 100%;
+    gap: 20px;
+}
+
+#main .framer-6vf25 .framer-gmupk3 .framer-12ckxrm {
+    display: none;
+}
+
+#main .framer-6vf25 .framer-gmupk3 .framer-q6arhk,
+#main .framer-6vf25 .framer-gmupk3 .framer-1ypkwoq {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0 !important;
+}
+
+#main .framer-6vf25 .framer-gmupk3 .framer-text {
+    max-width: 100% !important;
+    width: 100%;
+}
+
 .loginord-history__pane-title {
     font-size: 35px !important;
 }
