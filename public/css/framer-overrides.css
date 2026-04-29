@@ -120,6 +120,19 @@ section.framer-3Bk79.framer-TtKYf.framer-b1l0uz.framer-v-b1l0uz {
     padding-bottom: 60px !important;
 }
 
+@media (max-width: 809.98px) {
+    /* Intro band under hero: match tighter horizontal padding; trim bottom; smaller body type */
+    #main .framer-q0zZ3.framer-kyBfp.framer-qaqwy3 {
+        --11osa0q: 0 12px 88px 12px !important;
+        padding: 0 12px 88px 12px !important;
+    }
+
+    #main .framer-q0zZ3.framer-qaqwy3 .framer-guy106 .framer-text.framer-styles-preset-1m4fxxt {
+        font-size: clamp(15px, 4vw, 18px) !important;
+        line-height: 1.45 !important;
+    }
+}
+
 /* Contact form block: anchor scroll clears fixed site header */
 #main #contacts {
     scroll-margin-top: 96px;
