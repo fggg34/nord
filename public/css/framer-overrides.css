@@ -87,7 +87,7 @@ a.framer-1sg2rgo.framer-164f1w4[data-framer-name="wrapper"]:hover > .framer-uhu0
 
     /* Home hero <main> — max-height; min-height reset so Framer’s min-height:100vh does not block the cap */
     .framer-mNwbp .framer-1tjv4h4 {
-        max-height: 60vh !important;
+        max-height: 75vh !important;
         min-height: 0 !important;
     }
 }
