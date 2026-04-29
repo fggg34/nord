@@ -665,6 +665,13 @@ section#features [data-framer-name="card"] {
         min-width: 0;
         box-sizing: border-box;
     }
+
+    .framer-text.framer-styles-preset-18qugew {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0;
+        box-sizing: border-box;
+    }
 }
 
 /* Feature card title: Framer preset uses width:1px + flex 1 0 0 for flex text columns */
