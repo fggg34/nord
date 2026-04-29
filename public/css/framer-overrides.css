@@ -304,6 +304,18 @@ h1.framer-text.framer-styles-preset-93tzfa {
     align-items: center;
 }
 
+@media (max-width: 809.98px) {
+    #main .framer-text.framer-styles-preset-93tzfa {
+        font-size: 40px !important;
+        line-height: 50px !important;
+        height: auto !important;
+        min-height: 0 !important;
+        display: block !important;
+        align-items: unset !important;
+        overflow-wrap: break-word;
+    }
+}
+
 /* About hero — “title + tag” (.framer-1bfns4k): full-width stack, type scale; overrides global 93tzfa h1 hack above */
 #main .framer-1bfns4k {
     width: 100%;
