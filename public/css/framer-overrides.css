@@ -666,6 +666,13 @@ section#features [data-framer-name="card"] {
         box-sizing: border-box;
     }
 
+    section#features .framer-12ry61w {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0;
+        box-sizing: border-box;
+    }
+
     .framer-text.framer-styles-preset-18qugew {
         width: 100% !important;
         max-width: 100% !important;
