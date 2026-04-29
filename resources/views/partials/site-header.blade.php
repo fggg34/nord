@@ -45,8 +45,8 @@
         >
             <img
                 src="{{ $logoSrc }}"
-                width="132"
-                height="32"
+                width="186"
+                height="45"
                 alt=""
                 decoding="sync"
                 fetchpriority="high"
