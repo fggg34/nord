@@ -298,7 +298,6 @@
 }</style><style data-nce-breakpoints="">
 @media (min-width: 1200px) { .hidden-18vrsrq { display: none !important; } }
 @media (min-width: 810px) and (max-width: 1199.98px) { .hidden-1w8vxjy { display: none !important; } }
-@media (max-width: 809.98px) { .hidden-13rutd2 { display: none !important; } }
 @media (min-width: 1200px) { .hidden-l0x3ur { display: none !important; } }
 @media (min-width: 810px) and (max-width: 1199.98px) { .hidden-16bwdqt { display: none !important; } }
 @media (max-width: 809.98px) { .hidden-me9n7f { display: none !important; } }
