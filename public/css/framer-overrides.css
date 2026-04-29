@@ -304,6 +304,54 @@ h1.framer-text.framer-styles-preset-93tzfa {
     align-items: center;
 }
 
+/* About hero — “title + tag” (.framer-1bfns4k): full-width stack, type scale; overrides global 93tzfa h1 hack above */
+#main .framer-1bfns4k {
+    width: 100%;
+    max-width: 100%;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    align-content: stretch !important;
+    gap: clamp(16px, 3vw, 32px);
+}
+
+#main .framer-1bfns4k .framer-mgvlo9,
+#main .framer-1bfns4k .framer-1vk0ml9-container {
+    flex: none !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    min-width: 0;
+}
+
+#main .framer-1bfns4k [data-framer-component-type="RichTextContainer"] {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+}
+
+#main .framer-1bfns4k .framer-mgvlo9 h1.framer-text.framer-styles-preset-93tzfa {
+    width: 100%;
+    max-width: 100%;
+    height: auto !important;
+    min-height: 0;
+    display: block;
+    font-size: 40px !important;
+    line-height: 50px !important;
+    text-align: left;
+    align-items: unset;
+    overflow-wrap: break-word;
+}
+
+#main .framer-1bfns4k .framer-mgvlo9 .framer-text {
+    max-width: 100% !important;
+}
+
+#main .framer-1bfns4k .framer-1vk0ml9-container .framer-text {
+    max-width: 100% !important;
+    width: 100%;
+    font-size: clamp(14px, 2.4vw, 18px);
+    line-height: 1.45;
+}
+
 /* ═══════════════════════════════════════════════════════════════
    Fleet section — accordion
    JS toggles .fleet-card-collapsed on .framer-1dyiqbv-container
