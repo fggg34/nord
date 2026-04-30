@@ -639,21 +639,22 @@ section#stats-section.framer-1hu0j2w {
         padding-top: 64px !important;
     }
 
-    /* Mission cards: title + body row uses width:1px in Framer — stack full-width rows on small viewports */
+    /* Mission cards: title + body — stack on small viewports; width per layout tweak */
     section#stats-section.framer-1hu0j2w .framer-5ftja0 {
         flex-flow: column nowrap !important;
         align-items: stretch !important;
-        width: 100% !important;
-        max-width: 100% !important;
+        width: 95% !important;
+        max-width: 95% !important;
         min-width: 0 !important;
-        flex: none !important;
+        flex: 0 0 90% !important;
         overflow: visible !important;
     }
 
     section#stats-section.framer-1hu0j2w .framer-5ftja0 > * {
-        width: 100% !important;
-        max-width: 100% !important;
+        width: 95% !important;
+        max-width: 95% !important;
         min-width: 0 !important;
+        box-sizing: border-box;
     }
 }
 
@@ -771,7 +772,7 @@ section#features [data-framer-name="card"] {
         box-sizing: border-box;
     }
 
-    .framer-text.framer-styles-preset-18qugew {
+    section#features .framer-text.framer-styles-preset-18qugew {
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0;
@@ -792,6 +793,44 @@ section#features [data-framer-name="card"] {
     /* About mission/values: empty row spacer (Framer desktop layout) — hide on small viewports */
     section[data-framer-name="Our Values Section"] .framer-1l4tggj[data-framer-name="spacer"] {
         display: none !important;
+    }
+    /* About page (framer-l9N4n): spacing, locations, overflow; preset body width on small screens */
+    .framer-text.framer-styles-preset-18qugew {
+        width: 95% !important;
+    }
+
+    .framer-l9N4n .framer-1mx2u1x {
+        gap: 40px;
+    }
+
+    .framer-l9N4n .framer-1nwrwe9 {
+        gap: 30px;
+    }
+
+    .framer-thVAj .framer-1g4q4gt-container {
+        width: 100%;
+        right: 0;
+    }
+
+    .framer-thVAj.framer-ok64es {
+        overflow: unset !important;
+        height: 100px;
+    }
+
+    .framer-GvqEg .framer-onre8b {
+        overflow: unset;
+    }
+
+    .framer-ynhqny-container {
+        display: none;
+    }
+
+    .framer-l9N4n .framer-16yh0ub {
+        gap: 40px;
+    }
+
+    .framer-l9N4n .framer-7aqdkn {
+        gap: 40px;
     }
 }
 
