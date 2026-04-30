@@ -119,6 +119,11 @@ h2.framer-text {
     .site-header__cta--drawer {
         display: none !important;
     }
+
+    .site-header__logo img {
+        width: 260px;
+        height: auto !important;
+    }
 }
 
 /* Framer CTA pill: glass outline + label + circular icon (cf. framer-1sg2rgo wrapper) */
