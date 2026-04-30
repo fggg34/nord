@@ -221,6 +221,124 @@ footer.framer-tt4gx a:hover {
     text-decoration-color: #fff !important;
 }
 
+/* Footer (Framer): mobile — column stack, padding, link grids, gaps */
+@media (max-width: 809.98px) {
+    footer.framer-tt4gx .framer-1uxwzjo {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    footer.framer-tt4gx .framer-1i0ju0k {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 2rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        padding: 2.25rem 1rem 1.75rem !important;
+        box-sizing: border-box !important;
+    }
+
+    footer.framer-tt4gx .framer-r9euvj,
+    footer.framer-tt4gx .framer-h4977n {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-r9euvj {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.5rem !important;
+    }
+
+    footer.framer-tt4gx .framer-i2tyfv,
+    footer.framer-tt4gx .framer-qlr2o {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-qlr2o {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 1.25rem !important;
+    }
+
+    footer.framer-tt4gx .framer-qkrl61 {
+        max-width: 220px;
+        margin: 0;
+        align-self: flex-start;
+    }
+
+    footer.framer-tt4gx .framer-qkrl61 img {
+        max-width: 100%;
+        height: auto !important;
+    }
+
+    /* Contacts | Services | Company — two columns, even gaps */
+    footer.framer-tt4gx .framer-h4977n {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        column-gap: 1rem !important;
+        row-gap: 1.5rem !important;
+        align-items: start !important;
+    }
+
+    footer.framer-tt4gx .framer-gftw68,
+    footer.framer-tt4gx .framer-4acsfv,
+    footer.framer-tt4gx .framer-9wrb70 {
+        min-width: 0 !important;
+        width: 100% !important;
+    }
+
+    footer.framer-tt4gx .framer-1jet40b,
+    footer.framer-tt4gx .framer-cc3f8p,
+    footer.framer-tt4gx .framer-axvfdw {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 0.4rem !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-1w2m7z9 {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 0.75rem !important;
+        padding: 0 !important;
+        margin: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-22bg6e {
+        display: flex !important;
+        flex-wrap: wrap !important;
+        gap: 0.65rem !important;
+        width: 100% !important;
+    }
+
+    footer.framer-tt4gx .framer-pyaotk .framer-1arrf7m {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0.85rem !important;
+        padding: 1.1rem 1rem 1.25rem !important;
+        text-align: center !important;
+        box-sizing: border-box !important;
+        width: 100% !important;
+    }
+
+    footer.framer-tt4gx .framer-1tzuoxh,
+    footer.framer-tt4gx .framer-thum9 {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+}
+
 /* Home: partner logos — 6 per slide, prev/next */
 .partner-logos-slider {
     position: relative;
