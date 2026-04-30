@@ -680,6 +680,12 @@ section#features [data-framer-name="card"] {
         box-sizing: border-box;
     }
 
+    /* Section titles using preset 1c03wm7 (e.g. h3 “size title 3”) — uniform mobile size */
+    .framer-text.framer-styles-preset-1c03wm7,
+    .framer-text.framer-styles-preset-1c03wm7 * {
+        font-size: 35px !important;
+    }
+
     /* About mission/values: empty row spacer (Framer desktop layout) — hide on small viewports */
     section[data-framer-name="Our Values Section"] .framer-1l4tggj[data-framer-name="spacer"] {
         display: none !important;
