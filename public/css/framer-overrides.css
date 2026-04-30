@@ -223,10 +223,19 @@ footer.framer-tt4gx a:hover {
 
 /* Footer (Framer): mobile — column stack, padding, link grids, gaps */
 @media (max-width: 809.98px) {
+    footer.framer-tt4gx.framer-1hgw5d6 {
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 30px;
+    }
+
     footer.framer-tt4gx .framer-1uxwzjo {
         width: 100% !important;
         max-width: 100% !important;
         box-sizing: border-box !important;
+        display: flex !important;
+        flex-direction: column !important;
+        gap: 50px !important;
     }
 
     footer.framer-tt4gx .framer-1i0ju0k {
@@ -246,6 +255,7 @@ footer.framer-tt4gx a:hover {
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
+        overflow: unset !important;
     }
 
     footer.framer-tt4gx .framer-r9euvj {
