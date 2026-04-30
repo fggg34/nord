@@ -65,6 +65,12 @@
         padding-top: 48px !important;
         padding-bottom: 48px !important;
     }
+
+    /* Tighter horizontal padding (Framer default 16px / 40px); matches other #main mobile gutters */
+    #main .framer-6vf25.framer-vre7cc {
+        padding-left: 12px !important;
+        padding-right: 12px !important;
+    }
 }
 
 #main .framer-6vf25 .framer-gmupk3 {
