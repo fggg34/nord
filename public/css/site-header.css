@@ -39,7 +39,8 @@
     display: block;
     height: 45px !important;
     width: auto;
-    max-width: 160px;
+    /* Intrinsic width from markup (e.g. 186×45); avoid capping below that on desktop */
+    max-width: none;
     object-fit: contain;
 }
 

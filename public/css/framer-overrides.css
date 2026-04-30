@@ -1067,6 +1067,10 @@ section#stats-section {
         box-sizing: border-box;
     }
 
+    #main .framer-kqqwr.framer-n1y79h > div {
+        max-width: 100%;
+    }
+
     .framer-Z0z4Z .framer-w9jxa7 {
         height: 200px;
     }
