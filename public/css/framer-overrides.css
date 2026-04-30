@@ -804,3 +804,32 @@ section#stats-section {
         flex: 1 1 auto !important;
     }
 }
+
+/* Framer CUFjK section: mobile-only alignment + padding + text align */
+@media (max-width: 809.98px) {
+    .framer-CUFjK .framer-1lrcsjw {
+        align-items: flex-start;
+    }
+
+    p.framer-text.framer-styles-preset-18qugew {
+        text-align: left;
+    }
+
+    .framer-CUFjK .framer-1xdmlu0 {
+        padding-bottom: 50px;
+        padding-top: 100px;
+    }
+
+    .framer-CUFjK .framer-1ezg9bz {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+
+    .framer-CUFjK .framer-1usp193 {
+        padding-top: 50px;
+    }
+
+    h3.framer-text.framer-styles-preset-1ppejsv {
+        text-align: left;
+    }
+}
