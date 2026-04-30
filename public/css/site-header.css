@@ -401,6 +401,21 @@ a.site-header__quote.framer-1sg2rgo.framer-164f1w4 {
         box-shadow: 0 16px 32px rgba(0, 0, 0, 0.08);
     }
 
+    /* Inner pages (not homepage): dark sticky header — drawer panel without white fill */
+    body.page-inner .site-header.is-menu-open .site-header__nav-wrap {
+        background: transparent;
+        border-top-color: rgba(255, 255, 255, 0.12);
+        box-shadow: none;
+    }
+
+    body.page-inner .site-header.is-menu-open .site-header__nav a {
+        color: #fff;
+    }
+
+    body.page-inner .site-header.is-menu-open .site-header__nav a.is-active {
+        color: #fff !important;
+    }
+
     .site-header__nav {
         flex-direction: column;
         align-items: stretch;
