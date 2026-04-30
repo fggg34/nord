@@ -229,8 +229,38 @@ footer.framer-tt4gx a:hover {
         gap: 30px;
     }
 
-    /* Footer CTA “end” row: Framer default is horizontal — stack children on separate rows */
-    footer.framer-tt4gx .framer-Rn1Fg.framer-1s3rzrq.framer-v-14nryt0 {
+    /* Footer CTA wrapper: ticker row + “Get a Quote” sit side-by-side in Framer — stack on mobile */
+    footer.framer-tt4gx .framer-zx6drc {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        gap: 1.25rem !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-zx6drc > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-16blffg-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-jmwf5a-container {
+        width: 100% !important;
+        max-width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }
+
+    /* Headline ticker (variant class may differ on small screens — match base Framer ids only) */
+    footer.framer-tt4gx .framer-Rn1Fg.framer-1s3rzrq {
         display: flex !important;
         flex-direction: column !important;
         flex-wrap: nowrap !important;
@@ -241,10 +271,16 @@ footer.framer-tt4gx a:hover {
         min-width: 0 !important;
     }
 
-    footer.framer-tt4gx .framer-Rn1Fg.framer-1s3rzrq.framer-v-14nryt0 > * {
+    footer.framer-tt4gx .framer-Rn1Fg.framer-1s3rzrq > * {
         width: 100% !important;
         max-width: 100% !important;
         min-width: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-vs3h8y,
+    footer.framer-tt4gx .framer-yapwb5 {
+        justify-content: center !important;
+        text-align: center !important;
     }
 
     footer.framer-tt4gx .framer-1uxwzjo {
