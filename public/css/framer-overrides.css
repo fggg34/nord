@@ -645,6 +645,29 @@ section#stats-section {
     gap: 50px !important;
 }
 
+/* Features outer section: trim Framer vertical padding (default 160px / 120px breakpoints) */
+.framer-ATXhE .framer-7izgl3,
+section#features.framer-7izgl3 {
+    padding-top: 112px !important;
+    padding-bottom: 112px !important;
+}
+
+@media (max-width: 1199.98px) {
+    .framer-ATXhE .framer-7izgl3,
+    section#features.framer-7izgl3 {
+        padding-top: 88px !important;
+        padding-bottom: 88px !important;
+    }
+}
+
+@media (max-width: 809.98px) {
+    .framer-ATXhE .framer-7izgl3,
+    section#features.framer-7izgl3 {
+        padding-top: 64px !important;
+        padding-bottom: 64px !important;
+    }
+}
+
 /* Features (#features): Framer export uses row + spacer + stack with width:1px — full width, hide spacer.
    Section is a sibling of #main on services; scope by id only. */
 section#features .framer-1nw0ten {
