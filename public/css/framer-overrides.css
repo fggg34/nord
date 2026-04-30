@@ -229,6 +229,24 @@ footer.framer-tt4gx a:hover {
         gap: 30px;
     }
 
+    /* Footer CTA “end” row: Framer default is horizontal — stack children on separate rows */
+    footer.framer-tt4gx .framer-Rn1Fg.framer-1s3rzrq.framer-v-14nryt0 {
+        display: flex !important;
+        flex-direction: column !important;
+        flex-wrap: nowrap !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 1rem !important;
+        width: 100% !important;
+        min-width: 0 !important;
+    }
+
+    footer.framer-tt4gx .framer-Rn1Fg.framer-1s3rzrq.framer-v-14nryt0 > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+
     footer.framer-tt4gx .framer-1uxwzjo {
         width: 100% !important;
         max-width: 100% !important;
