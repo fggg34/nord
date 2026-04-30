@@ -102,6 +102,10 @@
         min-width: 0 !important;
         flex: none !important;
     }
+
+    #main .framer-6vf25 .framer-1j39lpu-container {
+        width: 100%;
+    }
 }
 
 #main .framer-6vf25 .framer-gmupk3 {
@@ -715,6 +719,11 @@ section#features [data-framer-name="card"] {
         max-width: 100% !important;
         min-width: 0;
         box-sizing: border-box;
+    }
+
+    p.framer-text.framer-styles-preset-18qugew {
+        font-size: 17px !important;
+        line-height: 20px;
     }
 
     /* Section titles using preset 1c03wm7 (e.g. h3 “size title 3”) — uniform mobile size */
