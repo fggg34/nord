@@ -832,4 +832,31 @@ section#stats-section {
     h3.framer-text.framer-styles-preset-1ppejsv {
         text-align: left;
     }
+
+    /* Stats section: show hidden block + section padding */
+    #stats-section .hidden-1robhz6 {
+        display: block !important;
+    }
+
+    .framer-PfgXC.framer-193rj2l {
+        padding-left: 16px;
+        padding-right: 16px !important;
+        padding-bottom: 50px;
+    }
+
+    /* Two-column row on small screens (flex + wrapped half-width children) */
+    .framer-kqqwr.framer-n1y79h {
+        display: flex !important;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+        align-items: stretch;
+    }
+
+    .framer-kqqwr.framer-n1y79h > * {
+        flex: 1 1 calc(50% - 8px);
+        min-width: 0;
+        max-width: calc(50% - 8px);
+        box-sizing: border-box;
+    }
 }
