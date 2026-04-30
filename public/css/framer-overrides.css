@@ -623,6 +623,40 @@ section#stats-section {
     padding-bottom: 0;
 }
 
+/* About “Our Values” (mission): reduce top padding vs Framer 160px / 120px */
+section#stats-section.framer-1hu0j2w {
+    padding-top: 112px !important;
+}
+
+@media (max-width: 1199.98px) {
+    section#stats-section.framer-1hu0j2w {
+        padding-top: 88px !important;
+    }
+}
+
+@media (max-width: 809.98px) {
+    section#stats-section.framer-1hu0j2w {
+        padding-top: 64px !important;
+    }
+
+    /* Mission cards: title + body row uses width:1px in Framer — stack full-width rows on small viewports */
+    section#stats-section.framer-1hu0j2w .framer-5ftja0 {
+        flex-flow: column nowrap !important;
+        align-items: stretch !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex: none !important;
+        overflow: visible !important;
+    }
+
+    section#stats-section.framer-1hu0j2w .framer-5ftja0 > * {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
+}
+
 .loginord-history__media {
     background: transparent !important;
 }
