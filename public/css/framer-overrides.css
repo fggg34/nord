@@ -47,20 +47,13 @@
     overflow: visible !important;
 }
 
-/* Home — “What Our Clients Say” (.framer-6vf25): tighter vertical padding + full-width intro row */
-#main .framer-6vf25.framer-vre7cc {
-    padding-top: 72px !important;
-    padding-bottom: 72px !important;
-}
-
-@media (max-width: 1199.98px) {
-    #main .framer-6vf25.framer-vre7cc {
-        padding-top: 56px !important;
-        padding-bottom: 56px !important;
-    }
-}
-
+/* Home — “What Our Clients Say” (.framer-6vf25): mobile-only layout + padding (≥810px = Framer defaults) */
 @media (max-width: 809.98px) {
+    #main .framer-6vf25.framer-vre7cc {
+        padding-top: 72px !important;
+        padding-bottom: 72px !important;
+    }
+
     #main .framer-6vf25.framer-v-vmu1bf.framer-vre7cc {
         padding-top: 48px !important;
         padding-bottom: 48px !important;
@@ -106,45 +99,44 @@
     #main .framer-6vf25 .framer-1j39lpu-container {
         width: 100%;
     }
-}
 
-#main .framer-6vf25 .framer-gmupk3 {
-    flex-direction: column !important;
-    align-items: stretch !important;
-    align-content: stretch !important;
-    width: 100%;
-    max-width: 100%;
-    gap: 20px;
-}
+    #main .framer-6vf25 .framer-gmupk3 {
+        flex-direction: column !important;
+        align-items: stretch !important;
+        align-content: stretch !important;
+        width: 100%;
+        max-width: 100%;
+        gap: 20px;
+    }
 
-#main .framer-6vf25 .framer-gmupk3 .framer-12ckxrm {
-    display: none;
-}
+    #main .framer-6vf25 .framer-gmupk3 .framer-12ckxrm {
+        display: none;
+    }
 
-#main .framer-6vf25 .framer-gmupk3 .framer-q6arhk,
-#main .framer-6vf25 .framer-gmupk3 .framer-1ypkwoq {
-    flex: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-}
+    #main .framer-6vf25 .framer-gmupk3 .framer-q6arhk,
+    #main .framer-6vf25 .framer-gmupk3 .framer-1ypkwoq {
+        flex: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+    }
 
-#main .framer-6vf25 .framer-gmupk3 .framer-text {
-    max-width: 100% !important;
-    width: 100%;
+    #main .framer-6vf25 .framer-gmupk3 .framer-text {
+        max-width: 100% !important;
+        width: 100%;
+    }
 }
 
 .loginord-history__pane-title {
     font-size: 35px !important;
 }
 
-/* About: Framer section spacing / intro text width */
-section.framer-3Bk79.framer-TtKYf.framer-b1l0uz.framer-v-b1l0uz {
-    padding-bottom: 30px;
-}
-
 @media (max-width: 809.98px) {
-    /* Hero banner: Framer mobile uses 160px 16px 120px — trim top + horizontal a bit */
+    /* About hero variant: slightly tighter bottom band; hero padding trim — small viewports only */
+    section.framer-3Bk79.framer-TtKYf.framer-b1l0uz.framer-v-b1l0uz {
+        padding-bottom: 30px;
+    }
+
     #main section.framer-3Bk79.framer-TtKYf.framer-b1l0uz {
         padding-top: 112px !important;
         padding-left: 12px !important;
@@ -152,16 +144,16 @@ section.framer-3Bk79.framer-TtKYf.framer-b1l0uz.framer-v-b1l0uz {
     }
 }
 
-.framer-q0zZ3 .framer-guy106 {
-    width: 100% !important;
-    max-width: 100% !important;
-}
-
-.framer-q0zZ3.framer-qaqwy3 {
-    padding-bottom: 60px !important;
-}
-
 @media (max-width: 809.98px) {
+    #main .framer-q0zZ3 .framer-guy106 {
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+
+    .framer-q0zZ3.framer-qaqwy3 {
+        padding-bottom: 60px !important;
+    }
+
     /* Intro band under hero: match tighter horizontal padding; trim bottom; smaller body type */
     #main .framer-q0zZ3.framer-kyBfp.framer-qaqwy3 {
         --11osa0q: 0 12px 88px 12px !important;
@@ -379,52 +371,54 @@ h1.framer-text.framer-styles-preset-93tzfa {
     }
 }
 
-/* About hero — “title + tag” (.framer-1bfns4k): full-width stack, type scale; overrides global 93tzfa h1 hack above */
-#main .framer-1bfns4k {
-    width: 100%;
-    max-width: 100%;
-    flex-direction: column !important;
-    align-items: stretch !important;
-    align-content: stretch !important;
-    gap: clamp(16px, 3vw, 32px);
-}
+@media (max-width: 809.98px) {
+    /* About hero — “title + tag” (.framer-1bfns4k): full-width stack + type scale (small viewports only) */
+    #main .framer-1bfns4k {
+        width: 100%;
+        max-width: 100%;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        align-content: stretch !important;
+        gap: clamp(16px, 3vw, 32px);
+    }
 
-#main .framer-1bfns4k .framer-mgvlo9,
-#main .framer-1bfns4k .framer-1vk0ml9-container {
-    flex: none !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0;
-}
+    #main .framer-1bfns4k .framer-mgvlo9,
+    #main .framer-1bfns4k .framer-1vk0ml9-container {
+        flex: none !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0;
+    }
 
-#main .framer-1bfns4k [data-framer-component-type="RichTextContainer"] {
-    width: 100%;
-    max-width: 100%;
-    min-width: 0;
-}
+    #main .framer-1bfns4k [data-framer-component-type="RichTextContainer"] {
+        width: 100%;
+        max-width: 100%;
+        min-width: 0;
+    }
 
-#main .framer-1bfns4k .framer-mgvlo9 h1.framer-text.framer-styles-preset-93tzfa {
-    width: 100%;
-    max-width: 100%;
-    height: auto !important;
-    min-height: 0;
-    display: block;
-    font-size: 40px !important;
-    line-height: 50px !important;
-    text-align: left;
-    align-items: unset;
-    overflow-wrap: break-word;
-}
+    #main .framer-1bfns4k .framer-mgvlo9 h1.framer-text.framer-styles-preset-93tzfa {
+        width: 100%;
+        max-width: 100%;
+        height: auto !important;
+        min-height: 0;
+        display: block;
+        font-size: 40px !important;
+        line-height: 50px !important;
+        text-align: left;
+        align-items: unset;
+        overflow-wrap: break-word;
+    }
 
-#main .framer-1bfns4k .framer-mgvlo9 .framer-text {
-    max-width: 100% !important;
-}
+    #main .framer-1bfns4k .framer-mgvlo9 .framer-text {
+        max-width: 100% !important;
+    }
 
-#main .framer-1bfns4k .framer-1vk0ml9-container .framer-text {
-    max-width: 100% !important;
-    width: 100%;
-    font-size: clamp(14px, 2.4vw, 18px);
-    line-height: 1.45;
+    #main .framer-1bfns4k .framer-1vk0ml9-container .framer-text {
+        max-width: 100% !important;
+        width: 100%;
+        font-size: clamp(14px, 2.4vw, 18px);
+        line-height: 1.45;
+    }
 }
 
 /* ═══════════════════════════════════════════════════════════════
@@ -602,12 +596,10 @@ figure.framer-3851ox {
     }
 }
 
-.framer-q0zZ3 .framer-guy106 {
-    max-width: 100%;
-}
-
-.framer-3Bk79.framer-b1l0uz {
-    padding-bottom: 40px;
+@media (max-width: 809.98px) {
+    .framer-3Bk79.framer-b1l0uz {
+        padding-bottom: 40px;
+    }
 }
 
 section#stats-section-1 {
@@ -621,17 +613,6 @@ section#certified {
 
 section#stats-section {
     padding-bottom: 0;
-}
-
-/* About “Our Values” (mission): reduce top padding vs Framer 160px / 120px */
-section#stats-section.framer-1hu0j2w {
-    padding-top: 112px !important;
-}
-
-@media (max-width: 1199.98px) {
-    section#stats-section.framer-1hu0j2w {
-        padding-top: 88px !important;
-    }
 }
 
 @media (max-width: 809.98px) {
@@ -680,79 +661,61 @@ section#stats-section.framer-1hu0j2w {
     gap: 50px !important;
 }
 
-/* Features outer section: trim Framer vertical padding (default 160px / 120px breakpoints) */
-.framer-ATXhE .framer-7izgl3,
-section#features.framer-7izgl3 {
-    padding-top: 112px !important;
-    padding-bottom: 112px !important;
-}
-
-@media (max-width: 1199.98px) {
-    .framer-ATXhE .framer-7izgl3,
-    section#features.framer-7izgl3 {
-        padding-top: 88px !important;
-        padding-bottom: 88px !important;
-    }
-}
-
+/* Features (#features): mobile-only — padding, row/spacer/stack, cards (≥810px = Framer defaults) */
 @media (max-width: 809.98px) {
     .framer-ATXhE .framer-7izgl3,
     section#features.framer-7izgl3 {
         padding-top: 64px !important;
         padding-bottom: 64px !important;
     }
-}
 
-/* Features (#features): Framer export uses row + spacer + stack with width:1px — full width, hide spacer.
-   Section is a sibling of #main on services; scope by id only. */
-section#features .framer-1nw0ten {
-    width: 100%;
-    max-width: 100%;
-    box-sizing: border-box;
-}
+    section#features .framer-1nw0ten {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+    }
 
-section#features .framer-1e9eghq {
-    width: 100% !important;
-    max-width: 100% !important;
-    box-sizing: border-box;
-    flex-flow: column nowrap !important;
-    align-items: stretch !important;
-    align-content: stretch !important;
-    justify-content: flex-start !important;
-    gap: 0;
-}
+    section#features .framer-1e9eghq {
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box;
+        flex-flow: column nowrap !important;
+        align-items: stretch !important;
+        align-content: stretch !important;
+        justify-content: flex-start !important;
+        gap: 0;
+    }
 
-section#features .framer-1e9eghq .framer-19oiuay[data-framer-name="spacer"] {
-    display: none !important;
-}
+    section#features .framer-1e9eghq .framer-19oiuay[data-framer-name="spacer"] {
+        display: none !important;
+    }
 
-section#features .framer-112nz65 {
-    flex: 1 1 auto !important;
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    align-items: stretch !important;
-    overflow: visible !important;
-}
+    section#features .framer-112nz65 {
+        flex: 1 1 auto !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        align-items: stretch !important;
+        overflow: visible !important;
+    }
 
-section#features .framer-112nz65 > .ssr-variant {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0;
-    display: flex !important;
-    flex-direction: column;
-    align-items: stretch;
-}
+    section#features .framer-112nz65 > .ssr-variant {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0;
+        display: flex !important;
+        flex-direction: column;
+        align-items: stretch;
+    }
 
-section#features .framer-16ozw88-container,
-section#features [data-framer-name="card"] {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0;
-    box-sizing: border-box;
-}
+    section#features .framer-16ozw88-container,
+    section#features [data-framer-name="card"] {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0;
+        box-sizing: border-box;
+    }
 
-@media (max-width: 809.98px) {
     section#features [data-framer-name="card"] {
         flex-direction: column !important;
         align-items: stretch !important;
@@ -832,12 +795,12 @@ section#features [data-framer-name="card"] {
     .framer-l9N4n .framer-7aqdkn {
         gap: 40px;
     }
-}
 
-/* Feature card title: Framer preset uses width:1px + flex 1 0 0 for flex text columns */
-.framer-68J19 .framer-qlfc52 {
-    width: 100% !important;
-    max-width: 100% !important;
-    min-width: 0 !important;
-    flex: 1 1 auto !important;
+    /* Feature card title: Framer preset uses width:1px + flex 1 0 0 for flex text columns */
+    .framer-68J19 .framer-qlfc52 {
+        width: 100% !important;
+        max-width: 100% !important;
+        min-width: 0 !important;
+        flex: 1 1 auto !important;
+    }
 }
