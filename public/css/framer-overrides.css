@@ -161,8 +161,16 @@
     }
 
     #main .framer-q0zZ3.framer-qaqwy3 .framer-guy106 .framer-text.framer-styles-preset-1m4fxxt {
-        font-size: clamp(15px, 4vw, 18px) !important;
-        line-height: 1.45 !important;
+        font-size: 20px !important;
+    }
+
+    .framer-JHt55 .framer-qmp6nu {
+        padding-top: 60px;
+        padding-bottom: 50px !important;
+    }
+
+    .framer-JHt55 .framer-4azxck {
+        gap: 40px;
     }
 }
 
