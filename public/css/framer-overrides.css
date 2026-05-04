@@ -210,6 +210,35 @@ footer.framer-tt4gx .framer-jmwf5a-container > button.framer-GwcEh > a.framer-1s
         max-height: 75vh !important;
         min-height: 0 !important;
     }
+
+    /* Hero header arrow strip (.framer-1p1zwe2-container): smaller glyphs, no flex gutters */
+    #main .framer-1p1zwe2-container section > ul {
+        gap: 0 !important;
+        column-gap: 0 !important;
+        row-gap: 0 !important;
+        justify-content: flex-start !important;
+    }
+
+    #main .framer-1p1zwe2-container section > ul > li {
+        margin: 0 !important;
+        padding: 0 !important;
+        min-width: 0 !important;
+        flex: 0 0 auto !important;
+    }
+
+    #main .framer-1p1zwe2-container .framer-nrlx07 {
+        margin: 0 !important;
+        padding: 0 !important;
+        min-width: 0 !important;
+    }
+
+    #main .framer-1p1zwe2-container [data-framer-component-type="SVG"].framer-m0j189 {
+        width: 28px !important;
+        height: 28px !important;
+        min-width: 28px !important;
+        min-height: 28px !important;
+        background-size: 100% 100% !important;
+    }
 }
 
 /*
