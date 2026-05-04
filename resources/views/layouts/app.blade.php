@@ -9,7 +9,7 @@
     @stack('styles')
     @include('partials.site-branding-head')
 </head>
-<body class="{{ request()->is('/') ? 'page-home' : 'page-inner' }}">
+<body class="{{ request()->is('/') ? 'page-home' : 'page-inner' }}{{ request()->is('contact-us') ? ' page-contact-us' : '' }}">
     <script src="{{ asset('js/cms-framer-split-titles.js') }}"></script>
     @include('partials.site-branding-body')
     @include('partials.site-header')
