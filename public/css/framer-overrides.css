@@ -842,6 +842,12 @@ figure.framer-3851ox {
     }
 }
 
+@media (min-width: 810px) {
+    .framer-3Bk79.framer-b1l0uz {
+        padding-bottom: 50px;
+    }
+}
+
 section#stats-section-1 {
     display: none;
 }
