@@ -165,12 +165,12 @@
     }
 
     .framer-JHt55 .framer-qmp6nu {
-        padding-top: 60px;
+        padding-top: 60px !important;
         padding-bottom: 50px !important;
     }
 
     .framer-JHt55 .framer-4azxck {
-        gap: 40px;
+        gap: 40px !important;
     }
 }
 
@@ -846,7 +846,7 @@ figure.framer-3851ox {
 
 @media (max-width: 809.98px) {
     .framer-3Bk79.framer-b1l0uz {
-        padding-bottom: 40px;
+        padding-bottom: 40px !important;
     }
 }
 
@@ -903,24 +903,24 @@ section#stats-section {
 
 @media (min-width: 810px) {
     .framer-3Bk79.framer-b1l0uz {
-        padding-bottom: 40px;
+        padding-bottom: 40px !important;
     }
 
     .framer-q0zZ3 .framer-guy106 {
-        max-width: 100%;
+        max-width: 100% !important;
     }
 
     .framer-q0zZ3.framer-qaqwy3 {
-        padding-bottom: 60px;
+        padding-bottom: 60px !important;
     }
 
     .framer-ATXhE .framer-7izgl3 {
-        padding-top: 80px;
-        padding-bottom: 80px;
+        padding-top: 80px !important;
+        padding-bottom: 80px !important;
     }
 
     .framer-l9N4n .framer-1hu0j2w {
-        padding-top: 80px;
+        padding-top: 80px !important;
     }
 }
 
