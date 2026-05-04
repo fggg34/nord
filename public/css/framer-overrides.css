@@ -1155,3 +1155,11 @@ section#stats-section {
         height: 200px;
     }
 }
+
+.framer-text.framer-styles-preset-18qugew {
+    width: 100% !important;
+}
+
+.framer-T1vSl .framer-styles-preset-18qugew:not(.rich-text-wrapper), .framer-T1vSl .framer-styles-preset-18qugew.rich-text-wrapper p {
+    text-wrap: unset !important;
+}
