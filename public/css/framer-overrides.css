@@ -197,12 +197,25 @@ footer.framer-tt4gx .framer-jmwf5a-container > button.framer-GwcEh > a.framer-1s
 }
 
 @media (max-width: 809.98px) {
+    .framer-mNwbp .framer-nrlx07 {
+        width: 35px;
+        height: 35px;
+    }
+
     .framer-mNwbp .framer-m0j189 {
-        width: 65px !important;
-        height: 65px !important;
-        min-width: 65px !important;
-        min-height: 65px !important;
+        min-width: 35px !important;
+        min-height: 35px !important;
+        width: 35px !important;
+        height: 35px !important;
         background-size: 100% 100% !important;
+    }
+
+    .framer-1p1zwe2-container .nce-ticker-track {
+        height: 40px !important;
+    }
+
+    .framer-1p1zwe2-container section {
+        height: 60px !important;
     }
 
     /* Home hero <main> — max-height; min-height reset so Framer’s min-height:100vh does not block the cap */
@@ -211,7 +224,7 @@ footer.framer-tt4gx .framer-jmwf5a-container > button.framer-GwcEh > a.framer-1s
         min-height: 0 !important;
     }
 
-    /* Hero header arrow strip (.framer-1p1zwe2-container): smaller glyphs, no flex gutters */
+    /* Hero header arrow strip (.framer-1p1zwe2-container): no flex gutters */
     #main .framer-1p1zwe2-container section > ul {
         gap: 0 !important;
         column-gap: 0 !important;
@@ -229,15 +242,6 @@ footer.framer-tt4gx .framer-jmwf5a-container > button.framer-GwcEh > a.framer-1s
     #main .framer-1p1zwe2-container .framer-nrlx07 {
         margin: 0 !important;
         padding: 0 !important;
-        min-width: 0 !important;
-    }
-
-    #main .framer-1p1zwe2-container [data-framer-component-type="SVG"].framer-m0j189 {
-        width: 28px !important;
-        height: 28px !important;
-        min-width: 28px !important;
-        min-height: 28px !important;
-        background-size: 100% 100% !important;
     }
 }
 
