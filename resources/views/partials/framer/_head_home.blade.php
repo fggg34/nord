@@ -27,9 +27,6 @@
     <meta name="framer-search-index" content="search-index.json">
     <meta name="framer-search-index-fallback" content="search-index.json">
     <meta name="framer-html-plugin" content="disable">
-    <link href="./assets/images/47ca88889afac36a-54405mITjKzrnYbhvtkOGz9fM.svg" rel="icon" media="(prefers-color-scheme: light)">
-    <link href="./assets/images/dad6ab56b16aa0e8-pHNiOe8hCc9VlYYeYfAboBa5WQ.svg" rel="icon" media="(prefers-color-scheme: dark)">
-    <link rel="apple-touch-icon" href="./assets/images/96445f00d3c5d75f-KTXj89urIY9zn4OnyyO1jUvgYU.png">
 	
 	<style data-framer-font-css="">/* latin-ext */
 @font-face {
