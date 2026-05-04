@@ -850,12 +850,6 @@ figure.framer-3851ox {
     }
 }
 
-@media (min-width: 810px) {
-    .framer-3Bk79.framer-b1l0uz {
-        padding-bottom: 50px;
-    }
-}
-
 section#stats-section-1 {
     display: none;
 }
@@ -905,6 +899,29 @@ section#stats-section {
 
 .framer-q0zZ3.framer-qaqwy3 {
     padding-bottom: 100px;
+}
+
+@media (min-width: 810px) {
+    .framer-3Bk79.framer-b1l0uz {
+        padding-bottom: 40px;
+    }
+
+    .framer-q0zZ3 .framer-guy106 {
+        max-width: 100%;
+    }
+
+    .framer-q0zZ3.framer-qaqwy3 {
+        padding-bottom: 60px;
+    }
+
+    .framer-ATXhE .framer-7izgl3 {
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .framer-l9N4n .framer-1hu0j2w {
+        padding-top: 80px;
+    }
 }
 
 /* Contact — intro band under hero: desktop tighter bottom + full-width copy */
