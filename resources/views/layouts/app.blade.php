@@ -3,8 +3,8 @@
 <head>
     <base href="{{ url('/') }}">
     @yield('head_inner')
-    <link rel="stylesheet" href="{{ asset('css/framer-overrides.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/site-header.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/framer-overrides.css') }}?v={{ is_file($__p = public_path('css/framer-overrides.css')) ? filemtime($__p) : '0' }}">
+    <link rel="stylesheet" href="{{ asset('css/site-header.css') }}?v={{ is_file($__p = public_path('css/site-header.css')) ? filemtime($__p) : '0' }}">
     @stack('styles')
     @include('partials.site-branding-head')
 </head>
