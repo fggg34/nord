@@ -7,13 +7,16 @@
     <title>Under Construction — {{ config('app.name') }}</title>
     <style>
         *, *::before, *::after { box-sizing: border-box; }
+        html, body {
+            background-color: #120f0d;
+            color: #fff;
+        }
         body {
             margin: 0;
             min-height: 100vh;
             display: flex;
             align-items: center;
             justify-content: center;
-            background: #fff;
             font-family: system-ui, -apple-system, "Segoe UI", Roboto, Ubuntu, sans-serif;
         }
         .under-construction {
@@ -35,7 +38,7 @@
             font-weight: 600;
             letter-spacing: 0.14em;
             text-transform: uppercase;
-            color: #1c1817;
+            color: #fff;
         }
     </style>
 </head>
