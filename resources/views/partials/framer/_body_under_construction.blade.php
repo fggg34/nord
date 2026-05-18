@@ -1,11 +1,12 @@
 <div class="under-construction">
     <img
         class="under-construction__logo"
-        src="{{ asset('assets/images/1e1ec4521e238446-R39RMBOmVZjRdfmbRh68jVxB8ig.svg') }}"
-        width="132"
-        height="32"
-        alt="{{ config('app.name') }}"
+        src="https://delectas.com/storage/cms/settings/I8oqdTFKzkAyOnHntyYi58luKUuIJLJlbH1I4nrE.svg"
+        width="400"
+        height="120"
+        alt="Delectas Trade &amp; Distribution"
         decoding="async"
+        fetchpriority="high"
     >
     <p class="under-construction__title">Under Construction</p>
 </div>

@@ -29,7 +29,8 @@
         }
         .under-construction__logo {
             display: block;
-            max-width: min(200px, 80vw);
+            width: 100%;
+            max-width: min(420px, 92vw);
             height: auto;
         }
         .under-construction__title {
