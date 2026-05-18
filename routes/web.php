@@ -6,7 +6,13 @@ use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'home');
+Route::get('/', function () {
+    if (config('app.frontend_under_construction')) {
+        return view('under-construction');
+    }
+
+    return view('home');
+});
 Route::view('/about-us', 'about-us');
 Route::view('/contact-us', 'contact-us')->name('contact-us');
 Route::post('/contact-us', [ContactController::class, 'store'])->name('contact.store');

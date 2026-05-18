@@ -123,4 +123,20 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | Public frontend under construction
+    |--------------------------------------------------------------------------
+    |
+    | When enabled, GET requests to any path other than "/" redirect to the
+    | home URL, which shows a minimal under-construction page. Admin, login,
+    | logout, and the health endpoint are not affected.
+    |
+    */
+
+    'frontend_under_construction' => filter_var(
+        env('APP_FRONTEND_UNDER_CONSTRUCTION', 'true'),
+        FILTER_VALIDATE_BOOLEAN
+    ),
+
 ];
